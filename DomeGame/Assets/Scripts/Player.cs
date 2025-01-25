@@ -32,19 +32,19 @@ public class Player : MonoBehaviour
     [SerializeField] int rateCitizenDeathPerNoFood = 1;
 
     public int CalculateRateFoodGivenCitizen(int citizen) {
-        return rateFoodPerCitizen * citizen + foodGrowthPerTurn();
+        return foodGeneratedPerAssignedCitizen * citizen + foodGrowthPerTurn();
     }
 
     public int CalculateRateUraniumGivenCitizen(int citizen) {
-        return rateUraniumPerCitizen * citizen + uraniumGrowthPerTurn();
+        return coinGeneratedPerAssignedCitizen * citizen + uraniumGrowthPerTurn();
     }
 
     public int CalculateRateWaterGivenCitizen(int citizen) {
-        return rateWaterPerCitizen * citizen + waterGrowthPerTurn();
+        return waterGeneratedPerAssignedCitizen * citizen + waterGrowthPerTurn();
     }
 
     public int CalculateRateCoinGivenCitizen(int citizen) {
-        return citizen + coinGrowthPerTurn();
+        return uraniumGeneratedPerAssignedCitizen * citizen + coinGrowthPerTurn();
     }
 
     public int CitizenGrowthPerTurn(){
