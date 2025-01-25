@@ -20,16 +20,21 @@ public class Player : MonoBehaviour
     [SerializeField] int rateWaterPerUranium = 1;
     [SerializeField] int rateCoinPerTurn = 0;
 
-    [SerializeField] int foodGeneratedPerAssignedCitizen = 100;
-    [SerializeField] int coinGeneratedPerAssignedCitizen = 100;
-    [SerializeField] int waterGeneratedPerAssignedCitizen = 100;
+    [SerializeField] int foodGeneratedPerAssignedCitizen = 300;
+    [SerializeField] int coinGeneratedPerAssignedCitizen = 300;
+    [SerializeField] int waterGeneratedPerAssignedCitizen = 300;
 
-    [SerializeField] int uraniumGeneratedPerAssignedCitizen = 100;
+    [SerializeField] int uraniumGeneratedPerAssignedCitizen = 300;
+
+    [SerializeField] int assignedFood = 0;
+    [SerializeField] int assignedWater = 0;
+    [SerializeField] int assignedUranium = 0;
+    [SerializeField] int assignedCoin = 0;
 
 
     [SerializeField] int surplusFoodToGrowOneCitizenPerTurn = 10;
 
-    [SerializeField] int rateCitizenDeathPerNoFood = 1;
+    [SerializeField] int rateCitizenDeathPerNoResource = 1;
 
     public int CalculateRateFoodGivenCitizen(int citizen) {
         return foodGeneratedPerAssignedCitizen * citizen + foodGrowthPerTurn();
@@ -48,10 +53,21 @@ public class Player : MonoBehaviour
     }
 
     public int CitizenGrowthPerTurn(){
+        int foodPopGrowth = 0;
+        int maxResourceDeath = 0;
         if (currentFood >= currentCitizenPopulation) {
-            return Math.Max(currentFood-currentCitizenPopulation,0)/surplusFoodToGrowOneCitizenPerTurn;
+            foodPopGrowth = Math.Max(currentFood-currentCitizenPopulation,0)/surplusFoodToGrowOneCitizenPerTurn;
         }
-        return (currentFood - currentCitizenPopulation) * rateCitizenDeathPerNoFood;
+        else if (currentFood < currentCitizenPopulation) {
+            maxResourceDeath = Math.Max(currentCitizenPopulation - currentFood, 0);
+        }
+        if (currentUranium < currentCitizenPopulation) {
+            maxResourceDeath = Math.Max(currentCitizenPopulation - currentUranium, maxResourceDeath);
+        }
+        if (currentWater < currentCitizenPopulation) {
+            maxResourceDeath = Math.Max(currentCitizenPopulation - currentWater, maxResourceDeath);
+        }
+        return foodPopGrowth - maxResourceDeath;
     }
 
     public int GetCurrentCitizenPopulation(){
@@ -79,29 +95,30 @@ public class Player : MonoBehaviour
     }
 
     int foodGrowthPerTurn(){
-        return -rateFoodPerCitizen*currentCitizenPopulation;
+        return -rateFoodPerCitizen*currentCitizenPopulation + assignedFood*foodGeneratedPerAssignedCitizen;
     }
 
     int uraniumGrowthPerTurn(){
-        return -rateUraniumPerCitizen*currentCitizenPopulation;
+        return -rateUraniumPerCitizen*currentCitizenPopulation + assignedUranium*uraniumGeneratedPerAssignedCitizen;
     }
 
     int waterGrowthPerTurn(){
-        return -rateWaterPerCitizen*currentCitizenPopulation + -rateWaterPerUranium*currentUranium;
+        return -rateWaterPerCitizen*currentCitizenPopulation + -rateWaterPerUranium*currentUranium + assignedWater*waterGeneratedPerAssignedCitizen;
     }
 
     int coinGrowthPerTurn(){
-        return rateCoinPerTurn;
+        return rateCoinPerTurn + assignedCoin*coinGeneratedPerAssignedCitizen;
     }
 
     // Update is called once per frame
     void Update()
+    
     {
-        ImmediateStyle.Text("/Canvas/CoinText4142", "Coin: " + currentCoin + "(" + coinGrowthPerTurn() + "/turn)");
-        ImmediateStyle.Text("/Canvas/FoodTexte6fc", "Food:" + currentFood + "(" + foodGrowthPerTurn() + "/turn)");
-        ImmediateStyle.Text("/Canvas/FoodText (1)4f43", "Population:" + currentCitizenPopulation + "(" + CitizenGrowthPerTurn() + "/turn)");
-        ImmediateStyle.Text("/Canvas/UraniumTextc4b3", "Uranium:" + currentUranium + "(" + uraniumGrowthPerTurn() + "/turn)");
-        ImmediateStyle.Text("/Canvas/WaterText798e", "Water:" + currentWater + "(" + waterGrowthPerTurn() + "/turn)");
+        ImmediateStyle.Text("/Canvas/CoinText4142", "Coin: " + currentCoin + "(" + coinGrowthPerTurn() + "/turn) + " + assignedCoin + " citizens");
+        ImmediateStyle.Text("/Canvas/FoodTexte6fc", "Food:" + currentFood + "(" + foodGrowthPerTurn() + "/turn) + " + assignedFood + " citizens");
+        ImmediateStyle.Text("/Canvas/UraniumTextc4b3", "Uranium:" + currentUranium + "(" + uraniumGrowthPerTurn() + "/turn) + " + assignedUranium + " citizens");
+        ImmediateStyle.Text("/Canvas/WaterText798e", "Water:" + currentWater + "(" + waterGrowthPerTurn() + "/turn)" + assignedWater + " citizens");
+        ImmediateStyle.Text("/Canvas/PopulationText084a", "Population:" + currentCitizenPopulation + "(" + CitizenGrowthPerTurn() + "/turn)");
         ImmediateStyle.Text("/Canvas/TurnText366e", "Turn:" + currentTurn);
 
     
