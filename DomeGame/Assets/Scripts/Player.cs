@@ -35,6 +35,8 @@ public class Player : MonoBehaviour
     [SerializeField] int surplusFoodToGrowOneCitizenPerTurn = 10;
 
     [SerializeField] int rateCitizenDeathPerNoResource = 1;
+    [SerializeField] int rateCitizenDeathByBarrier = 1;
+    [SerializeField] int requiredUraniumForBarrier = 100;
 
     public int CalculateRateFoodGivenCitizen(int citizen) {
         return foodGeneratedPerAssignedCitizen * citizen + foodGrowthPerTurn();
@@ -53,21 +55,7 @@ public class Player : MonoBehaviour
     }
 
     public int CitizenGrowthPerTurn(){
-        int foodPopGrowth = 0;
-        int maxResourceDeath = 0;
-        if (currentFood >= currentCitizenPopulation) {
-            foodPopGrowth = Math.Max(currentFood-currentCitizenPopulation,0)/surplusFoodToGrowOneCitizenPerTurn;
-        }
-        else if (currentFood < currentCitizenPopulation) {
-            maxResourceDeath = Math.Max(currentCitizenPopulation - currentFood, 0);
-        }
-        if (currentUranium < currentCitizenPopulation) {
-            maxResourceDeath = Math.Max(currentCitizenPopulation - currentUranium, maxResourceDeath);
-        }
-        if (currentWater < currentCitizenPopulation) {
-            maxResourceDeath = Math.Max(currentCitizenPopulation - currentWater, maxResourceDeath);
-        }
-        return foodPopGrowth - maxResourceDeath;
+        return popGrowthByFood() - popDeathByLackResource() - popDeathByBarrier();
     }
 
     public int GetCurrentCitizenPopulation(){
@@ -110,6 +98,42 @@ public class Player : MonoBehaviour
         return rateCoinPerTurn + assignedCoin*coinGeneratedPerAssignedCitizen;
     }
 
+    int popDeathByBarrier(){
+        if (currentUranium > requiredUraniumForBarrier) {
+            return 0;
+        }
+        return (requiredUraniumForBarrier - currentUranium)*rateCitizenDeathByBarrier;
+    }
+
+    int popGrowthByFood(){
+        if (currentFood < currentCitizenPopulation) {
+            return 0;
+        }
+        return Math.Max(currentFood-currentCitizenPopulation,0)/surplusFoodToGrowOneCitizenPerTurn;
+    }
+
+    int popDeathByLackResource() {
+        int maxResourceDeath = 0;
+         if (currentFood < currentCitizenPopulation) {
+            maxResourceDeath = Math.Max(currentCitizenPopulation - currentFood, 0);
+        }
+        if (currentWater < currentCitizenPopulation) {
+            maxResourceDeath = Math.Max(currentCitizenPopulation - currentWater, maxResourceDeath);
+        }
+        return maxResourceDeath * rateCitizenDeathPerNoResource;
+    }
+
+    string generateLackResourceMessage() {
+        string message = "";
+        if (currentFood < currentCitizenPopulation) {
+            message += "Food";
+        }
+        if (currentWater < currentCitizenPopulation) {
+            message += " Water";
+        }
+        return message;
+    }
+
     // Update is called once per frame
     void Update()
     
@@ -119,6 +143,26 @@ public class Player : MonoBehaviour
         ImmediateStyle.Text("/Canvas/UraniumTextc4b3", "Uranium:" + currentUranium + "(" + uraniumGrowthPerTurn() + "/turn) + " + assignedUranium + " citizens");
         ImmediateStyle.Text("/Canvas/WaterText798e", "Water:" + currentWater + "(" + waterGrowthPerTurn() + "/turn)" + assignedWater + " citizens");
         ImmediateStyle.Text("/Canvas/PopulationText084a", "Population:" + currentCitizenPopulation + "(" + CitizenGrowthPerTurn() + "/turn)");
+        ImmediateStyle.Text("/Canvas/Uranium Required508f", "Uranium Required for Barrier:" + requiredUraniumForBarrier);
+
+        if (currentUranium > requiredUraniumForBarrier) {
+            ImmediateStyle.Text("/Canvas/BubbleDeathTextfddb", "Barrier: Ready No Deaths");
+        } else {
+            ImmediateStyle.Text("/Canvas/BubbleDeathTextfddb", "Barrier underpowered" + "(" + popDeathByBarrier() + " deaths to radiation)");
+        }
+
+        if (popDeathByLackResource() > 0) {
+            ImmediateStyle.Text("/Canvas/ResourceDeathTexta4fa", popDeathByLackResource() + " deaths by lack of " + generateLackResourceMessage());
+        } else {
+            ImmediateStyle.Text("/Canvas/ResourceDeathTexta4fa", "No Deaths from lack of resources");
+        }
+
+        if (popGrowthByFood() > 0) {
+            ImmediateStyle.Text("/Canvas/PopulationGrowthText21e3", popGrowthByFood() + "citizens born with our surplus food");
+        } else {
+            ImmediateStyle.Text("/Canvas/PopulationGrowthText21e3", "No Surplus Food to Grow Population");
+        }
+
         ImmediateStyle.Text("/Canvas/TurnText366e", "Turn:" + currentTurn);
 
     
