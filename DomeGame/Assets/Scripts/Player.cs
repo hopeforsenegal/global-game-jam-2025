@@ -2,12 +2,24 @@ using System;
 using MoonlitSystem.UI.Immediate;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public enum GamePhase 
+{
+    Event,
+    ResourceGathering,
+    EndTurn,
+}
 
 public class Player : MonoBehaviour
 {
 
     [SerializeField] int currentTurn = 0;
     [SerializeField] int maxTurns = 5;
+
+    [SerializeField] GamePhase currentPhase = GamePhase.ResourceGathering;
+
+
     [SerializeField] int currentCitizenPopulation = 100;
     [SerializeField] int currentFood = 1000;
     [SerializeField] int currentUranium = 100;
@@ -144,26 +156,16 @@ public class Player : MonoBehaviour
         ImmediateStyle.Text("/Canvas/WaterText798e", $"Water: {currentWater}({waterGrowthPerTurn()}/turn) + {assignedWater} citizens");
         ImmediateStyle.Text("/Canvas/PopulationText084a", $"Population: {currentCitizenPopulation}({CitizenGrowthPerTurn()}/turn)");
         ImmediateStyle.Text("/Canvas/Uranium Required508f", $"Uranium Required for Barrier: {requiredUraniumForBarrier}");
-
-        if (popDeathByBarrier() > 0) {
-            ImmediateStyle.Text("/Canvas/BubbleDeathTextfddb", $"Barrier underpowered ({popDeathByBarrier()} deaths to radiation)");
-        } else {
-            ImmediateStyle.Text("/Canvas/BubbleDeathTextfddb", "Barrier: Ready No Deaths");
-        }
-
-        if (popGrowthByFood() > 0) {
-            ImmediateStyle.Text("/Canvas/PopulationGrowthText21e3", $"{popGrowthByFood()} citizens born with our surplus food");
-        } else {
-            ImmediateStyle.Text("/Canvas/PopulationGrowthText21e3", "No Surplus Food to Grow Population");
-        }
-
-        if (popDeathByLackResource() > 0) {
-            ImmediateStyle.Text("/Canvas/ResourceDeathTexta4fa", $"{popDeathByLackResource()} deaths by lack of {generateLackResourceMessage()}");
-        } else {
-            ImmediateStyle.Text("/Canvas/ResourceDeathTexta4fa", "No Deaths from lack of resources");
-        }
-
+        ImmediateStyle.Text("/Canvas/PhaseTextc7bd", "Phase: " + currentPhase.ToString());
         ImmediateStyle.Text("/Canvas/TurnText366e", $"Turn: {currentTurn}/{maxTurns}");
+
+        if (currentCitizenPopulation <= 0) {
+            ImmediateStyle.Text("/Canvas/EndText82ef", "GameOver");
+            if (Input.GetKeyDown(KeyCode.Space)) {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            }
+            return;
+        }
 
     
         if (currentTurn == maxTurns) {
@@ -177,19 +179,45 @@ public class Player : MonoBehaviour
             return;
         }
 
+        if (currentPhase == GamePhase.ResourceGathering) {
+            ImmediateStyle.Text("/Canvas/BubbleDeathTextfddb", "");
+            ImmediateStyle.Text("/Canvas/PopulationGrowthText21e3", "");
+            ImmediateStyle.Text("/Canvas/ResourceDeathTexta4fa", "");
+            if (Input.GetKeyDown(KeyCode.Space)) {
+                currentPhase = GamePhase.EndTurn;
+                int foodGrowth = CalculateRateFoodGivenCitizen(assignedFood);
+                int uraniumGrowth = CalculateRateUraniumGivenCitizen(assignedUranium);
+                int waterGrowth = CalculateRateWaterGivenCitizen(assignedWater);
+                int coinGrowth = CalculateRateCoinGivenCitizen(assignedCoin);
+                currentFood = math.max(foodGrowth + currentFood, 0);
+                currentUranium = math.max(uraniumGrowth + currentUranium, 0);
+                currentWater = math.max(waterGrowth + currentWater, 0);
+                currentCoin = math.max(coinGrowth + currentCoin, 0);   
+            }
+        } else if (currentPhase == GamePhase.EndTurn) {
+                if (popDeathByBarrier() > 0) {
+                    ImmediateStyle.Text("/Canvas/BubbleDeathTextfddb", $"Barrier underpowered ({popDeathByBarrier()} deaths to radiation)");
+                } else {
+                    ImmediateStyle.Text("/Canvas/BubbleDeathTextfddb", "Barrier: Ready No Deaths");
+                }
 
-        if (Input.GetKeyDown(KeyCode.Space)) {
-            int citizenGrowth = CitizenGrowthPerTurn();
-            int foodGrowth = foodGrowthPerTurn();
-            int uraniumGrowth = uraniumGrowthPerTurn();
-            int waterGrowth = waterGrowthPerTurn();
-            int coinGrowth = coinGrowthPerTurn();
-            currentCitizenPopulation = math.max(citizenGrowth + currentCitizenPopulation, 0);
-            currentFood = math.max(foodGrowth + currentFood, 0);
-            currentUranium = math.max(uraniumGrowth + currentUranium, 0);
-            currentWater = math.max(waterGrowth + currentWater, 0);
-            currentCoin = math.max(coinGrowth + currentCoin, 0);    
-            currentTurn = currentTurn + 1;
+                if (popGrowthByFood() > 0) {
+                    ImmediateStyle.Text("/Canvas/PopulationGrowthText21e3", $"{popGrowthByFood()} citizens born with our surplus food");
+                } else {
+                    ImmediateStyle.Text("/Canvas/PopulationGrowthText21e3", "No Surplus Food to Grow Population");
+                }
+
+                if (popDeathByLackResource() > 0) {
+                    ImmediateStyle.Text("/Canvas/ResourceDeathTexta4fa", $"{popDeathByLackResource()} deaths by lack of {generateLackResourceMessage()}");
+                } else {
+                    ImmediateStyle.Text("/Canvas/ResourceDeathTexta4fa", "No Deaths from lack of resources");
+                }
+            if (Input.GetKeyDown(KeyCode.Space)) {
+                int citizenGrowth = CitizenGrowthPerTurn();
+                currentCitizenPopulation = math.max(citizenGrowth + currentCitizenPopulation, 0);
+                currentTurn = currentTurn + 1;
+                currentPhase = GamePhase.ResourceGathering;
+            }
         }
     }
 }

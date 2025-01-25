@@ -3,15 +3,17 @@ using UnityEngine;
 
 public class MainMenu : MonoBehaviour
 {
-    protected void Start()
-    {
-        Debug.Log("Start");
-    }
+    private float fadeStartTime;
+    private bool isFading;
+
     protected void Update()
     {
-        ImmediateStyle.CanvasGroup("/Canvas/MainMenua071");
+        if (!isFading) ImmediateStyle.CanvasGroup("/Canvas/MainMenua071");
+        if (isFading) ImmediateStyle.CanvasGroup("/Canvas/MainMenua071", (cg) => { cg.alpha = Mathf.Lerp(1, 0, Time.time - fadeStartTime); });
+
         if (ImmediateStyle.Button("/Canvas/Image/Button (Legacy)c95e").IsMouseDown) {
-            Debug.Log("play");
+            fadeStartTime = Time.time - 0.3f;
+            isFading = true;
         }
         if (ImmediateStyle.Button("/Canvas/Image/Button (Legacy) (1)1eee").IsMouseDown) {
 #if UNITY_EDITOR

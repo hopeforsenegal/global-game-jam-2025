@@ -10,12 +10,16 @@ public class RandomEvents : MonoBehaviour
 {
     public Event[] eventsData;
     private Event selectedEvent;
+    private TypingEffect typingEffect;
 
     // Start is called before the first frame update
     void Start()
     {
         Debug.Log("Start");
+
         selectedEvent = eventsData[UnityEngine.Random.Range(0, eventsData.Length)];
+        typingEffect = new TypingEffect();
+        typingEffect.fullText = selectedEvent.description;
     }
 
     // Update is called once per frame
@@ -25,7 +29,8 @@ public class RandomEvents : MonoBehaviour
         //     Debug.Log("Hit space");
         // }
 
-        ImmediateStyle.Text("/Canvas/Event Description4f6d", selectedEvent.description);
+        TypingEffect.HandleTypingEffect(ref typingEffect, 0.1f);
+        ImmediateStyle.Text("/Canvas/Event Description4f6d", typingEffect.currentText);
 
         if (selectedEvent.choices.Length > 1)
         {
