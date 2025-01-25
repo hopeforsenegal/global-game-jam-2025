@@ -145,10 +145,10 @@ public class Player : MonoBehaviour
         ImmediateStyle.Text("/Canvas/PopulationText084a", "Population:" + currentCitizenPopulation + "(" + CitizenGrowthPerTurn() + "/turn)");
         ImmediateStyle.Text("/Canvas/Uranium Required508f", "Uranium Required for Barrier:" + requiredUraniumForBarrier);
 
-        if (currentUranium > requiredUraniumForBarrier) {
-            ImmediateStyle.Text("/Canvas/BubbleDeathTextfddb", "Barrier: Ready No Deaths");
-        } else {
+        if (popDeathByBarrier() > 0) {
             ImmediateStyle.Text("/Canvas/BubbleDeathTextfddb", "Barrier underpowered" + "(" + popDeathByBarrier() + " deaths to radiation)");
+        } else {
+            ImmediateStyle.Text("/Canvas/BubbleDeathTextfddb", "Barrier: Ready No Deaths");
         }
 
         if (popDeathByLackResource() > 0) {
