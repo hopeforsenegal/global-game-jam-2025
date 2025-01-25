@@ -6,7 +6,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public int population = 1;
-    public int unitFood = 0;
+    public int unitFood = 10;
 
 
     // Start is called before the first frame update
