@@ -138,23 +138,17 @@ public class Player : MonoBehaviour
     void Update()
     
     {
-        ImmediateStyle.Text("/Canvas/CoinText4142", "Coin: " + currentCoin + "(" + coinGrowthPerTurn() + "/turn) + " + assignedCoin + " citizens");
-        ImmediateStyle.Text("/Canvas/FoodTexte6fc", "Food:" + currentFood + "(" + foodGrowthPerTurn() + "/turn) + " + assignedFood + " citizens");
-        ImmediateStyle.Text("/Canvas/UraniumTextc4b3", "Uranium:" + currentUranium + "(" + uraniumGrowthPerTurn() + "/turn) + " + assignedUranium + " citizens");
-        ImmediateStyle.Text("/Canvas/WaterText798e", "Water:" + currentWater + "(" + waterGrowthPerTurn() + "/turn)" + assignedWater + " citizens");
-        ImmediateStyle.Text("/Canvas/PopulationText084a", "Population:" + currentCitizenPopulation + "(" + CitizenGrowthPerTurn() + "/turn)");
-        ImmediateStyle.Text("/Canvas/Uranium Required508f", "Uranium Required for Barrier:" + requiredUraniumForBarrier);
+        ImmediateStyle.Text("/Canvas/CoinText4142", $"Coin: {currentCoin}({coinGrowthPerTurn()}/turn) + {assignedCoin} citizens");
+        ImmediateStyle.Text("/Canvas/FoodTexte6fc", $"Food: {currentFood}({foodGrowthPerTurn()}/turn) + {assignedFood} citizens");
+        ImmediateStyle.Text("/Canvas/UraniumTextc4b3", $"Uranium: {currentUranium}({uraniumGrowthPerTurn()}/turn) + {assignedUranium} citizens");
+        ImmediateStyle.Text("/Canvas/WaterText798e", $"Water: {currentWater}({waterGrowthPerTurn()}/turn) + {assignedWater} citizens");
+        ImmediateStyle.Text("/Canvas/PopulationText084a", $"Population: {currentCitizenPopulation}({CitizenGrowthPerTurn()}/turn)");
+        ImmediateStyle.Text("/Canvas/Uranium Required508f", $"Uranium Required for Barrier: {requiredUraniumForBarrier}");
 
         if (popDeathByBarrier() > 0) {
             ImmediateStyle.Text("/Canvas/BubbleDeathTextfddb", $"Barrier underpowered ({popDeathByBarrier()} deaths to radiation)");
         } else {
             ImmediateStyle.Text("/Canvas/BubbleDeathTextfddb", "Barrier: Ready No Deaths");
-        }
-
-        if (popDeathByLackResource() > 0) {
-            ImmediateStyle.Text("/Canvas/ResourceDeathTexta4fa", $"{popDeathByLackResource()} deaths by lack of {generateLackResourceMessage()}");
-        } else {
-            ImmediateStyle.Text("/Canvas/ResourceDeathTexta4fa", "No Deaths from lack of resources");
         }
 
         if (popGrowthByFood() > 0) {
@@ -163,7 +157,13 @@ public class Player : MonoBehaviour
             ImmediateStyle.Text("/Canvas/PopulationGrowthText21e3", "No Surplus Food to Grow Population");
         }
 
-        ImmediateStyle.Text("/Canvas/TurnText366e", "Turn:" + currentTurn);
+        if (popDeathByLackResource() > 0) {
+            ImmediateStyle.Text("/Canvas/ResourceDeathTexta4fa", $"{popDeathByLackResource()} deaths by lack of {generateLackResourceMessage()}");
+        } else {
+            ImmediateStyle.Text("/Canvas/ResourceDeathTexta4fa", "No Deaths from lack of resources");
+        }
+
+        ImmediateStyle.Text("/Canvas/TurnText366e", $"Turn: {currentTurn}/{maxTurns}");
 
     
         if (currentTurn == maxTurns) {
