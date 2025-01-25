@@ -288,7 +288,7 @@ GameObject:
   - component: {fileID: 555542299}
   - component: {fileID: 555542298}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: Text B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -327,7 +327,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ElementData:
-    ID: /Canvas/Button (Legacy) (1)/Text (Legacy)c201
+    ID: /Canvas/Button B/Text Bf90d
 --- !u!114 &555542299
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -373,7 +373,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: Choice B
 --- !u!222 &555542301
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -397,7 +397,7 @@ GameObject:
   - component: {fileID: 873925726}
   - component: {fileID: 873925725}
   m_Layer: 5
-  m_Name: Button (Legacy)
+  m_Name: Button A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -437,7 +437,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ElementData:
-    ID: /Canvas/Button (Legacy)8e95
+    ID: /Canvas/Button A3acd
 --- !u!114 &873925726
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -547,7 +547,7 @@ GameObject:
   - component: {fileID: 951223436}
   - component: {fileID: 951223435}
   m_Layer: 5
-  m_Name: Button (Legacy) (1)
+  m_Name: Button B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -587,7 +587,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ElementData:
-    ID: /Canvas/Button (Legacy) (1)83f7
+    ID: /Canvas/Button Bd2b9
 --- !u!114 &951223436
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -697,7 +697,7 @@ GameObject:
   - component: {fileID: 1003201381}
   - component: {fileID: 1003201380}
   m_Layer: 5
-  m_Name: Button (Legacy) (2)
+  m_Name: Button C
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -737,7 +737,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ElementData:
-    ID: /Canvas/Button (Legacy) (2)cb6b
+    ID: /Canvas/Button C2345
 --- !u!114 &1003201381
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -967,7 +967,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1f49add9a2d10a94bb3fcd23088efbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventDatum:
+  eventsData:
   - {fileID: 11400000, guid: f8f1c31d116323578b74e995b79c5f42, type: 2}
   - {fileID: 11400000, guid: 9b2a8a1cf7480dae6b2b9d3fd464cc4f, type: 2}
 --- !u!4 &1304951264
@@ -1011,7 +1011,7 @@ GameObject:
   - component: {fileID: 1367834593}
   - component: {fileID: 1367834592}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: Text C
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1050,7 +1050,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ElementData:
-    ID: /Canvas/Button (Legacy) (2)/Text (Legacy)2f07
+    ID: /Canvas/Button C/Text Cc803
 --- !u!114 &1367834593
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1096,7 +1096,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: Choice C
 --- !u!222 &1367834595
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1119,7 +1119,7 @@ GameObject:
   - component: {fileID: 1377924561}
   - component: {fileID: 1377924560}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: Text A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1158,7 +1158,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ElementData:
-    ID: /Canvas/Button (Legacy)/Text (Legacy)bbb2
+    ID: /Canvas/Button A/Text A6222
 --- !u!114 &1377924561
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1204,7 +1204,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button A
+  m_Text: Choice A
 --- !u!222 &1377924563
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1227,7 +1227,7 @@ GameObject:
   - component: {fileID: 2084581397}
   - component: {fileID: 2084581396}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: Event Description
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1266,7 +1266,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Hello World
+  m_Text: Event Description
 --- !u!222 &2084581394
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1308,7 +1308,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ElementData:
-    ID: /Canvas/Text (Legacy)263a
+    ID: /Canvas/Event Description4f6d
 --- !u!114 &2084581397
 MonoBehaviour:
   m_ObjectHideFlags: 0
