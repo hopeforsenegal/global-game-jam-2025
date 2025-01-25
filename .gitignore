@@ -72,3 +72,4 @@ DomeGame/[Aa]ssets/[Aa]ddressable[Aa]ssets[Dd]ata/*/*.bin*
 DomeGame/[Aa]ssets/[Ss]treamingAssets/aa.meta
 DomeGame/[Aa]ssets/[Ss]treamingAssets/aa/*
 DomeGame/Library
+DomeGame/Packages/packages-lock.json
