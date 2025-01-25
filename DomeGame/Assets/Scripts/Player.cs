@@ -146,19 +146,19 @@ public class Player : MonoBehaviour
         ImmediateStyle.Text("/Canvas/Uranium Required508f", "Uranium Required for Barrier:" + requiredUraniumForBarrier);
 
         if (popDeathByBarrier() > 0) {
-            ImmediateStyle.Text("/Canvas/BubbleDeathTextfddb", "Barrier underpowered" + "(" + popDeathByBarrier() + " deaths to radiation)");
+            ImmediateStyle.Text("/Canvas/BubbleDeathTextfddb", $"Barrier underpowered ({popDeathByBarrier()} deaths to radiation)");
         } else {
             ImmediateStyle.Text("/Canvas/BubbleDeathTextfddb", "Barrier: Ready No Deaths");
         }
 
         if (popDeathByLackResource() > 0) {
-            ImmediateStyle.Text("/Canvas/ResourceDeathTexta4fa", popDeathByLackResource() + " deaths by lack of " + generateLackResourceMessage());
+            ImmediateStyle.Text("/Canvas/ResourceDeathTexta4fa", $"{popDeathByLackResource()} deaths by lack of {generateLackResourceMessage()}");
         } else {
             ImmediateStyle.Text("/Canvas/ResourceDeathTexta4fa", "No Deaths from lack of resources");
         }
 
         if (popGrowthByFood() > 0) {
-            ImmediateStyle.Text("/Canvas/PopulationGrowthText21e3", popGrowthByFood() + "citizens born with our surplus food");
+            ImmediateStyle.Text("/Canvas/PopulationGrowthText21e3", $"{popGrowthByFood()} citizens born with our surplus food");
         } else {
             ImmediateStyle.Text("/Canvas/PopulationGrowthText21e3", "No Surplus Food to Grow Population");
         }
