@@ -122,6 +122,114 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &16031330
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 16031331}
+  - component: {fileID: 16031335}
+  - component: {fileID: 16031334}
+  - component: {fileID: 16031333}
+  - component: {fileID: 16031332}
+  m_Layer: 5
+  m_Name: CoinText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &16031331
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 16031330}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 588927310}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -0, y: 405}
+  m_SizeDelta: {x: 1500, y: 100}
+  m_Pivot: {x: 0, y: 0}
+--- !u!114 &16031332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 16031330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2f7ee2bb37a3405290423c307d9c40e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ElementData:
+    ID: /Canvas/CoinText4142
+--- !u!114 &16031333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 16031330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43cf5a02399944627ae47b966d9b6d98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &16031334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 16031330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 64
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 1
+    m_MaxSize: 300
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 'Coin: 100 (+2/Turn)'
+--- !u!222 &16031335
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 16031330}
+  m_CullTransparentMesh: 1
 --- !u!1 &201591300
 GameObject:
   m_ObjectHideFlags: 0
@@ -221,7 +329,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Food: 20 (-10/year)'
+  m_Text: 'Food: 500 (-100/year)'
 --- !u!222 &201591305
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -329,7 +437,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Population: 100 (+2/Turn)'
+  m_Text: 'Population: 100 (+40/Turn)'
 --- !u!222 &358161889
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -437,6 +545,7 @@ RectTransform:
   - {fileID: 589981334}
   - {fileID: 1112365238}
   - {fileID: 1504215620}
+  - {fileID: 16031331}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -544,7 +653,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Uranium: 100 (+2/Turn)'
+  m_Text: 'Uranium: 100 (-100/Turn)'
 --- !u!222 &589981338
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -863,14 +972,19 @@ MonoBehaviour:
   currentCitizenPopulation: 100
   currentFood: 500
   currentUranium: 100
-  currentWater: 0
+  currentWater: 500
   currentCoin: 0
   rateFoodPerCitizen: 1
   rateUraniumPerCitizen: 1
   rateWaterPerCitizen: 1
   rateWaterPerUranium: 1
+  rateCoinPerTurn: 0
+  foodGeneratedPerAssignedCitizen: 100
+  coinGeneratedPerAssignedCitizen: 100
+  waterGeneratedPerAssignedCitizen: 100
+  uraniumGeneratedPerAssignedCitizen: 100
   surplusFoodToGrowOneCitizenPerTurn: 10
-  rateCitizenDeathPerNoFood: 1
+  rateCitizenDeathPerNoResource: 1
 --- !u!114 &1418306235
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -936,7 +1050,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ElementData:
-    ID: /Canvas/UraniumTextc4b3
+    ID: /Canvas/WaterText798e
 --- !u!114 &1504215622
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -982,7 +1096,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Water: 100 (+2/Turn)'
+  m_Text: 'Water: 100 (-100/Turn)'
 --- !u!222 &1504215624
 CanvasRenderer:
   m_ObjectHideFlags: 0
