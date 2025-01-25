@@ -10,12 +10,10 @@ public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public void OnPointerEnter(PointerEventData eventData)
     {
         tooltip.SetActive(true);
-        Debug.Log("Mouse Ocer");
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         tooltip.SetActive(false);
-        Debug.Log("Mouse Exit");
     }
 }
