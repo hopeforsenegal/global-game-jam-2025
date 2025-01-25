@@ -3,11 +3,15 @@ using UnityEngine;
 
 public class MainMenu : MonoBehaviour
 {
+    protected void Start()
+    {
+        Debug.Log("Start");
+    }
     protected void Update()
     {
         ImmediateStyle.CanvasGroup("/Canvas/MainMenua071");
         if (ImmediateStyle.Button("/Canvas/Image/Button (Legacy)c95e").IsMouseDown) {
-
+            Debug.Log("play");
         }
         if (ImmediateStyle.Button("/Canvas/Image/Button (Legacy) (1)1eee").IsMouseDown) {
 #if UNITY_EDITOR
