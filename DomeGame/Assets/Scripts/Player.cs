@@ -23,6 +23,21 @@ public class Player : MonoBehaviour
 
     public int rateCitizenDeathPerNoFood = 1;
 
+    public int calculateRateFoodGivenCitizen(int citizen) {
+        return rateFoodPerCitizen * citizen;
+    }
+
+    public int calculateRateUraniumGivenCitizen(int citizen) {
+        return rateUraniumPerCitizen * citizen;
+    }
+
+    public int calculateRateWaterGivenCitizen(int citizen) {
+        return rateWaterPerCitizen * citizen;
+    }
+
+    public int calculateRateCoinGivenCitizen(int citizen) {
+        return 0;
+    }
 
 
     // Start is called before the first frame update
