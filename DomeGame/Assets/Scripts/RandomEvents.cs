@@ -8,42 +8,46 @@ using UnityEngine.UI;
 
 public class RandomEvents : MonoBehaviour
 {
-    public Event[] eventDatum;
-    private Event eventData;
+    public Event[] eventsData;
+    private Event selectedEvent;
 
     // Start is called before the first frame update
     void Start()
     {
         Debug.Log("Start");
-        eventData = eventDatum[UnityEngine.Random.Range(0, eventDatum.Length)];
+        selectedEvent = eventsData[UnityEngine.Random.Range(0, eventsData.Length)];
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space)) {
-            Debug.Log("Hit space");
-        }
+        // if (Input.GetKeyDown(KeyCode.Space)) {
+        //     Debug.Log("Hit space");
+        // }
 
-        ImmediateStyle.Text("/Canvas/Text (Legacy)263a", eventData.description);
+        ImmediateStyle.Text("/Canvas/Event Description4f6d", selectedEvent.description);
 
-        ImmediateStyle.Text("/Canvas/Button (Legacy)/Text (Legacy)bbb2", eventData.choices[0].text);
-        ImmediateStyle.Text("/Canvas/Button (Legacy) (1)/Text (Legacy)c201", eventData.choices[1].text);
-
-        if (eventData.choices.Length == 2) {
-            // Do something about Button 3
-        } else {
-            ImmediateStyle.Text("/Canvas/Button (Legacy) (2)/Text (Legacy)2f07", eventData.choices[2].text);
-            if (ImmediateStyle.Button("/Canvas/Button (Legacy) (2)cb6b").IsMouseDown) {
-                Debug.Log("Button 3");
+        if (selectedEvent.choices.Length > 1)
+        {
+            ImmediateStyle.Text("/Canvas/Button A/Text A6222", selectedEvent.choices[0].text);
+            if (ImmediateStyle.Button("/Canvas/Button A3acd").IsMouseDown)
+            {
+                Debug.Log("Button 1");
             }
-        }
+            ImmediateStyle.Text("/Canvas/Button B/Text Bf90d", selectedEvent.choices[1].text);
+            if (ImmediateStyle.Button("/Canvas/Button Bd2b9").IsMouseDown)
+            {
+                Debug.Log("Button 2");
+            }
 
-        if (ImmediateStyle.Button("/Canvas/Button (Legacy)8e95").IsMouseDown) {
-            Debug.Log("Button 1");
-        }
-        if (ImmediateStyle.Button("/Canvas/Button (Legacy) (1)83f7").IsMouseDown) {
-            Debug.Log("Button 2");
+            if (selectedEvent.choices.Length > 2)
+            {
+                ImmediateStyle.Text("/Canvas/Button C/Text Cc803", selectedEvent.choices[2].text);
+                if (ImmediateStyle.Button("/Canvas/Button C2345").IsMouseDown)
+                {
+                    Debug.Log("Button 3");
+                }
+            }
         }
     }
 }
