@@ -271,10 +271,18 @@ public partial class GameManager
         }
         if (currentPhase == GamePhase.ResourceGathering) {
             ImmediateStyle.CanvasGroup("/Canvas/ResourceUpdate9d7b");
-            ImmediateStyle.Text("/Canvas/CoinText4142", $"Coin: {currentCoin} +{CalculateRateCoinGivenCitizen(numCoinAssignments)}");
-            ImmediateStyle.Text("/Canvas/FoodTexte6fc", $"Food: {currentFood} +{CalculateRateFoodGivenCitizen(numFoodAssignments)}");
-            ImmediateStyle.Text("/Canvas/UraniumTextc4b3", $"Uranium: {currentUranium} +{CalculateRateUraniumGivenCitizen(numUraniumAssignments)}");
-            ImmediateStyle.Text("/Canvas/WaterText798e", $"Water: {currentWater} +{CalculateRateWaterGivenCitizen(numWaterAssignments)}");
+            if (CalculateRateCoinGivenCitizen(numCoinAssignments) > 0) {
+                ImmediateStyle.Text("/Canvas (Environment)/Core/ResourceGather/CoinTextb6b4", $"+{CalculateRateCoinGivenCitizen(numCoinAssignments)}");
+            }
+            if (CalculateRateFoodGivenCitizen(numFoodAssignments) > 0) {
+                ImmediateStyle.Text("/Canvas (Environment)/Core/ResourceGather/FoodTextc4c0", $"+{CalculateRateFoodGivenCitizen(numFoodAssignments)}");
+            }
+            if (CalculateRateUraniumGivenCitizen(numUraniumAssignments) > 0) {
+                ImmediateStyle.Text("/Canvas (Environment)/Core/ResourceGather/UraniumText0872", $"+{CalculateRateUraniumGivenCitizen(numUraniumAssignments)}");
+            }
+            if (CalculateRateWaterGivenCitizen(numWaterAssignments) > 0) {
+                ImmediateStyle.Text("/Canvas (Environment)/Core/ResourceGather/WaterTextf830", $"+{CalculateRateWaterGivenCitizen(numWaterAssignments)}");
+            }
             if (endTurnClicked) {
                 endTurnClicked = false;
                 currentPhase = GamePhase.EndTurn;
