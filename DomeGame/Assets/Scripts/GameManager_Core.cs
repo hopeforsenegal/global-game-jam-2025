@@ -250,19 +250,19 @@ public partial class GameManager
 
             if (currentCitizenPopulation > 700)
             {
-                ImmediateStyle.Text("/Canvas/EndText82ef", "You have created a paradise, and are loved by all.");
+                ImmediateStyle.Text("/Canvas/EndText82ef", "You win!\nYou have created a paradise, and are loved by all.");
             }
             else if (currentCitizenPopulation > 400)
             {
-                ImmediateStyle.Text("/Canvas/EndText82ef", "Sita has grown it into a prosperous place to live.");
+                ImmediateStyle.Text("/Canvas/EndText82ef", "You win!\nSita has grown it into a prosperous place to live.");
             }
             else if (currentCitizenPopulation > 100)
             {
-                ImmediateStyle.Text("/Canvas/EndText82ef", "You survived, but you’re not winning re-election.");
+                ImmediateStyle.Text("/Canvas/EndText82ef", "You win!\nYou survived, but you’re not winning re-election.");
             }
             else
             {
-                ImmediateStyle.Text("/Canvas/EndText82ef", "Despite it all, you didn’t bring total annihilation to the city of Sita.");
+                ImmediateStyle.Text("/Canvas/EndText82ef", "You win!\nDespite it all, you didn’t bring total annihilation to the city of Sita.");
             }
             if (Input.GetKeyDown(KeyCode.Escape)) {
                 StartMainMenu();
