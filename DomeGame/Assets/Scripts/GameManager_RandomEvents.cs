@@ -20,6 +20,10 @@ public partial class GameManager
 
     private bool eventFinished;
 
+    // Extra credit: follow-up events
+    private Event[] followUpEvents = new Event[] {};
+    private bool isFollowUpEventsEnabled = false;
+
     // Start is called before the first frame update
     void StartRandomEvents()
     {
