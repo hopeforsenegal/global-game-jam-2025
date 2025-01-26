@@ -343,6 +343,15 @@ public partial class GameManager
                 currentWater = math.max(currentWater -waterUsed, 0);
                 currentTurn = currentTurn + 1;
                 requiredUraniumForBarrier += increaseRequiredUraniumForBarrierPerTurn;
+                if (currentCitizenPopulation <= 0) {
+                    ImmediateStyle.Text("/Canvas/EndText82ef", "GameOver");
+                    currentPhase = GamePhase.StartPhase;
+                    if (Input.GetKeyDown(KeyCode.Escape)) {
+                        StartMainMenu();
+                    }
+                    return;
+                }
+
                 StartRandomEvents();
                 currentPhase = GamePhase.Event;
             }
@@ -403,6 +412,15 @@ public partial class GameManager
                     currentCitizenPopulation = math.max(selectedChoice.effect.populationGained + currentCitizenPopulation,0);
                     // update number of citizens available for assignment;
                     StartCore();
+
+                    if (currentCitizenPopulation <= 0) {
+                        ImmediateStyle.Text("/Canvas/EndText82ef", "GameOver");
+                        currentPhase = GamePhase.StartPhase;
+                        if (Input.GetKeyDown(KeyCode.Escape)) {
+                            StartMainMenu();
+                        }
+                        return;
+                    }
                 }
             return;  
                 
