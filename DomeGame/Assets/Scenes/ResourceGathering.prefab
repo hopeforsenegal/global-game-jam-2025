@@ -82,6 +82,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71a128915010241b694ffd7ac22a6572, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameSettings: {fileID: 11400000, guid: 8bde4050659264603ae85af4f250b9cd, type: 2}
   currentTurn: 0
   maxTurns: 5
   currentPhase: 1
@@ -99,14 +100,14 @@ MonoBehaviour:
   coinGeneratedPerAssignedCitizen: 300
   waterGeneratedPerAssignedCitizen: 300
   uraniumGeneratedPerAssignedCitizen: 300
-  assignedFood: 0
-  assignedWater: 0
-  assignedUranium: 0
-  assignedCoin: 0
   surplusFoodToGrowOneCitizenPerTurn: 10
   rateCitizenDeathPerNoResource: 1
   rateCitizenDeathByBarrier: 1
   requiredUraniumForBarrier: 100
+  assignedFood: 0
+  assignedWater: 0
+  assignedUranium: 0
+  assignedCoin: 0
 --- !u!225 &5129849654902397088
 CanvasGroup:
   m_ObjectHideFlags: 0
