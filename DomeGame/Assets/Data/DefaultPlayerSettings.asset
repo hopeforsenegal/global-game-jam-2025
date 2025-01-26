@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: DefaultPlayerSettings
   m_EditorClassIdentifier: 
   maxTurns: 5
-  surplusFoodToGrowOneCitizenPerTurn: 10
+  surplusFoodToGrowOneCitizenPerTurn: 5
   requiredUraniumForBarrier: 100
   increaseRequiredUraniumForBarrierPerTurn: 50
   citizenUnit: 100
