@@ -16,11 +16,7 @@ public class Choice
     // TODO: Extra credit
     // public Choice[] subChoices;
     public EventEffects effect;
-<<<<<<< Updated upstream
 
-=======
-    public Event followUpEvent;
->>>>>>> Stashed changes
 }
 
 [Serializable]
