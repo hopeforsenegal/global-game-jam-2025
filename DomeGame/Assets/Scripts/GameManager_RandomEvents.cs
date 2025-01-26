@@ -109,7 +109,8 @@ public partial class GameManager
             }
         }
 
-        TypingEffect.HandleTypingEffect(ref typingEffect, 0.0000001f);
+        // Make text speed super fast!
+        TypingEffect.HandleTypingEffect(ref typingEffect, Single.Epsilon);
         ImmediateStyle.Text("/Canvas/Event Description Background/Event Descriptiond52a", typingEffect.currentText);
         if (selectedChoice == null && selectedEvent.dialog[dialogIndex].choices.Length > 1) {
             // TODO: After implementing more than 1 Event Sprite
