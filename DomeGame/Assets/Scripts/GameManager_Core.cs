@@ -179,6 +179,9 @@ public partial class GameManager
 
     void initializeGame()
     {
+        currentTurn = 0;
+        currentPhase = GamePhase.ResourceGathering;
+        endTurnClicked = false;
         currentCitizenPopulation = gameSettings.CurrentCitizenPopulation;
         currentFood = gameSettings.CurrentFood;
         currentUranium = gameSettings.CurrentUranium;
