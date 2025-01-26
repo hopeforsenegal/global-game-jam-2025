@@ -1,6 +1,8 @@
 using MoonlitSystem.UI.Immediate;
 using UnityEngine;
 using TMPro;
+using System.Linq;
+using System;
 
 public class GameDragDrop : MonoBehaviour
 {
@@ -23,6 +25,8 @@ public class GameDragDrop : MonoBehaviour
     bool isMovingFromUranium;
     bool isMovingFromWater;
 
+    [SerializeField] GameObject[] citizenObjects;
+
     public TMP_Text numUnassignedCitizensText;
     
     public TMP_Text coinTooltipText;
@@ -42,6 +46,7 @@ public class GameDragDrop : MonoBehaviour
         totalPopulation = playerScript.GetCurrentCitizenPopulation();
         // totalPopulation = 100;
         unusedPopulation = totalPopulation;
+        SetUpUsableCitizenObjects();
 
         coinTooltipText.text = defaultCoinTooltipString;
         foodTooltipText.text = defaultFoodTooltipString;
@@ -51,14 +56,30 @@ public class GameDragDrop : MonoBehaviour
         numUnassignedCitizensText.text = (unusedPopulation / citizenUnit).ToString();
     }
 
-    protected void Update()
+    void SetUpUsableCitizenObjects()
     {
-        string[] citizenGUIDs = new[] {
+        int numCitizenObjectsNeeded = totalPopulation / citizenUnit;
+        for (int i = 0; i < numCitizenObjectsNeeded; i++)
+        {
+            citizenObjects[i].SetActive(true);
+        }
+    }
+
+    void Update()
+    {
+        string[] allCitizenGUIDs = new[] {
             "/Canvas/Bottom Bar/Unassigned/Citizen1a3e",
             "/Canvas/Bottom Bar/Unassigned/Citizen29af0",
-            "/Canvas/Bottom Bar/Unassigned/Citizen352d5"
+            "/Canvas/Bottom Bar/Unassigned/Citizen352d5",
+            "/Canvas/Bottom Bar/Unassigned/Citizen4b866",
+            "/Canvas/Bottom Bar/Unassigned/Citizen58c27",
+            "/Canvas/Bottom Bar/Unassigned/Citizen6ba83",
+            "/Canvas/Bottom Bar/Unassigned/Citizen7405f",
+            "/Canvas/Bottom Bar/Unassigned/Citizen8efa3",
+            "/Canvas/Bottom Bar/Unassigned/Citizen9ce93"
         };
-        foreach (var s in citizenGUIDs) {
+
+        foreach (var s in allCitizenGUIDs) {
             var dragDropObject = ImmediateStyle.DragDrop(s, out var component);
 
             var unassignedSlot = Reference.Find<RectTransform>(this, "/Canvas/Bottom Bar/Unassignedcc19");
