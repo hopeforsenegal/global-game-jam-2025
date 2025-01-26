@@ -25,7 +25,9 @@ public partial class GameManager
     void StartRandomEvents()
     {
         // Debug.Log("Start");
-
+        if (currentTurn == 0){
+            alreadyViewedEvents.Clear();
+        }
         selectableEvents = randomEventsData
             .Where(eventData => !alreadyViewedEvents.Contains(eventData))
             .ToArray<Event>();
