@@ -47,67 +47,76 @@ public class GameDragDrop : MonoBehaviour
 
     protected void Update()
     {
-        var hasDropped = ImmediateStyle.DragDrop("/Canvas/Bottom Bar/Unassigned/Citizen1a3e", out var component).IsMouseUp;
+        string[] citizenGUIDs = new[] {
+            "/Canvas/Bottom Bar/Unassigned/Citizen1a3e",
+            "/Canvas/Bottom Bar/Unassigned/Citizen29af0",
+            "/Canvas/Bottom Bar/Unassigned/Citizen352d5"
+        };
+        foreach (var s in citizenGUIDs) {
+            var hasDropped = ImmediateStyle.DragDrop(s, out var component).IsMouseUp;
 
-        if (component.IsDragging) {
-            ImmediateStyle.FollowCursor(component.transform);
-        }
-        if (hasDropped) {
-            var unassignedSlot = Reference.Find<RectTransform>(this, "/Canvas/Bottom Bar/Unassignedcc19");
+            // if (component.IsDragging)
+            // {
+            //     ImmediateStyle.FollowCursor(component.transform);
+            // }
 
-            var coinResourceSlot = Reference.Find<RectTransform>(this, "/Canvas/City/CoinResource3e73");
-            var foodResourceSlot = Reference.Find<RectTransform>(this, "/Canvas/City/FoodResourcea194");
-            var uraniumResourceSlot = Reference.Find<RectTransform>(this, "/Canvas/City/UraniumResource8ffd");
-            var waterResourceSlot = Reference.Find<RectTransform>(this, "/Canvas/City/WaterResourceeb63");
+            if (hasDropped) {
+                var unassignedSlot = Reference.Find<RectTransform>(this, "/Canvas/Bottom Bar/Unassignedcc19");
 
-            if (RectTransformUtility.RectangleContainsScreenPoint(unassignedSlot, component.transform.position)) {
-                component.PinnedPosition = unassignedSlot.position;
-                Debug.Log("Unassigning 1 citizen");
-                UpdateUnassignedCitizens(-citizenUnit);
+                var coinResourceSlot = Reference.Find<RectTransform>(this, "/Canvas/City/CoinResource3e73");
+                var foodResourceSlot = Reference.Find<RectTransform>(this, "/Canvas/City/FoodResourcea194");
+                var uraniumResourceSlot = Reference.Find<RectTransform>(this, "/Canvas/City/UraniumResource8ffd");
+                var waterResourceSlot = Reference.Find<RectTransform>(this, "/Canvas/City/WaterResourceeb63");
 
-                // TODO: Fix this to be correct logic depending on what allocation moved
-                // (We need the start point to know where the initial allocation was)
-                coinTooltipText.text = defaultCoinTooltipString;
-                numCoinAssignments -= citizenUnit;
+                if (RectTransformUtility.RectangleContainsScreenPoint(unassignedSlot, component.transform.position)) {
+                    component.PinnedPosition = unassignedSlot.position;
+                    Debug.Log("Unassigning 1 citizen");
+                    UpdateUnassignedCitizens(-citizenUnit);
 
-                foodTooltipText.text = defaultFoodTooltipString;
-                numFoodAssignments = 0;
-                // numFoodAssignments -= citizenUnit;
+                    // TODO: Fix this to be correct logic depending on what allocation moved
+                    // (We need the start point to know where the initial allocation was)
+                    coinTooltipText.text = defaultCoinTooltipString;
+                    numCoinAssignments -= citizenUnit;
 
-                uraniumTooltipText.text = defaultUraniumTooltipString;
-                numUraniumAssignments = 0;
-                // numUraniumAssignments -= citizenUnit;
+                    foodTooltipText.text = defaultFoodTooltipString;
+                    numFoodAssignments = 0;
+                    // numFoodAssignments -= citizenUnit;
 
-                waterTooltipText.text = defaultWaterTooltipString;
-                numWaterAssignments = 0;
-                // numWaterAssignments -= citizenUnit;
+                    uraniumTooltipText.text = defaultUraniumTooltipString;
+                    numUraniumAssignments = 0;
+                    // numUraniumAssignments -= citizenUnit;
+
+                    waterTooltipText.text = defaultWaterTooltipString;
+                    numWaterAssignments = 0;
+                    // numWaterAssignments -= citizenUnit;
+                }
+
+                // Coin resource logic
+                if (RectTransformUtility.RectangleContainsScreenPoint(coinResourceSlot, component.transform.position)) {
+                    component.PinnedPosition = coinResourceSlot.position;
+                    UpdateCoinAllocation();
+                }
+
+                // Food resource logic
+                if (RectTransformUtility.RectangleContainsScreenPoint(foodResourceSlot, component.transform.position)) {
+                    component.PinnedPosition = foodResourceSlot.position;
+                    UpdateFoodAllocation();
+                }
+
+                // Uranium resource logic
+                if (RectTransformUtility.RectangleContainsScreenPoint(uraniumResourceSlot, component.transform.position)) {
+                    component.PinnedPosition = uraniumResourceSlot.position;
+                    UpdateUraniumAllocation();
+                }
+
+                // Water resource logic
+                if (RectTransformUtility.RectangleContainsScreenPoint(waterResourceSlot, component.transform.position)) {
+                    component.PinnedPosition = waterResourceSlot.position;
+                    UpdateWaterAllocation();
+                }
+
+                component.transform.position = component.PinnedPosition;
             }
-
-            // Coin resource logic
-            if (RectTransformUtility.RectangleContainsScreenPoint(coinResourceSlot, component.transform.position)) {
-                component.PinnedPosition = coinResourceSlot.position;
-                UpdateCoinAllocation();
-            }
-
-            // Food resource logic
-            if (RectTransformUtility.RectangleContainsScreenPoint(foodResourceSlot, component.transform.position)) {
-                component.PinnedPosition = foodResourceSlot.position;
-                UpdateFoodAllocation();
-            }
-
-            // Uranium resource logic
-            if (RectTransformUtility.RectangleContainsScreenPoint(uraniumResourceSlot, component.transform.position)) {
-                component.PinnedPosition = uraniumResourceSlot.position;
-                UpdateUraniumAllocation();
-            }
-
-            // Water resource logic
-            if (RectTransformUtility.RectangleContainsScreenPoint(waterResourceSlot, component.transform.position)) {
-                component.PinnedPosition = waterResourceSlot.position;
-                UpdateWaterAllocation();
-            }
-
-            component.transform.position = component.PinnedPosition;
         }
     }
 
