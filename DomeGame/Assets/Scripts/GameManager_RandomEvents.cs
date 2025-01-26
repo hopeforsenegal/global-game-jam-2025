@@ -11,6 +11,7 @@ public partial class GameManager
     [Header("Random Events")]
     public Event[] randomEventsData;
     private Event[] selectableEvents;
+    // private List<Event> selectableEvents;
     private HashSet<Event> alreadyViewedEvents = new HashSet<Event>();
     private Event selectedEvent;
     private TypingEffect typingEffect;
@@ -21,7 +22,7 @@ public partial class GameManager
     private bool eventFinished;
 
     // Extra credit: follow-up events
-    private Event[] followUpEvents = new Event[] {};
+    private List<Event> followUpEvents = new List<Event>();
     private bool isFollowUpEventsEnabled = false;
 
     // Start is called before the first frame update
@@ -40,6 +41,8 @@ public partial class GameManager
             .Where(eventData => !alreadyViewedEvents.Contains(eventData))
             .ToArray<Event>();
         if (selectableEvents.Length == 0)
+        //     .ToList<Event>();
+        // if (selectableEvents.Count == 0)
         {
             Screen = GameScreens.Core;
             eventFinished = true;
@@ -52,6 +55,7 @@ public partial class GameManager
             eventFinished = false;
             selectedEvent = selectableEvents[
                 UnityEngine.Random.Range(0, selectableEvents.Length)];
+                // UnityEngine.Random.Range(0, selectableEvents.Count)];
             typingEffect = new TypingEffect();
             typingEffect.fullText =
                 processText(selectedEvent.dialog[dialogIndex].dialogText);
@@ -105,7 +109,7 @@ public partial class GameManager
             }
         }
 
-        TypingEffect.HandleTypingEffect(ref typingEffect, 0.01f);
+        TypingEffect.HandleTypingEffect(ref typingEffect, 0.0000001f);
         ImmediateStyle.Text("/Canvas/Event Description Background/Event Descriptiond52a", typingEffect.currentText);
         if (selectedChoice == null && selectedEvent.dialog[dialogIndex].choices.Length > 1) {
             // TODO: After implementing more than 1 Event Sprite
@@ -186,8 +190,15 @@ public partial class GameManager
     private void handleSelectedChoice(Choice selectedChoice)
     {
         gameObject.GetComponent<AudioSource>().PlayOneShot(clickSound);
+
         this.selectedChoice = selectedChoice;
         choiceDialogIndex = 0;
+
+        if (selectedChoice.followUpEvent != null)
+        {
+            followUpEvents.Add(selectedChoice.followUpEvent);
+        }
+
         typingEffect = new TypingEffect();
         typingEffect.fullText =
             processText(selectedChoice.dialogIfSelected[choiceDialogIndex].dialogText);
