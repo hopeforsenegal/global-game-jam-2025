@@ -23,11 +23,11 @@ MonoBehaviour:
   - dialogText: SECRETARY\nAlternatively, we can utilize the city police to remove
       the protesters.
     choices:
-    - choiceText: Agree to demands (- food, - water)
+    - choiceText: Agree to demands (-\u00A0food, -\u00A0water)
       dialogIfSelected:
       - dialogText: MAYOR\nAgree to their demands.
         choices: []
-    - choiceText: Create militia (- BubbleCoin, - Population)
+    - choiceText: Create militia (-\u00A0BubbleCoin, -\u00A0Population)
       dialogIfSelected:
       - dialogText: "MAYOR\\nI won\u2019t let those scum get what they want."
         choices: []
