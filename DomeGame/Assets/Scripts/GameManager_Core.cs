@@ -250,19 +250,19 @@ public partial class GameManager
 
             if (currentCitizenPopulation > 700)
             {
-                ImmediateStyle.Text("/Canvas/EndText82ef", "You have managed the city beautifully, as if you could see the future. The city is overflowing with abundance, and no citizen is in need. Even your detractors praise you in every article. Citizens from all over are queuing up to transfer to Sita, and other city-states across the land are clambering to make an alliance.");
+                ImmediateStyle.Text("/Canvas/EndText82ef", "You have created a paradise, and are loved by all.");
             }
             else if (currentCitizenPopulation > 400)
             {
-                ImmediateStyle.Text("/Canvas/EndText82ef", "Your handling of the city has grown it into a prosperous place to live. Citizens from other cities are considering transferring to Sita. Even those that resent you must begrudgingly admit that you have done well.");
+                ImmediateStyle.Text("/Canvas/EndText82ef", "Sita has grown it into a prosperous place to live.");
             }
             else if (currentCitizenPopulation > 100)
             {
-                ImmediateStyle.Text("/Canvas/EndText82ef", "Your citizens are somewhat satisfied with your handling of the city, although things often feel dicey. Still—some citizens praise you, calling you better than your predecessor.");
+                ImmediateStyle.Text("/Canvas/EndText82ef", "You survived, but you’re not winning re-election.");
             }
             else
             {
-                ImmediateStyle.Text("/Canvas/EndText82ef", "Despite it all, you didn’t bring total annihilation to the city of Sita. However, many citizens are thinking of transferring cities due to your bad management.");
+                ImmediateStyle.Text("/Canvas/EndText82ef", "Despite it all, you didn’t bring total annihilation to the city of Sita.");
             }
             if (Input.GetKeyDown(KeyCode.Escape)) {
                 StartMainMenu();
