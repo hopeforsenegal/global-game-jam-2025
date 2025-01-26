@@ -48,6 +48,7 @@ public partial class GameManager
     [SerializeField] int rateCitizenDeathPerNoResource;
     [SerializeField] int rateCitizenDeathByBarrier;
     [SerializeField] int requiredUraniumForBarrier;
+    [SerializeField] int increaseRequiredUraniumForBarrierPerTurn;
     bool endTurnClicked = false;
 
     public int CalculateRateFoodGivenCitizen(int citizen)
@@ -197,6 +198,7 @@ public partial class GameManager
         rateCitizenDeathByBarrier = gameSettings.RateCitizenDeathByBarrier;
         requiredUraniumForBarrier = gameSettings.RequiredUraniumForBarrier;
         maxTurns = gameSettings.MaxTurns;
+        increaseRequiredUraniumForBarrierPerTurn = gameSettings.IncreaseRequiredUraniumForBarrierPerTurn;
     }
 
     // Update is called once per frame
@@ -307,6 +309,7 @@ public partial class GameManager
                 currentCitizenPopulation = math.max(citizenGrowth + currentCitizenPopulation, 0);
                 currentWater = math.max(currentWater -waterUsed, 0);
                 currentTurn = currentTurn + 1;
+                requiredUraniumForBarrier += increaseRequiredUraniumForBarrierPerTurn;
                 currentPhase = GamePhase.StartPhase;
             }
             return;

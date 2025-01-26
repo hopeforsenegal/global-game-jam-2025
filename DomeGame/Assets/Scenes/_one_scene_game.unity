@@ -183,6 +183,7 @@ MonoBehaviour:
   rateCitizenDeathPerNoResource: 1
   rateCitizenDeathByBarrier: 1
   requiredUraniumForBarrier: 100
+  increaseRequiredUraniumForBarrierPerTurn: 0
   randomEventsData:
   - {fileID: 11400000, guid: 08440dbf699809463bd4b840e1ebb329, type: 2}
   citizenObjects:
@@ -811,7 +812,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: ResourceGathering
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7923681689909297103, guid: 2bb6ed590b16941758d527fcf40d358c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 2bb6ed590b16941758d527fcf40d358c, type: 3}
 --- !u!114 &108854776673344203 stripped
 MonoBehaviour:

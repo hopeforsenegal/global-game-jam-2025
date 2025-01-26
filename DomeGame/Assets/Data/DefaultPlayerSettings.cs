@@ -8,6 +8,7 @@ public class DefaultPlayerSettings : ScriptableObject
    [SerializeField] private int maxTurns = 5;
    [SerializeField] private int surplusFoodToGrowOneCitizenPerTurn = 10;
    [SerializeField] private int requiredUraniumForBarrier = 100;
+   [SerializeField] private int increaseRequiredUraniumForBarrierPerTurn = 50;
 
    // Starting Resources
    [Header("Starting Resources")]
@@ -41,6 +42,8 @@ public class DefaultPlayerSettings : ScriptableObject
    public int MaxTurns => maxTurns;
    public int SurplusFoodToGrowOneCitizenPerTurn => surplusFoodToGrowOneCitizenPerTurn;
    public int RequiredUraniumForBarrier => requiredUraniumForBarrier;
+
+   public int IncreaseRequiredUraniumForBarrierPerTurn => increaseRequiredUraniumForBarrierPerTurn;
    
    public int CurrentCitizenPopulation => currentCitizenPopulation;
    public int CurrentFood => currentFood;

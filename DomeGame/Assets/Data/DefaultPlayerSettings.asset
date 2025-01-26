@@ -15,10 +15,11 @@ MonoBehaviour:
   maxTurns: 5
   surplusFoodToGrowOneCitizenPerTurn: 10
   requiredUraniumForBarrier: 100
+  increaseRequiredUraniumForBarrierPerTurn: 50
   currentCitizenPopulation: 100
-  currentFood: 1500
+  currentFood: 500
   currentUranium: 100
-  currentWater: 1000
+  currentWater: 500
   currentCoin: 100
   rateFoodPerCitizen: 1
   rateUraniumPerCitizen: 1
