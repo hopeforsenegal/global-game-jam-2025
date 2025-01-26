@@ -33,11 +33,16 @@ public partial class GameManager
     public TMP_Text uraniumTooltipText;
     public TMP_Text waterTooltipText;
 
+    // public TMP_Text currentCoinText;
+    // public TMP_Text currentFoodText;
+    // public TMP_Text currentUraniumText;
+    // public TMP_Text currentWaterText;
+
     public GameObject endTurnButton;
 
     string defaultCoinTooltipString = "BubbleCoin can be used during random events.\n\nPlace a citizen here to mine BubbleCoin.";
     string defaultFoodTooltipString = "Food is necessary for your population to survive. Every 10 surplus of food you have creates an extra person.\n\nPlace a citizen here to collect food.";
-    string defaultUraniumTooltipString = "Uranium is used to power your bubble. You need 1 uranium per person in your population.\n\nPlace a citizen here to collect Uranium.";
+    string defaultUraniumTooltipString = "Uranium is used to power your bubble. You need 1 uranium per person in your population.\n\nPlace a citizen here to collect uranium.";
     string defaultWaterTooltipString = "Water is necessary for your population to survive.\n\nPlace a citizen here to collect water.";
 
     void StartCore()
@@ -45,6 +50,11 @@ public partial class GameManager
         totalPopulation = GetCurrentCitizenPopulation();
         unusedPopulation = totalPopulation;
         SetUpUsableCitizenObjects();
+
+        // currentCoinText.text = "Current Coin: " + playerScript.GetCurrentCoin();
+        // currentFoodText.text = "Current Food: " + playerScript.GetCurrentFood();
+        // currentUraniumText.text = "Current Uranium: " + playerScript.GetCurrentUranium();
+        // currentWaterText.text = "Current Water: " + playerScript.GetCurrentWater();
 
         coinTooltipText.text = defaultCoinTooltipString;
         foodTooltipText.text = defaultFoodTooltipString;
