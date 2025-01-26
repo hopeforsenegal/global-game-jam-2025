@@ -1,6 +1,7 @@
 using MoonlitSystem.UI.Immediate;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public partial class GameManager
 {
@@ -40,6 +41,9 @@ public partial class GameManager
     string defaultUraniumTooltipString;
     string defaultWaterTooltipString;
 
+    private Vector3 m_EndButtonPosition;
+    private Transform m_EndButton;
+
     void StartCore()
     {
         Screen = GameScreens.Core;
@@ -72,6 +76,9 @@ public partial class GameManager
         waterTooltipText.text = defaultWaterTooltipString;
 
         numUnassignedCitizensText.text = (unusedPopulation / gameSettings.citizenUnit).ToString();
+
+        m_EndButton = Reference.Find<Button>(this, "/Prefab Mode in Context/ResourceGathering/EndTurnButtonb07c").transform;
+        m_EndButtonPosition = m_EndButton.position;
     }
 
     void SetUpUsableCitizenObjects()
@@ -197,7 +204,7 @@ public partial class GameManager
             }
         }
 
-        if (ImmediateStyle.Button("/Prefab Mode in Context/ResourceGathering/EndTurnButton7b3d").IsMouseDown) {
+        if (ImmediateStyle.Button("/Prefab Mode in Context/ResourceGathering/EndTurnButton7b3d", out var button).IsMouseDown) {
             gameObject.GetComponent<AudioSource>().PlayOneShot(clickSound);
             Debug.Log("Ended turn with the following allocations:");
             Debug.Log(" Coin allocation: " + numCoinAssignments +
@@ -205,6 +212,11 @@ public partial class GameManager
             "; Uranium allocation: " + numUraniumAssignments +
             "; Water allocation: " + numWaterAssignments);
             endTurnClicked = true;
+        }
+
+        if (currentPhase != GamePhase.ResourceGathering) {
+            float t = Mathf.PingPong(Time.time, 1f);
+            m_EndButton.position = Vector3.Lerp(m_EndButtonPosition, new Vector3(m_EndButtonPosition.x - 100, m_EndButtonPosition.y), t);
         }
     }
 
