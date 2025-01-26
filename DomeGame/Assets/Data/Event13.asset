@@ -25,9 +25,31 @@ MonoBehaviour:
       - dialogText: MAYOR\nUse all power on the servers. Now is a good time to increase
           our budget.
         choices: []
+      effect:
+        coinsRequired: 0
+        foodRequired: 0
+        waterRequired: 0
+        uraniumRequired: 0
+        populationRequired: 0
+        coinsGained: 200
+        foodGained: 0
+        waterGained: 0
+        uraniumGained: 0
+        populationGained: 0
     - choiceText: Store power for later (+\u00A0uranium)
       dialogIfSelected:
       - dialogText: "MAYOR\\nWe\u2019ll save that power for later, when we need it."
         choices: []
+      effect:
+        coinsRequired: 0
+        foodRequired: 0
+        waterRequired: 0
+        uraniumRequired: 0
+        populationRequired: 0
+        coinsGained: 0
+        foodGained: 0
+        waterGained: 0
+        uraniumGained: 100
+        populationGained: 0
   - dialogText: "SECRETARY\\nUnderstood. I\u2019ll make sure the order is executed."
     choices: []

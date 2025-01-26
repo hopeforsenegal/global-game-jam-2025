@@ -28,15 +28,48 @@ MonoBehaviour:
         choices: []
       - dialogText: MAYOR\nMaybe this will turn things around for them.
         choices: []
+      effect:
+        coinsRequired: 0
+        foodRequired: 0
+        waterRequired: 100
+        uraniumRequired: 0
+        populationRequired: 0
+        coinsGained: 0
+        foodGained: 0
+        waterGained: -100
+        uraniumGained: 0
+        populationGained: 0
     - choiceText: Increase police wages (-\u00A0BubbleCoin)
       dialogIfSelected:
       - dialogText: "MAYOR\\nIncrease the city\u2019s security."
         choices: []
       - dialogText: "MAYOR\\nI don\u2019t want a single rat to escape."
         choices: []
+      effect:
+        coinsRequired: 100
+        foodRequired: 0
+        waterRequired: 0
+        uraniumRequired: 0
+        populationRequired: 0
+        coinsGained: -100
+        foodGained: 0
+        waterGained: 0
+        uraniumGained: 0
+        populationGained: 0
     - choiceText: Do nothing
       dialogIfSelected:
       - dialogText: "MAYOR\\nWe don\u2019t have the resources to spare."
         choices: []
+      effect:
+        coinsRequired: 0
+        foodRequired: 0
+        waterRequired: 0
+        uraniumRequired: 0
+        populationRequired: 0
+        coinsGained: 0
+        foodGained: 0
+        waterGained: 0
+        uraniumGained: 0
+        populationGained: 0
   - dialogText: "SECRETARY\\nUnderstood. I\u2019ll make sure the order is executed."
     choices: []

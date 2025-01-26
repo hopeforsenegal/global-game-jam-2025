@@ -27,13 +27,46 @@ MonoBehaviour:
       - dialogText: "MAYOR\\nDivert power to the dome. We can\u2019t risk our citizen\u2019s
           lives."
         choices: []
+      effect:
+        coinsRequired: 200
+        foodRequired: 0
+        waterRequired: 0
+        uraniumRequired: 0
+        populationRequired: 0
+        coinsGained: -200
+        foodGained: 0
+        waterGained: 0
+        uraniumGained: 0
+        populationGained: 0
     - choiceText: Increase power output (-\u00A0uranium)
       dialogIfSelected:
       - dialogText: MAYOR\nUse up our uranium stores to make up the difference.
         choices: []
+      effect:
+        coinsRequired: 0
+        foodRequired: 0
+        waterRequired: 0
+        uraniumRequired: 100
+        populationRequired: 0
+        coinsGained: 0
+        foodGained: 0
+        waterGained: 0
+        uraniumGained: -100
+        populationGained: 0
     - choiceText: Do nothing (-\u00A0population)
       dialogIfSelected:
       - dialogText: "MAYOR\\nWe\u2019ll be fine. No need to change anything.."
         choices: []
+      effect:
+        coinsRequired: 0
+        foodRequired: 0
+        waterRequired: 0
+        uraniumRequired: 0
+        populationRequired: 100
+        coinsGained: 0
+        foodGained: 0
+        waterGained: 0
+        uraniumGained: 0
+        populationGained: -100
   - dialogText: "SECRETARY\\nUnderstood. I\u2019ll make sure the order is executed."
     choices: []

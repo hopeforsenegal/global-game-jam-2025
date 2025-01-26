@@ -54,7 +54,7 @@ MonoBehaviour:
         foodGained: 0
         waterGained: 0
         uraniumGained: 0
-        populationGained: -50
+        populationGained: -100
     - choiceText: Do nothing
       dialogIfSelected:
       - dialogText: "MAYOR\\nWe don\u2019t have the resources to spare."

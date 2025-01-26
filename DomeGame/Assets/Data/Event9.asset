@@ -28,9 +28,31 @@ MonoBehaviour:
       dialogIfSelected:
       - dialogText: "MAYOR\\nLet\u2019s agree to their deal."
         choices: []
+      effect:
+        coinsRequired: 0
+        foodRequired: 0
+        waterRequired: 0
+        uraniumRequired: 0
+        populationRequired: 0
+        coinsGained: 100
+        foodGained: 0
+        waterGained: 0
+        uraniumGained: 100
+        populationGained: 0
     - choiceText: Decline
       dialogIfSelected:
       - dialogText: "MAYOR\\nI don\u2019t need bribes."
         choices: []
+      effect:
+        coinsRequired: 0
+        foodRequired: 0
+        waterRequired: 0
+        uraniumRequired: 0
+        populationRequired: 0
+        coinsGained: 0
+        foodGained: 0
+        waterGained: 0
+        uraniumGained: 0
+        populationGained: 0
   - dialogText: "SECRETARY\\nUnderstood. I\u2019ll make sure the group is aware."
     choices: []

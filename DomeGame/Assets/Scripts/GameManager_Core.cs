@@ -199,6 +199,25 @@ public partial class GameManager
         increaseRequiredUraniumForBarrierPerTurn = gameSettings.IncreaseRequiredUraniumForBarrierPerTurn;
     }
 
+    bool hasResourcesGained(EventEffects effect) {
+        if (effect.coinsGained != 0) {
+            return true;
+        }
+        if (effect.populationGained != 0) {
+            return true;
+        }
+        if (effect.foodGained != 0) {
+            return true;
+        }
+        if (effect.waterGained != 0) {
+            return true;
+        }
+        if (effect.uraniumGained !=0) {
+            return true;
+        }
+        return false;
+    }
+
     void HandleRealCore()
     {
         ImmediateStyle.CanvasGroup("/Canvas/Core4cc0");
@@ -246,7 +265,7 @@ public partial class GameManager
                 ImmediateStyle.Text("/Canvas/CoinText4142", $"Coins +{coinGrowthPerTurn()}");
             }
 
-            if (selectedChoice != null && selectedChoice.effect != null) {
+            if (selectedChoice != null && selectedChoice.effect != null && hasResourcesGained(selectedChoice.effect)) {
                 ImmediateStyle.CanvasGroup("/Canvas (Environment)/Core/EventUpdatec14f");
                 ImmediateStyle.Text("/Canvas (Environment)/Core/EventUpdate/EventTextf28b", $"Because of your decision");
                 if (selectedChoice.effect.foodGained != 0) {
@@ -273,7 +292,7 @@ public partial class GameManager
                 int waterGrowth = waterUsedPopulationPerTurn();
                 int coinGrowth = coinGrowthPerTurn();
                 int populationGrowth = 0;
-                if (selectedChoice != null && selectedChoice.effect != null){
+                if (selectedChoice != null && selectedChoice.effect != null && hasResourcesGained(selectedChoice.effect)){
                     foodGrowth += selectedChoice.effect.foodGained;
                     uraniumGrowth += selectedChoice.effect.uraniumGained;
                     waterGrowth += selectedChoice.effect.waterGained;
