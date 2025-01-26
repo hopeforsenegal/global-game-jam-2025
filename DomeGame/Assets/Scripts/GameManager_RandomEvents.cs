@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using MoonlitSystem.UI.Immediate;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public partial class GameManager
 {
@@ -80,7 +81,7 @@ public partial class GameManager
     {
         ImmediateStyle.CanvasGroup("/Prefab Mode in Context/RandomEvents97e6");
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
         {
             if (dialogIndex < selectedEvent.dialog.Length && selectedEvent.dialog[dialogIndex].choices.Length == 0)
             {
@@ -180,6 +181,7 @@ public partial class GameManager
 
     private void handleSelectedChoice(Choice selectedChoice)
     {
+        gameObject.GetComponent<AudioSource>().PlayOneShot(clickSound);
         this.selectedChoice = selectedChoice;
         choiceDialogIndex = 0;
         typingEffect = new TypingEffect();

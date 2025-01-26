@@ -26,14 +26,18 @@ public partial class GameManager
     [Header("Resource Gathering")]
     [SerializeField] GameObject[] citizenObjects;
 
-    public TMP_Text numUnassignedCitizensText;
+    [SerializeField] TMP_Text numUnassignedCitizensText;
 
-    public TMP_Text coinTooltipText;
-    public TMP_Text foodTooltipText;
-    public TMP_Text uraniumTooltipText;
-    public TMP_Text waterTooltipText;
+    [SerializeField] TMP_Text coinTooltipText;
+    [SerializeField] TMP_Text foodTooltipText;
+    [SerializeField] TMP_Text uraniumTooltipText;
+    [SerializeField] TMP_Text waterTooltipText;
 
-    public GameObject endTurnButton;
+    [SerializeField] GameObject endTurnButton;
+
+    [SerializeField] AudioClip pickupSound1;
+    [SerializeField] AudioClip pickupSound2;
+    [SerializeField] AudioClip droppedSound;
 
     string defaultCoinTooltipString = "BubbleCoin can be used during random events.\n\nPlace a citizen here to mine BubbleCoin.";
     string defaultFoodTooltipString = "Food is necessary for your population to survive. Every 10 surplus of food you have creates an extra person.\n\nPlace a citizen here to collect food.";
@@ -84,7 +88,13 @@ public partial class GameManager
             "/Canvas/Bottom Bar/Unassigned/Citizen6ba83",
             "/Canvas/Bottom Bar/Unassigned/Citizen7405f",
             "/Canvas/Bottom Bar/Unassigned/Citizen8efa3",
-            "/Canvas/Bottom Bar/Unassigned/Citizen9ce93"
+            "/Canvas/Bottom Bar/Unassigned/Citizen9ce93",
+            "/Canvas/ResourceGathering/Bottom Bar/Unassigned/Citizen108e16",
+            "/Canvas/ResourceGathering/Bottom Bar/Unassigned/Citizen11f2e7",
+            "/Canvas/ResourceGathering/Bottom Bar/Unassigned/Citizen1243a0",
+            "/Canvas/ResourceGathering/Bottom Bar/Unassigned/Citizen139826",
+            "/Canvas/ResourceGathering/Bottom Bar/Unassigned/Citizen148f4f",
+            "/Canvas/ResourceGathering/Bottom Bar/Unassigned/Citizen153f10"
         };
 
         int numCitizenObjectsNeeded = totalPopulation / citizenUnit;
@@ -103,6 +113,9 @@ public partial class GameManager
             var hasDropped = dragDropObject.IsMouseUp;
 
             if (startedDrag) {
+                var pickupSound = Random.Range(0, 2) == 0 ? pickupSound1 : pickupSound2;
+                gameObject.GetComponent<AudioSource>().PlayOneShot(pickupSound);
+
                 isMovingFromUnallocated = false;
                 isMovingFromCoin = false;
                 isMovingFromFood = false;
@@ -158,6 +171,7 @@ public partial class GameManager
                 }
 
                 component.transform.position = component.PinnedPosition;
+                gameObject.GetComponent<AudioSource>().PlayOneShot(droppedSound);
 
                 // Reset all start drag bools
                 isMovingFromUnallocated = false;
@@ -168,6 +182,16 @@ public partial class GameManager
 
                 UpdateTooltips();
             }
+        }
+
+        if (ImmediateStyle.Button("/Prefab Mode in Context/ResourceGathering/EndTurnButton7b3d").IsMouseDown) {
+            gameObject.GetComponent<AudioSource>().PlayOneShot(clickSound);
+            Debug.Log("Ended turn with the following allocations:");
+            Debug.Log(" Coin allocation: " + numCoinAssignments +
+            "; Food allocation: " + numFoodAssignments +
+            "; Uranium allocation: " + numUraniumAssignments +
+            "; Water allocation: " + numWaterAssignments);
+            endTurnClicked = true;
         }
     }
 
@@ -248,16 +272,5 @@ public partial class GameManager
             int waterRate = CalculateRateWaterGivenCitizen(numWaterAssignments);
             waterTooltipText.text = numWaterAssignments + " people allocated to collecting water\n\nWater rate = " + waterRate;
         }
-    }
-
-    public void EndTurn()
-    {
-        
-        Debug.Log("Ended turn with the following allocations:");
-        Debug.Log(" Coin allocation: " + numCoinAssignments +
-        "; Food allocation: " + numFoodAssignments +
-        "; Uranium allocation: " + numUraniumAssignments +
-        "; Water allocation: " + numWaterAssignments);
-        endTurnClicked = true;
     }
 }

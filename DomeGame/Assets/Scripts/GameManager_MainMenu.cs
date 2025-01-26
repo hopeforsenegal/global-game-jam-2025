@@ -10,6 +10,12 @@ public partial class GameManager
     }
     MainMenuState m_MainMenuState;
 
+    private void StartMainMenu()
+    {
+        Screen = GameScreens.MainMenu;
+        m_MainMenuState = default;
+    }
+
     private void HandleMainMenu()
     {
         ImmediateStyle.CanvasGroup("/Canvas/MainMenubf45");
@@ -18,6 +24,7 @@ public partial class GameManager
         if (m_MainMenuState.isFading) ImmediateStyle.CanvasGroup("/Canvas/MainMenua071", (cg) => { cg.alpha = Mathf.Lerp(1, 0, Time.time - m_MainMenuState.fadeStartTime); });
 
         if (ImmediateStyle.Button("/Canvas/Image/Button (Legacy)c95e").IsMouseDown) {
+            gameObject.GetComponent<AudioSource>().PlayOneShot(clickSound);
             m_MainMenuState.fadeStartTime = Time.time - 0.3f;
             m_MainMenuState.isFading = true;
         }
@@ -30,7 +37,7 @@ public partial class GameManager
         }
 
         if (m_MainMenuState.isFading == true && Time.time - m_MainMenuState.fadeStartTime > 1) {
-            StartRealCore();
+            StartIntro();
         }
     }
 }
