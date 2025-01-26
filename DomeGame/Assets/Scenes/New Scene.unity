@@ -329,7 +329,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Uranium Power Bubble: 100'
+  m_Text: 100 Uranium to power the barrier
 --- !u!222 &23241671
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -701,7 +701,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Population: 100'
+  m_Text: Population 100
 --- !u!222 &358161889
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1956,7 +1956,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71a128915010241b694ffd7ac22a6572, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameSettings: {fileID: 0}
+  gameSettings: {fileID: 11400000, guid: 8bde4050659264603ae85af4f250b9cd, type: 2}
   currentTurn: 0
   maxTurns: 5
   currentPhase: 2
@@ -1974,14 +1974,14 @@ MonoBehaviour:
   coinGeneratedPerAssignedCitizen: 300
   waterGeneratedPerAssignedCitizen: 300
   uraniumGeneratedPerAssignedCitizen: 300
-  assignedFood: 0
-  assignedWater: 0
-  assignedUranium: 0
-  assignedCoin: 0
   surplusFoodToGrowOneCitizenPerTurn: 10
   rateCitizenDeathPerNoResource: 1
   rateCitizenDeathByBarrier: 1
   requiredUraniumForBarrier: 100
+  assignedFood: 0
+  assignedWater: 0
+  assignedUranium: 0
+  assignedCoin: 0
 --- !u!114 &1418306235
 MonoBehaviour:
   m_ObjectHideFlags: 0
