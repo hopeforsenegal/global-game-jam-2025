@@ -219,6 +219,8 @@ MonoBehaviour:
   uraniumTooltipText: {fileID: 1986559112}
   waterTooltipText: {fileID: 108854776673344203}
   endTurnButton: {fileID: 1912239490}
+  pickupSound1: {fileID: 8300000, guid: 3abb4b789813ae5468ffbfa8a3ba748e, type: 3}
+  pickupSound2: {fileID: 8300000, guid: b8f62fe40bd78d746b134b64e323f2a0, type: 3}
   droppedSound: {fileID: 8300000, guid: be4fc7c053755e74b88c456194536bd5, type: 3}
 --- !u!4 &302184848
 Transform:

@@ -35,6 +35,8 @@ public partial class GameManager
 
     [SerializeField] GameObject endTurnButton;
 
+    [SerializeField] AudioClip pickupSound1;
+    [SerializeField] AudioClip pickupSound2;
     [SerializeField] AudioClip droppedSound;
 
     string defaultCoinTooltipString = "BubbleCoin can be used during random events.\n\nPlace a citizen here to mine BubbleCoin.";
@@ -111,6 +113,9 @@ public partial class GameManager
             var hasDropped = dragDropObject.IsMouseUp;
 
             if (startedDrag) {
+                var pickupSound = Random.Range(0, 2) == 0 ? pickupSound1 : pickupSound2;
+                gameObject.GetComponent<AudioSource>().PlayOneShot(pickupSound);
+
                 isMovingFromUnallocated = false;
                 isMovingFromCoin = false;
                 isMovingFromFood = false;
