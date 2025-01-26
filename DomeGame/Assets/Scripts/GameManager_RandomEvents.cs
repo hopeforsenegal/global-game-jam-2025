@@ -11,8 +11,7 @@ public partial class GameManager
     [Space]
     [Header("Random Events")]
     public Event[] randomEventsData;
-    private Event[] selectableEvents;
-    // private List<Event> selectableEvents;
+    private List<Event> selectableEvents;
     private HashSet<Event> alreadyViewedEvents = new HashSet<Event>();
     private Event selectedEvent;
     private TypingEffect typingEffect;
@@ -40,10 +39,8 @@ public partial class GameManager
         }
         selectableEvents = randomEventsData
             .Where(eventData => !alreadyViewedEvents.Contains(eventData))
-            .ToArray<Event>();
-        if (selectableEvents.Length == 0)
-        //     .ToList<Event>();
-        // if (selectableEvents.Count == 0)
+            .ToList<Event>();
+        if (selectableEvents.Count == 0)
         {
             Screen = GameScreens.Core;
             eventFinished = true;
@@ -55,8 +52,7 @@ public partial class GameManager
             choiceDialogIndex = 0;
             eventFinished = false;
             selectedEvent = selectableEvents[
-                UnityEngine.Random.Range(0, selectableEvents.Length)];
-                // UnityEngine.Random.Range(0, selectableEvents.Count)];
+                UnityEngine.Random.Range(0, selectableEvents.Count)];
             typingEffect = new TypingEffect();
             typingEffect.fullText =
                 processText(selectedEvent.dialog[dialogIndex].dialogText);
