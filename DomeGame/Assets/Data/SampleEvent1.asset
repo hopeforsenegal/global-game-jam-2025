@@ -17,6 +17,7 @@ MonoBehaviour:
     and laying waste.\\nThe civilian population is decimated.\\nAs for the Mayor\u2014\\nHe
     has been reported missing since the beginning of the invasion."
   choices:
-  - text: Choice A
-  - text: Choice B
-  - text: Choice C
+  - text: 'Buy uranium (- BubbleCoin): [heavy discount]'
+  - text: 'Buy food (- BubbleCoin): [normal trade price]'
+  - text: 'Buy water (- BubbleCoin): [expensive option]'
+  - text: Agree to demands (- food, - water, -BubbleCoin)

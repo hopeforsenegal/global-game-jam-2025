@@ -1,59 +1,16 @@
 using System;
-using MoonlitSystem.UI.Immediate;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public partial class GameManager : MonoBehaviour
 {
-    struct MainMenuState
+    void Start()
     {
-        public float fadeStartTime;
-        public bool isFading;
+        StartCore();
     }
-    MainMenuState m_MainMenuState;
-
-    private void HandleMainMenu()
-    {
-        ImmediateStyle.CanvasGroup("/Canvas/MainMenubf45");
-
-        if (!m_MainMenuState.isFading) ImmediateStyle.CanvasGroup("/Canvas/MainMenua071");
-        if (m_MainMenuState.isFading) ImmediateStyle.CanvasGroup("/Canvas/MainMenua071", (cg) => { cg.alpha = Mathf.Lerp(1, 0, Time.time - m_MainMenuState.fadeStartTime); });
-
-        if (ImmediateStyle.Button("/Canvas/Image/Button (Legacy)c95e").IsMouseDown) {
-            m_MainMenuState.fadeStartTime = Time.time - 0.3f;
-            m_MainMenuState.isFading = true;
-        }
-        if (ImmediateStyle.Button("/Canvas/Image/Button (Legacy) (1)1eee").IsMouseDown) {
-#if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
-#else
-            Application.Quit();
-#endif
-        }
-    }
-
-
-
-
-
-
-    private void HandleCore()
-    {
-    }
-
-
-
-
-
 
     private void HandleRandomEvents()
     {
     }
-
-
-
-
-
-
 
     public enum GameScreens { MainMenu, RandomEvents, Core }
     private GameScreens Screen;
@@ -67,7 +24,7 @@ public class GameManager : MonoBehaviour
             default: throw new ArgumentOutOfRangeException(Screen.ToString());
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha1)) { Screen = GameScreens.MainMenu; m_MainMenuState = default; }
-        if (Input.GetKeyDown(KeyCode.Alpha2)) { Screen = GameScreens.Core; }
+        if (Input.GetKeyDown(KeyCode.Q)) { Debug.Log("Q"); Screen = GameScreens.MainMenu; m_MainMenuState = default; }
+        if (Input.GetKeyDown(KeyCode.W)) { Debug.Log("W"); Screen = GameScreens.Core; StartCore(); }
     }
 }
