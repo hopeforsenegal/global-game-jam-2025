@@ -45,6 +45,10 @@ public partial class GameManager
         totalPopulation = GetCurrentCitizenPopulation();
         unusedPopulation = totalPopulation;
         SetUpUsableCitizenObjects();
+        numCoinAssignments = 0;
+        numFoodAssignments = 0;
+        numUraniumAssignments = 0;
+        numWaterAssignments = 0;
 
         coinTooltipText.text = defaultCoinTooltipString;
         foodTooltipText.text = defaultFoodTooltipString;
@@ -56,6 +60,10 @@ public partial class GameManager
 
     void SetUpUsableCitizenObjects()
     {
+        for (int i = 0; i < citizenObjects.Length; i++) {
+            citizenObjects[i].SetActive(false);
+            citizenObjects[i].transform.position = Reference.Find<RectTransform>(this, "/Canvas/Bottom Bar/Unassignedcc19").position;
+        }
         int numCitizenObjectsNeeded = totalPopulation / citizenUnit;
         for (int i = 0; i < numCitizenObjectsNeeded; i++) {
             citizenObjects[i].SetActive(true);
