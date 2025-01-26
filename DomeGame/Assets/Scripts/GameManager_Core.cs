@@ -248,12 +248,21 @@ public partial class GameManager
         if (currentTurn == maxTurns) {
             ImmediateStyle.CanvasGroup("/Prefab Mode in Context/Core/GameObject4b5d");
 
-            if (currentCitizenPopulation > 0) {
-                ImmediateStyle.Text("/Canvas/EndText82ef", $"You Win\n{GetCurrentCitizenPopulation()} Citizens Survived");
-
-            } else {
-                ImmediateStyle.Text("/Canvas/EndText82ef", "Game Over");
-
+            if (currentCitizenPopulation > 700)
+            {
+                ImmediateStyle.Text("/Canvas/EndText82ef", "You have managed the city beautifully, as if you could see the future. The city is overflowing with abundance, and no citizen is in need. Even your detractors praise you in every article. Citizens from all over are queuing up to transfer to Sita, and other city-states across the land are clambering to make an alliance.");
+            }
+            else if (currentCitizenPopulation > 400)
+            {
+                ImmediateStyle.Text("/Canvas/EndText82ef", "Your handling of the city has grown it into a prosperous place to live. Citizens from other cities are considering transferring to Sita. Even those that resent you must begrudgingly admit that you have done well.");
+            }
+            else if (currentCitizenPopulation > 100)
+            {
+                ImmediateStyle.Text("/Canvas/EndText82ef", "Your citizens are somewhat satisfied with your handling of the city, although things often feel dicey. Still—some citizens praise you, calling you better than your predecessor.");
+            }
+            else
+            {
+                ImmediateStyle.Text("/Canvas/EndText82ef", "Despite it all, you didn’t bring total annihilation to the city of Sita. However, many citizens are thinking of transferring cities due to your bad management.");
             }
             if (Input.GetKeyDown(KeyCode.Escape)) {
                 StartMainMenu();
