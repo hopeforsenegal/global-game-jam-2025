@@ -12,4 +12,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dec4fb1be46d97cbfadb30464fc4897e, type: 3}
   m_Name: Event1
   m_EditorClassIdentifier: 
-  dialog: []
+  dialog:
+  - dialogText: SECRETARY\nMayor, the city police have found a spy from the neighbouring
+      city of Zhila.
+    choices: []
+  - dialogText: SECRETARY\nIntelligence reports that Zhila has low water reserves.
+      Perhaps we could offer them water to ease tensions?
+    choices: []
+  - dialogText: SECRETARY\nAlternatively, we can pay our city police higher wages
+      in order to ramp up security. This will also please the citizens.
+    choices:
+    - choiceText: Donate water (-\u00A0Water)
+      dialogIfSelected:
+      - dialogText: MAYOR\nStart a humanitarian effort to donate water to Zhila.
+        choices: []
+      - dialogText: MAYOR\nMaybe this will turn things around for them.
+        choices: []
+    - choiceText: Increase police wages (-\u00A0BubbleCoin)
+      dialogIfSelected:
+      - dialogText: "MAYOR\\nIncrease the city\u2019s security."
+        choices: []
+      - dialogText: "MAYOR\\nI don\u2019t want a single rat to escape."
+        choices: []
+    - choiceText: Do nothing
+      dialogIfSelected:
+      - dialogText: "MAYOR\\nWe don\u2019t have the resources to spare."
+        choices: []
+  - dialogText: "SECRETARY\\nUnderstood. I\u2019ll make sure the order is executed."
+    choices: []

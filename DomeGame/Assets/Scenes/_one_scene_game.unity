@@ -197,7 +197,11 @@ MonoBehaviour:
   requiredUraniumForBarrier: 100
   increaseRequiredUraniumForBarrierPerTurn: 0
   randomEventsData:
+  - {fileID: 11400000, guid: 1548df5b597678e2a8ca07ce5ea4990d, type: 2}
   - {fileID: 11400000, guid: 08440dbf699809463bd4b840e1ebb329, type: 2}
+  - {fileID: 11400000, guid: 3b649763cf0fa6229a34f7b3bc61d1fa, type: 2}
+  - {fileID: 11400000, guid: 2505859eaea8aa032befce07b2e70fb5, type: 2}
+  - {fileID: 11400000, guid: 067e7a7542337e0c79a4c98615a8d933, type: 2}
   citizenObjects:
   - {fileID: 108854776673344204}
   - {fileID: 1781171215}

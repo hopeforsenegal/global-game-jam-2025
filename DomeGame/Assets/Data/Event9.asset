@@ -12,4 +12,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dec4fb1be46d97cbfadb30464fc4897e, type: 3}
   m_Name: Event9
   m_EditorClassIdentifier: 
-  dialog: []
+  dialog:
+  - dialogText: SECRETARY\nMayor, the leader of a prominent Think Tank has reached
+      out.
+    choices: []
+  - dialogText: SECRETARY\nThey are offering donations to you and the city...
+    choices: []
+  - dialogText: SECRETARY\nWith the stipulation that their backed policy be pushed
+      through.
+    choices: []
+  - dialogText: SECRETARY\nLowering taxes on local businesses, as well as rezoning
+      the East Valley district to allow new construction.
+    choices:
+    - choiceText: Agree to new policies (+\u00A0BubbleCoin, +\u00A0uranium)
+      dialogIfSelected:
+      - dialogText: "MAYOR\\nLet\u2019s agree to their deal."
+        choices: []
+    - choiceText: Decline
+      dialogIfSelected:
+      - dialogText: "MAYOR\\nI don\u2019t need bribes."
+        choices: []
+  - dialogText: "SECRETARY\\nUnderstood. I\u2019ll make sure the group is aware."
+    choices: []
