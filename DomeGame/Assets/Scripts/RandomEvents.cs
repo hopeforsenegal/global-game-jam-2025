@@ -19,7 +19,7 @@ public class RandomEvents : MonoBehaviour
 
         selectedEvent = eventsData[UnityEngine.Random.Range(0, eventsData.Length)];
         typingEffect = new TypingEffect();
-        typingEffect.fullText = selectedEvent.description;
+        typingEffect.fullText = selectedEvent.description.Replace("\\n", System.Environment.NewLine);
     }
 
     // Update is called once per frame
@@ -30,10 +30,13 @@ public class RandomEvents : MonoBehaviour
         // }
 
         TypingEffect.HandleTypingEffect(ref typingEffect, 0.1f);
-        ImmediateStyle.Text("/Canvas/Event Description4f6d", typingEffect.currentText);
+        // ImmediateStyle.Text("/Canvas/Event Description Background/Event Descriptiond52a", typingEffect.currentText);
+        ImmediateStyle.Text("/Canvas/Event Description Background/Event Descriptiond52a", selectedEvent.description.Replace("\\n", System.Environment.NewLine));
 
         if (selectedEvent.choices.Length > 1)
         {
+            ImmediateStyle.Image("/Canvas/Event Sprite5b8c", selectedEvent.sprite);
+
             ImmediateStyle.Text("/Canvas/Button A/Text A6222", selectedEvent.choices[0].text);
             if (ImmediateStyle.Button("/Canvas/Button A3acd").IsMouseDown)
             {
@@ -51,6 +54,15 @@ public class RandomEvents : MonoBehaviour
                 if (ImmediateStyle.Button("/Canvas/Button C2345").IsMouseDown)
                 {
                     Debug.Log("Button 3");
+                }
+
+                if (selectedEvent.choices.Length == 4)
+                {
+                    ImmediateStyle.Text("/Canvas/Button D/Text D965b", selectedEvent.choices[3].text);
+                    if (ImmediateStyle.Button("/Canvas/Button D3661").IsMouseDown)
+                    {
+                        Debug.Log("Button 4");
+                    }
                 }
             }
         }
