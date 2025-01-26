@@ -1,7 +1,7 @@
 using MoonlitSystem.UI.Immediate;
 using UnityEngine;
 
-public partial class GameManager 
+public partial class GameManager
 {
     struct MainMenuState
     {
@@ -27,6 +27,11 @@ public partial class GameManager
 #else
             Application.Quit();
 #endif
+        }
+
+        if (m_MainMenuState.isFading == true && Time.time - m_MainMenuState.fadeStartTime > 1) {
+            Screen = GameScreens.Core;
+            StartRealCore();
         }
     }
 }

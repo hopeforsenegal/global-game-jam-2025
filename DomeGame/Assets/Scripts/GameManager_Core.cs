@@ -270,7 +270,7 @@ public partial class GameManager
             return;  
         }
         if (currentPhase == GamePhase.ResourceGathering) {
-            ImmediateStyle.CanvasGroup("/Canvas/ResourceUpdate9d7b");
+            ImmediateStyle.CanvasGroup("/Canvas/Core/ResourceGatherb068");
             if (CalculateRateCoinGivenCitizen(numCoinAssignments) > 0) {
                 ImmediateStyle.Text("/Canvas (Environment)/Core/ResourceGather/CoinTextb6b4", $"+{CalculateRateCoinGivenCitizen(numCoinAssignments)}");
             }
