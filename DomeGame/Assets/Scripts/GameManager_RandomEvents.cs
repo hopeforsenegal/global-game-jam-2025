@@ -12,6 +12,7 @@ public partial class GameManager
     private Event selectedEvent;
     private TypingEffect typingEffect;
     private uint dialogIndex = 0;
+    private Choice selectedChoice;
     private uint choiceDialogIndex;
 
     // Start is called before the first frame update
