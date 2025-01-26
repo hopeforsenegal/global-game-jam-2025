@@ -273,10 +273,11 @@ public partial class GameManager
                 currentFood = math.max(foodGrowth + currentFood, 0);
                 currentUranium = math.max(uraniumGrowth + currentUranium, 0);
                 currentWater = math.max(waterGrowth + currentWater, 0);
-                currentCoin = math.max(coinGrowth + currentCoin, 0); 
+                currentCoin = math.max(coinGrowth + currentCoin, 0);
                 return;
             }
-        } else if (currentPhase == GamePhase.EndTurn) {
+        }
+        else if (currentPhase == GamePhase.EndTurn) {
             ImmediateStyle.CanvasGroup("/Canvas/EndTurnText8f05");
             if (popDeathByBarrier() > 0) {
                 ImmediateStyle.Text("/Canvas/BubbleDeathTextfddb", $"Due to lack of uranium, your barrier was underpowered, and {popDeathByBarrier()} people have died");
@@ -300,9 +301,17 @@ public partial class GameManager
                 currentCitizenPopulation = math.max(citizenGrowth + currentCitizenPopulation, 0);
                 currentWater = math.max(currentWater -waterUsed, 0);
                 currentTurn = currentTurn + 1;
-                currentPhase = GamePhase.StartPhase;
+                currentPhase = GamePhase.Event;
             }
             return;
+        }
+        else if (currentPhase == GamePhase.Event) {
+            Screen = GameScreens.RandomEvents;
+            if (Input.GetKeyDown(KeyCode.KeypadEnter)) {
+                Screen = GameScreens.Core;
+                currentPhase = GamePhase.StartPhase;
+                return;
+            }
         }
     }
 }
