@@ -166,7 +166,6 @@ public partial class GameManager
                 isMovingFromWater = false;
 
                 UpdateTooltips();
-                UpdateEndTurnButtonVisibility();
             }
         }
     }
@@ -215,11 +214,6 @@ public partial class GameManager
         } else if (isMovingFromWater) {
             numWaterAssignments -= citizenUnit;
         }
-    }
-
-    void UpdateEndTurnButtonVisibility()
-    {
-        endTurnButton.SetActive(unusedPopulation < 100); 
     }
 
     void UpdateTooltips()
