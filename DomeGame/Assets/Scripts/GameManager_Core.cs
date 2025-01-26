@@ -121,6 +121,7 @@ public partial class GameManager
 
     int waterUsedForUraniumPerTurn()
     {
+        Debug.Log(rateWaterPerUranium * math.min(currentUranium, requiredUraniumForBarrier));
         return rateWaterPerUranium * math.min(currentUranium, requiredUraniumForBarrier);
     }
     int coinGrowthPerTurn()
@@ -292,7 +293,7 @@ public partial class GameManager
                 ImmediateStyle.Text("/Canvas/ResourceDeathTexta4fa", $"{popDeathByLackResource()} people have died from lack of {generateLackResourceMessage()}.");
             }
             if (waterUsedForUraniumPerTurn() > 0) {
-                ImmediateStyle.Text("/Canvas/Core/EndTurnText/WaterUraniumUsageText598e", $"{waterUsedForUraniumPerTurn()} water consumed cooling the uranium powered barrier.");
+                ImmediateStyle.Text("/Canvas (Environment)/Core/EndTurnText/WaterUraniumUsageTextc113", $"{waterUsedForUraniumPerTurn()} water consumed cooling the uranium powered barrier.");
             }
 
             if (Input.GetKeyDown(KeyCode.Space)) {
@@ -301,7 +302,7 @@ public partial class GameManager
                 currentCitizenPopulation = math.max(citizenGrowth + currentCitizenPopulation, 0);
                 currentWater = math.max(currentWater -waterUsed, 0);
                 currentTurn = currentTurn + 1;
-                currentPhase = GamePhase.Event;
+                currentPhase = GamePhase.StartPhase;
             }
             return;
         }
