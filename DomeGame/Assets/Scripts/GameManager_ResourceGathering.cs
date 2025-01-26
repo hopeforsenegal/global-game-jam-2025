@@ -33,11 +33,6 @@ public partial class GameManager
     public TMP_Text uraniumTooltipText;
     public TMP_Text waterTooltipText;
 
-    // public TMP_Text currentCoinText;
-    // public TMP_Text currentFoodText;
-    // public TMP_Text currentUraniumText;
-    // public TMP_Text currentWaterText;
-
     public GameObject endTurnButton;
 
     string defaultCoinTooltipString = "BubbleCoin can be used during random events.\n\nPlace a citizen here to mine BubbleCoin.";
@@ -50,11 +45,6 @@ public partial class GameManager
         totalPopulation = GetCurrentCitizenPopulation();
         unusedPopulation = totalPopulation;
         SetUpUsableCitizenObjects();
-
-        // currentCoinText.text = "Current Coin: " + playerScript.GetCurrentCoin();
-        // currentFoodText.text = "Current Food: " + playerScript.GetCurrentFood();
-        // currentUraniumText.text = "Current Uranium: " + playerScript.GetCurrentUranium();
-        // currentWaterText.text = "Current Water: " + playerScript.GetCurrentWater();
 
         coinTooltipText.text = defaultCoinTooltipString;
         foodTooltipText.text = defaultFoodTooltipString;
