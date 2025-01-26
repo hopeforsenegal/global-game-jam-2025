@@ -39,8 +39,13 @@ public class DefaultPlayerSettings : ScriptableObject
    [SerializeField] private int rateCitizenDeathPerNoResource = 1;
    [SerializeField] private int rateCitizenDeathByBarrier = 1;
 
-   // Public Properties
-   public int MaxTurns => maxTurns;
+    [Header("intro")]
+    public string intro1;
+    public string intro2;
+    public string intro3;
+
+    // Public Properties
+    public int MaxTurns => maxTurns;
    public int SurplusFoodToGrowOneCitizenPerTurn => surplusFoodToGrowOneCitizenPerTurn;
    public int RequiredUraniumForBarrier => requiredUraniumForBarrier;
 
