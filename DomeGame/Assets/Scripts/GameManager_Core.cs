@@ -266,6 +266,11 @@ public partial class GameManager
                 ImmediateStyle.Text("/Canvas/CoinText4142", $"Coins +{coinGrowthPerTurn()}");
             }
 
+            ImmediateStyle.CanvasGroup("/Canvas/Core/ResourceGatherb068");
+            ImmediateStyle.Text("/Canvas (Environment)/Core/ResourceGather/FoodTextc4c0", $"{foodUsedPopulationPerTurn().ToString("+#;-#")}");
+            ImmediateStyle.Text("/Canvas (Environment)/Core/ResourceGather/UraniumText0872", $"{uraniumUsedPopulationPerTurn().ToString("+#;-#")}");
+            ImmediateStyle.Text("/Canvas (Environment)/Core/ResourceGather/WaterTextf830", $"{waterUsedPopulationPerTurn().ToString("+#;-#")}");
+
             if (endTurnClicked) {
                 endTurnClicked = false;
                 int foodGrowth = foodUsedPopulationPerTurn();
