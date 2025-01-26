@@ -43,6 +43,7 @@ public partial class GameManager
         playerScript = FindObjectOfType<Player>();
 
         totalPopulation = playerScript.GetCurrentCitizenPopulation();
+
         // totalPopulation = 100;
         unusedPopulation = totalPopulation;
         SetUpUsableCitizenObjects();
@@ -79,8 +80,11 @@ public partial class GameManager
             "/Canvas/Bottom Bar/Unassigned/Citizen9ce93"
         };
 
-        foreach (var s in allCitizenGUIDs) {
-            var dragDropObject = ImmediateStyle.DragDrop(s, out var component);
+        int numCitizenObjectsNeeded = totalPopulation / citizenUnit;
+        for (int i = 0; i < numCitizenObjectsNeeded; i++) {
+            string guid = allCitizenGUIDs[i];
+
+            var dragDropObject = ImmediateStyle.DragDrop(guid, out var component);
 
             var unassignedSlot = Reference.Find<RectTransform>(this, "/Canvas/Bottom Bar/Unassignedcc19");
             var coinResourceSlot = Reference.Find<RectTransform>(this, "/Canvas/City/CoinResource3e73");
@@ -92,7 +96,6 @@ public partial class GameManager
             var hasDropped = dragDropObject.IsMouseUp;
 
             if (startedDrag) {
-                Debug.Log("Started drag");
                 isMovingFromUnallocated = false;
                 isMovingFromCoin = false;
                 isMovingFromFood = false;
@@ -100,27 +103,17 @@ public partial class GameManager
                 isMovingFromWater = false;
 
                 if (RectTransformUtility.RectangleContainsScreenPoint(unassignedSlot, component.transform.position)) {
-                    Debug.Log("From unallocated citizens area");
                     isMovingFromUnallocated = true;
                 } else if (RectTransformUtility.RectangleContainsScreenPoint(coinResourceSlot, component.transform.position)) {
-                    Debug.Log("From coin area");
                     isMovingFromCoin = true;
                 } else if (RectTransformUtility.RectangleContainsScreenPoint(foodResourceSlot, component.transform.position)) {
-                    Debug.Log("From food area");
                     isMovingFromFood = true;
                 } else if (RectTransformUtility.RectangleContainsScreenPoint(uraniumResourceSlot, component.transform.position)) {
-                    Debug.Log("From uranium area");
                     isMovingFromUranium = true;
                 } else if (RectTransformUtility.RectangleContainsScreenPoint(waterResourceSlot, component.transform.position)) {
-                    Debug.Log("From water area");
                     isMovingFromWater = true;
                 }
             }
-
-            // if (component.IsDragging)
-            // {
-            //     ImmediateStyle.FollowCursor(component.transform);
-            // }
 
             if (hasDropped) {
                 if (RectTransformUtility.RectangleContainsScreenPoint(unassignedSlot, component.transform.position)) {
@@ -160,7 +153,6 @@ public partial class GameManager
                 component.transform.position = component.PinnedPosition;
 
                 // Reset all start drag bools
-                Debug.Log("Reset all start drag bools");
                 isMovingFromUnallocated = false;
                 isMovingFromCoin = false;
                 isMovingFromFood = false;
