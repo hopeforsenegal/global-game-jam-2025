@@ -175,6 +175,15 @@ public partial class GameManager
                 UpdateTooltips();
             }
         }
+
+        if (ImmediateStyle.Button("/Prefab Mode in Context/ResourceGathering/EndTurnButton7b3d").IsMouseDown) {
+            Debug.Log("Ended turn with the following allocations:");
+            Debug.Log(" Coin allocation: " + numCoinAssignments +
+            "; Food allocation: " + numFoodAssignments +
+            "; Uranium allocation: " + numUraniumAssignments +
+            "; Water allocation: " + numWaterAssignments);
+            endTurnClicked = true;
+        }
     }
 
     void UpdateUnallocatedCitizenAllocation()
@@ -254,16 +263,5 @@ public partial class GameManager
             int waterRate = CalculateRateWaterGivenCitizen(numWaterAssignments);
             waterTooltipText.text = numWaterAssignments + " people allocated to collecting water\n\nWater rate = " + waterRate;
         }
-    }
-
-    public void EndTurn()
-    {
-        
-        Debug.Log("Ended turn with the following allocations:");
-        Debug.Log(" Coin allocation: " + numCoinAssignments +
-        "; Food allocation: " + numFoodAssignments +
-        "; Uranium allocation: " + numUraniumAssignments +
-        "; Water allocation: " + numWaterAssignments);
-        endTurnClicked = true;
     }
 }
