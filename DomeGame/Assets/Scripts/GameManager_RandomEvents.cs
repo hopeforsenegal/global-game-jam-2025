@@ -23,9 +23,8 @@ public partial class GameManager
         selectedEvent = randomEventsData[UnityEngine.Random.Range(0, randomEventsData.Length)];
         typingEffect = new TypingEffect();
         typingEffect.fullText =
-            selectedEvent.dialog[dialogIndex].dialogText.Replace("\\n", System.Environment.NewLine);
+            processText(selectedEvent.dialog[dialogIndex].dialogText);
     }
-
     // Update is called once per frame
     void HandleRandomEvents()
     {
@@ -46,7 +45,7 @@ public partial class GameManager
                 if (choiceDialogIndex < selectedChoice.dialogIfSelected.Length) {
                     typingEffect = new TypingEffect();
                     typingEffect.fullText =
-                        selectedChoice.dialogIfSelected[choiceDialogIndex].dialogText.Replace("\\n", System.Environment.NewLine);
+                        processText(selectedChoice.dialogIfSelected[choiceDialogIndex].dialogText);
                 } else {
                     handleRenderNextDialog();
                 }
@@ -60,14 +59,14 @@ public partial class GameManager
             // TODO: After implementing more than 1 Event Sprite
             // ImmediateStyle.Image("/Canvas/Event Sprite5b8c", selectedEvent.sprite);
 
-            ImmediateStyle.Text("/Canvas/Button A/Text A6222", selectedEvent.dialog[dialogIndex].choices[0].choiceText);
+            ImmediateStyle.Text("/Canvas/Button A/Text A6222", processText(selectedEvent.dialog[dialogIndex].choices[0].choiceText));
             if (ImmediateStyle.Button("/Canvas/Button A3acd").IsMouseDown) {
                 Debug.Log("Button 1");
 
                 handleSelectedChoice(selectedEvent.dialog[dialogIndex].choices[0]);
             }
 
-            ImmediateStyle.Text("/Canvas/Button B/Text Bf90d", selectedEvent.dialog[dialogIndex].choices[1].choiceText);
+            ImmediateStyle.Text("/Canvas/Button B/Text Bf90d", processText(selectedEvent.dialog[dialogIndex].choices[1].choiceText));
             if (ImmediateStyle.Button("/Canvas/Button Bd2b9").IsMouseDown) {
                 Debug.Log("Button 2");
 
@@ -75,7 +74,7 @@ public partial class GameManager
             }
 
             if (selectedEvent.dialog[dialogIndex].choices.Length > 2) {
-                ImmediateStyle.Text("/Canvas/Button C/Text Cc803", selectedEvent.dialog[dialogIndex].choices[2].choiceText);
+                ImmediateStyle.Text("/Canvas/Button C/Text Cc803", processText(selectedEvent.dialog[dialogIndex].choices[2].choiceText));
                 if (ImmediateStyle.Button("/Canvas/Button C2345").IsMouseDown) {
                     Debug.Log("Button 3");
 
@@ -83,7 +82,7 @@ public partial class GameManager
                 }
 
                 if (selectedEvent.dialog[dialogIndex].choices.Length == 4) {
-                    ImmediateStyle.Text("/Canvas/Button D/Text D965b", selectedEvent.dialog[dialogIndex].choices[3].choiceText);
+                    ImmediateStyle.Text("/Canvas/Button D/Text D965b", processText(selectedEvent.dialog[dialogIndex].choices[3].choiceText));
                     if (ImmediateStyle.Button("/Canvas/Button D3661").IsMouseDown) {
                         Debug.Log("Button 4");
 
@@ -94,6 +93,13 @@ public partial class GameManager
         }
     }
 
+    private String processText(String unprocessedText)
+    {
+        return unprocessedText
+            .Replace("\\n", System.Environment.NewLine)
+            .Replace("\\u00A0", "\u00A0");
+    }
+
     private void handleRenderNextDialog()
     {
         dialogIndex++;
@@ -101,7 +107,7 @@ public partial class GameManager
         if (dialogIndex < selectedEvent.dialog.Length) {
             typingEffect = new TypingEffect();
             typingEffect.fullText =
-                selectedEvent.dialog[dialogIndex].dialogText.Replace("\\n", System.Environment.NewLine);
+                processText(selectedEvent.dialog[dialogIndex].dialogText);
         } else {
             // TODO: Switch back to Core Scene, and pass it the selected Choice
             Screen = GameScreens.Core;
@@ -114,6 +120,6 @@ public partial class GameManager
         choiceDialogIndex = 0;
         typingEffect = new TypingEffect();
         typingEffect.fullText =
-            selectedChoice.dialogIfSelected[choiceDialogIndex].dialogText.Replace("\\n", System.Environment.NewLine);
+            processText(selectedChoice.dialogIfSelected[choiceDialogIndex].dialogText);
     }
 }
