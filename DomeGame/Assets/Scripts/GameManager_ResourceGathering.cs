@@ -99,7 +99,7 @@ public partial class GameManager
             "/Canvas/ResourceGathering/Bottom Bar/Unassigned/Citizen153f10"
         };
 
-        if (currentPhase != GamePhase.EndTurn) {
+        if (currentPhase == GamePhase.ResourceGathering) {
             int numCitizenObjectsNeeded = totalPopulation / gameSettings.citizenUnit;
             for (int i = 0; i < numCitizenObjectsNeeded; i++) {
                 string guid = allCitizenGUIDs[i];
