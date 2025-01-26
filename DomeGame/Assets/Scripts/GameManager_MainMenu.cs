@@ -3,8 +3,6 @@ using UnityEngine;
 
 public partial class GameManager 
 {
-    public int heyyoucanseeme;
-
     struct MainMenuState
     {
         public float fadeStartTime;
