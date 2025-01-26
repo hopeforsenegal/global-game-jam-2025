@@ -297,7 +297,7 @@ public partial class GameManager
                 ImmediateStyle.Text("/Canvas/ResourceDeathTexta4fa", $"{popDeathByLackResource()} people have died from lack of {generateLackResourceMessage()}.");
             }
             if (waterUsedForUraniumPerTurn() > 0) {
-                //ImmediateStyle.Text("/Canvas/EndTurnText/WaterUraniumUsageTextf34a", $"{waterUsedForUraniumPerTurn()} water consumed cooling the uranium powered barrier.");
+                ImmediateStyle.Text("/Canvas/Core/EndTurnText/WaterUraniumUsageText598e", $"{waterUsedForUraniumPerTurn()} water consumed cooling the uranium powered barrier.");
             }
 
             if (Input.GetKeyDown(KeyCode.Space)) {
