@@ -1,15 +1,11 @@
 using MoonlitSystem.UI.Immediate;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public partial class GameManager
 {
     int totalPopulation;
     int unusedPopulation;
-
-    // One citizen dragged equals this much of the population.
-    int citizenUnit = 100;
 
     int numCoinAssignments = 0;
     int numFoodAssignments = 0;
@@ -55,12 +51,18 @@ public partial class GameManager
         numUraniumAssignments = 0;
         numWaterAssignments = 0;
 
+        isMovingFromUnallocated = false;
+        isMovingFromCoin = false;
+        isMovingFromFood = false;
+        isMovingFromUranium = false;
+        isMovingFromWater = false;
+
         coinTooltipText.text = defaultCoinTooltipString;
         foodTooltipText.text = defaultFoodTooltipString;
         uraniumTooltipText.text = defaultUraniumTooltipString;
         waterTooltipText.text = defaultWaterTooltipString;
 
-        numUnassignedCitizensText.text = (unusedPopulation / citizenUnit).ToString();
+        numUnassignedCitizensText.text = (unusedPopulation / gameSettings.citizenUnit).ToString();
     }
 
     void SetUpUsableCitizenObjects()
@@ -69,7 +71,7 @@ public partial class GameManager
             citizenObjects[i].SetActive(false);
             citizenObjects[i].transform.position = Reference.Find<RectTransform>(this, "/Canvas/Bottom Bar/Unassignedcc19").position;
         }
-        int numCitizenObjectsNeeded = totalPopulation / citizenUnit;
+        int numCitizenObjectsNeeded = totalPopulation / gameSettings.citizenUnit;
         for (int i = 0; i < numCitizenObjectsNeeded; i++) {
             citizenObjects[i].SetActive(true);
         }
@@ -97,7 +99,7 @@ public partial class GameManager
             "/Canvas/ResourceGathering/Bottom Bar/Unassigned/Citizen153f10"
         };
 
-        int numCitizenObjectsNeeded = totalPopulation / citizenUnit;
+        int numCitizenObjectsNeeded = totalPopulation / gameSettings.citizenUnit;
         for (int i = 0; i < numCitizenObjectsNeeded; i++) {
             string guid = allCitizenGUIDs[i];
 
@@ -198,52 +200,52 @@ public partial class GameManager
     void UpdateUnallocatedCitizenAllocation()
     {
         Debug.Log("Unassigning 1 citizen");
-        unusedPopulation += citizenUnit;
+        unusedPopulation += gameSettings.citizenUnit;
     }
 
     void UpdateCoinAllocation()
     {
         Debug.Log("Assigning 1 citizen to mine bubble coin");
-        numCoinAssignments += citizenUnit;
+        numCoinAssignments += gameSettings.citizenUnit;
     }
 
     void UpdateFoodAllocation()
     {
         Debug.Log("Assigning 1 citizen to farm food");
-        numFoodAssignments += citizenUnit;
+        numFoodAssignments += gameSettings.citizenUnit;
     }
 
     void UpdateUraniumAllocation()
     {
         Debug.Log("Assigning 1 citizen to collect uranium");
-        numUraniumAssignments += citizenUnit;
+        numUraniumAssignments += gameSettings.citizenUnit;
     }
 
     void UpdateWaterAllocation()
     {
         Debug.Log("Assigning 1 citizen to collect water");
-        numWaterAssignments += citizenUnit;
+        numWaterAssignments += gameSettings.citizenUnit;
     }
 
     void UpdatePreviousResourceAllocation()
     {
         if (isMovingFromUnallocated) {
-            unusedPopulation -= citizenUnit;
+            unusedPopulation -= gameSettings.citizenUnit;
             Debug.Log("Still have " + unusedPopulation + " people left to allocate");
         } else if (isMovingFromCoin) {
-            numCoinAssignments -= citizenUnit;
+            numCoinAssignments -= gameSettings.citizenUnit;
         } else if (isMovingFromFood) {
-            numFoodAssignments -= citizenUnit;
+            numFoodAssignments -= gameSettings.citizenUnit;
         } else if (isMovingFromUranium) {
-            numUraniumAssignments -= citizenUnit;
+            numUraniumAssignments -= gameSettings.citizenUnit;
         } else if (isMovingFromWater) {
-            numWaterAssignments -= citizenUnit;
+            numWaterAssignments -= gameSettings.citizenUnit;
         }
     }
 
     void UpdateTooltips()
     {
-        numUnassignedCitizensText.text = (unusedPopulation / citizenUnit).ToString();
+        numUnassignedCitizensText.text = (unusedPopulation / gameSettings.citizenUnit).ToString();
 
         if (numCoinAssignments == 0) {
             coinTooltipText.text = defaultCoinTooltipString;

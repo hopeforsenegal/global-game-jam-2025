@@ -9,9 +9,10 @@ public class DefaultPlayerSettings : ScriptableObject
    [SerializeField] private int surplusFoodToGrowOneCitizenPerTurn = 10;
    [SerializeField] private int requiredUraniumForBarrier = 100;
    [SerializeField] private int increaseRequiredUraniumForBarrierPerTurn = 50;
+   public int citizenUnit = 100;
 
-   // Starting Resources
-   [Header("Starting Resources")]
+    // Starting Resources
+    [Header("Starting Resources")]
    [SerializeField] private int currentCitizenPopulation = 100;
    [SerializeField] private int currentFood = 1000;
    [SerializeField] private int currentUranium = 100;

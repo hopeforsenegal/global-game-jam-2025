@@ -225,7 +225,7 @@ public partial class GameManager
         if (currentCitizenPopulation <= 0) {
             ImmediateStyle.Text("/Canvas/EndText82ef", "GameOver");
             if (Input.GetKeyDown(KeyCode.Escape)) {
-                initializeGame();
+                StartMainMenu();
             }
             return;
         }
@@ -240,7 +240,7 @@ public partial class GameManager
 
             }
             if (Input.GetKeyDown(KeyCode.Escape)) {
-                initializeGame();
+                StartMainMenu();
             }
             return;
         }
