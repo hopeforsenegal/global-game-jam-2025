@@ -7,10 +7,7 @@ public partial class GameManager : MonoBehaviour
     {
         StartRealCore();
         StartCore();
-    }
-
-    private void HandleRandomEvents()
-    {
+        StartRandomEvents();
     }
 
     public enum GameScreens { MainMenu, RandomEvents, Core }
@@ -28,5 +25,6 @@ public partial class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q)) { Debug.Log("Q"); Screen = GameScreens.MainMenu; m_MainMenuState = default; }
         if (Input.GetKeyDown(KeyCode.W)) { Debug.Log("W"); Screen = GameScreens.Core; StartCore(); }
         if (Input.GetKeyDown(KeyCode.E)) { Debug.Log("E"); Screen = GameScreens.Core; StartRealCore(); }
+        if (Input.GetKeyDown(KeyCode.R)) { Debug.Log("R"); Screen = GameScreens.RandomEvents; StartRandomEvents(); }
     }
 }
