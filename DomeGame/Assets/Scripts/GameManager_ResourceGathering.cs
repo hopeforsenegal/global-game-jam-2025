@@ -26,14 +26,16 @@ public partial class GameManager
     [Header("Resource Gathering")]
     [SerializeField] GameObject[] citizenObjects;
 
-    public TMP_Text numUnassignedCitizensText;
+    [SerializeField] TMP_Text numUnassignedCitizensText;
 
-    public TMP_Text coinTooltipText;
-    public TMP_Text foodTooltipText;
-    public TMP_Text uraniumTooltipText;
-    public TMP_Text waterTooltipText;
+    [SerializeField] TMP_Text coinTooltipText;
+    [SerializeField] TMP_Text foodTooltipText;
+    [SerializeField] TMP_Text uraniumTooltipText;
+    [SerializeField] TMP_Text waterTooltipText;
 
-    public GameObject endTurnButton;
+    [SerializeField] GameObject endTurnButton;
+
+    [SerializeField] AudioClip droppedSound;
 
     string defaultCoinTooltipString = "BubbleCoin can be used during random events.\n\nPlace a citizen here to mine BubbleCoin.";
     string defaultFoodTooltipString = "Food is necessary for your population to survive. Every 10 surplus of food you have creates an extra person.\n\nPlace a citizen here to collect food.";
@@ -164,6 +166,7 @@ public partial class GameManager
                 }
 
                 component.transform.position = component.PinnedPosition;
+                gameObject.GetComponent<AudioSource>().PlayOneShot(droppedSound);
 
                 // Reset all start drag bools
                 isMovingFromUnallocated = false;
