@@ -257,6 +257,8 @@ public partial class GameManager
                 currentWater = math.max(waterGrowth + currentWater, 0);
                 currentCoin = math.max(coinGrowth + currentCoin, 0);
                 currentPhase = GamePhase.ResourceGathering;
+                // update number of citizens available for assignment;
+                StartCore();
             }
             return;  
         }
@@ -306,9 +308,6 @@ public partial class GameManager
                 currentWater = math.max(currentWater -waterUsed, 0);
                 currentTurn = currentTurn + 1;
                 currentPhase = GamePhase.StartPhase;
-                
-                // update number of citizens available for assignment;
-                StartCore();
             }
             return;
         }
