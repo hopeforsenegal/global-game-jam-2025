@@ -212,7 +212,6 @@ public partial class GameManager
 
         ImmediateStyle.Text("/Canvas/PopulationText084a", $"Population {currentCitizenPopulation}");
         ImmediateStyle.Text("/Canvas/Uranium Required508f", $"{requiredUraniumForBarrier} Uranium to power the barrier");
-        ImmediateStyle.Text("/Canvas/PhaseTextc7bd", currentPhase.ToString());
         ImmediateStyle.Text("/Canvas/TurnText366e", $"Turn: {currentTurn}/{maxTurns}");
 
         ImmediateStyle.Text("/Canvas/CoinTotalText924e", $"{currentCoin}");
@@ -323,7 +322,8 @@ public partial class GameManager
                 currentWater = math.max(currentWater -waterUsed, 0);
                 currentTurn = currentTurn + 1;
                 requiredUraniumForBarrier += increaseRequiredUraniumForBarrierPerTurn;
-                currentPhase = GamePhase.StartPhase;
+                StartRandomEvents();
+                currentPhase = GamePhase.Event;
             }
             return;
         }

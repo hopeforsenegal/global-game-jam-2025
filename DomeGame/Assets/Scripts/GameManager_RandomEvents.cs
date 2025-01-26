@@ -19,6 +19,8 @@ public partial class GameManager
     private Choice selectedChoice;
     private uint choiceDialogIndex;
 
+    private bool eventFinished;
+
     // Start is called before the first frame update
     void StartRandomEvents()
     {
@@ -30,9 +32,11 @@ public partial class GameManager
         if (selectableEvents.Length == 0)
         {
             Screen = GameScreens.Core;
+            eventFinished = true;
         }
         else
         {
+            eventFinished = false;
             dialogIndex = 0;
             selectedEvent = selectableEvents[
                 UnityEngine.Random.Range(0, selectableEvents.Length)];
@@ -48,14 +52,12 @@ public partial class GameManager
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            // Debug.Log("Hit space");
-
-            if (selectedEvent.dialog[dialogIndex].choices.Length == 0)
+            if (dialogIndex < selectedEvent.dialog.Length && selectedEvent.dialog[dialogIndex].choices.Length == 0)
             {
                 handleRenderNextDialog();
             }
             else if (selectedChoice != null)
-            {
+            { 
                 choiceDialogIndex++;
 
                 if (choiceDialogIndex < selectedChoice.dialogIfSelected.Length) {
@@ -115,7 +117,6 @@ public partial class GameManager
     private void handleRenderNextDialog()
     {
         dialogIndex++;
-
         if (dialogIndex < selectedEvent.dialog.Length) {
             typingEffect = new TypingEffect();
             typingEffect.fullText =
@@ -124,6 +125,7 @@ public partial class GameManager
             // TODO: Switch back to Core Scene, and pass it the selected Choice
             alreadyViewedEvents.Add(selectedEvent);
             Screen = GameScreens.Core;
+            eventFinished = true;
         }
     }
 
