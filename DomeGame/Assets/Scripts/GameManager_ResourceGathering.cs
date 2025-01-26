@@ -5,8 +5,6 @@ using UnityEngine.UI;
 
 public partial class GameManager
 {
-    Player playerScript;
-
     int totalPopulation;
     int unusedPopulation;
 
@@ -24,6 +22,7 @@ public partial class GameManager
     bool isMovingFromUranium;
     bool isMovingFromWater;
 
+    [Space]
     [Header("Resource Gathering")]
     [SerializeField] GameObject[] citizenObjects;
 
@@ -48,11 +47,7 @@ public partial class GameManager
 
     void StartCore()
     {
-        playerScript = FindObjectOfType<Player>();
-
-        totalPopulation = playerScript.GetCurrentCitizenPopulation();
-
-        // totalPopulation = 100;
+        totalPopulation = GetCurrentCitizenPopulation();
         unusedPopulation = totalPopulation;
         SetUpUsableCitizenObjects();
 
@@ -236,28 +231,28 @@ public partial class GameManager
         if (numCoinAssignments == 0) {
             coinTooltipText.text = defaultCoinTooltipString;
         } else {
-            int coinRate = playerScript.CalculateRateCoinGivenCitizen(numCoinAssignments);
+            int coinRate = CalculateRateCoinGivenCitizen(numCoinAssignments);
             coinTooltipText.text = numCoinAssignments + " people allocated to mining BubbleCoin\n\nCoin rate = " + coinRate;
         }
 
         if (numFoodAssignments == 0) {
             foodTooltipText.text = defaultFoodTooltipString;
         } else {
-            int foodRate = playerScript.CalculateRateFoodGivenCitizen(numFoodAssignments);
+            int foodRate = CalculateRateFoodGivenCitizen(numFoodAssignments);
             foodTooltipText.text = numFoodAssignments + " people allocated to farming\n\nFood rate = " + foodRate;
         }
 
         if (numUraniumAssignments == 0) {
             uraniumTooltipText.text = defaultUraniumTooltipString;
         } else {
-            int uraniumRate = playerScript.CalculateRateUraniumGivenCitizen(numUraniumAssignments);
+            int uraniumRate = CalculateRateUraniumGivenCitizen(numUraniumAssignments);
             uraniumTooltipText.text = numUraniumAssignments + " people allocated to collecting uranium\n\nUranium rate = " + uraniumRate;
         }
 
         if (numWaterAssignments == 0) {
             waterTooltipText.text = defaultWaterTooltipString;
         } else {
-            int waterRate = playerScript.CalculateRateWaterGivenCitizen(numWaterAssignments);
+            int waterRate = CalculateRateWaterGivenCitizen(numWaterAssignments);
             waterTooltipText.text = numWaterAssignments + " people allocated to collecting water\n\nWater rate = " + waterRate;
         }
     }

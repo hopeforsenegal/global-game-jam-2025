@@ -4,16 +4,11 @@ using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public enum GamePhase 
-{
-    Event,
-    StartPhase,
-    ResourceGathering,
-    EndTurn,
-}
 
 public class Player : MonoBehaviour
 {
+    [Space]
+    [Header("Core")]
     [SerializeField] private DefaultPlayerSettings gameSettings;
 
     [Header("Turn Management")]
@@ -181,108 +176,108 @@ public class Player : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    //void Update()
     
-    {
-        ImmediateStyle.Text("/Canvas/PopulationText084a", $"Population {currentCitizenPopulation}");
-        ImmediateStyle.Text("/Canvas/Uranium Required508f", $"{requiredUraniumForBarrier} Uranium to power the barrier");
-        ImmediateStyle.Text("/Canvas/PhaseTextc7bd", currentPhase.ToString());
-        ImmediateStyle.Text("/Canvas/TurnText366e", $"Turn: {currentTurn}/{maxTurns}");
+    //{
+    //    ImmediateStyle.Text("/Canvas/PopulationText084a", $"Population {currentCitizenPopulation}");
+    //    ImmediateStyle.Text("/Canvas/Uranium Required508f", $"{requiredUraniumForBarrier} Uranium to power the barrier");
+    //    ImmediateStyle.Text("/Canvas/PhaseTextc7bd", currentPhase.ToString());
+    //    ImmediateStyle.Text("/Canvas/TurnText366e", $"Turn: {currentTurn}/{maxTurns}");
 
-        ImmediateStyle.Text("/Canvas/CoinTotalText924e", $"{currentCoin}");
-        ImmediateStyle.Text("/Canvas/FoodTotalTexte155", $"{currentFood}");
-        ImmediateStyle.Text("/Canvas/UraniumTotalText68fd", $"{currentUranium}");
-        ImmediateStyle.Text("/Canvas/WaterTotalTexta1c3", $"{currentWater}");
+    //    ImmediateStyle.Text("/Canvas/CoinTotalText924e", $"{currentCoin}");
+    //    ImmediateStyle.Text("/Canvas/FoodTotalTexte155", $"{currentFood}");
+    //    ImmediateStyle.Text("/Canvas/UraniumTotalText68fd", $"{currentUranium}");
+    //    ImmediateStyle.Text("/Canvas/WaterTotalTexta1c3", $"{currentWater}");
 
 
 
-        if (currentCitizenPopulation <= 0) {
-            ImmediateStyle.Text("/Canvas/EndText82ef", "GameOver");
-            if (Input.GetKeyDown(KeyCode.Space)) {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-            }
-            return;
-        }
+    //    if (currentCitizenPopulation <= 0) {
+    //        ImmediateStyle.Text("/Canvas/EndText82ef", "GameOver");
+    //        if (Input.GetKeyDown(KeyCode.Space)) {
+    //            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    //        }
+    //        return;
+    //    }
 
     
-        if (currentTurn == maxTurns) {
-            if (currentCitizenPopulation > 0) {
-                ImmediateStyle.Text("/Canvas/EndText82ef", $"You Win\n{GetCurrentCitizenPopulation()} Citizens Survived");
+    //    if (currentTurn == maxTurns) {
+    //        if (currentCitizenPopulation > 0) {
+    //            ImmediateStyle.Text("/Canvas/EndText82ef", $"You Win\n{GetCurrentCitizenPopulation()} Citizens Survived");
 
-            } else {
-                ImmediateStyle.Text("/Canvas/EndText82ef", "GameOver");
+    //        } else {
+    //            ImmediateStyle.Text("/Canvas/EndText82ef", "GameOver");
 
-            }
-            if (Input.GetKeyDown(KeyCode.Space)) {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-            }
-            return;
-        }
-        if (currentPhase == GamePhase.StartPhase) {
-            ImmediateStyle.CanvasGroup("/Canvas/ResourceUpdate9d7b");
-            ImmediateStyle.Text("/Canvas/ResourceUpdate/StartTurnText9bc7", "Resources consumed");
-            ImmediateStyle.Text("/Canvas/CoinText4142", $"Coins +{coinGrowthPerTurn()}");
-            ImmediateStyle.Text("/Canvas/FoodTexte6fc", $"Food {foodUsedPopulationPerTurn()}");
-            ImmediateStyle.Text("/Canvas/UraniumTextc4b3", $"Uranium {uraniumUsedPopulationPerTurn()}");
-            ImmediateStyle.Text("/Canvas/WaterText798e", $"Water {waterUsedPopulationPerTurn()}");
-            if (Input.GetKeyDown(KeyCode.Space)) {
-                int foodGrowth = foodUsedPopulationPerTurn();
-                int uraniumGrowth = uraniumUsedPopulationPerTurn();
-                int waterGrowth = waterUsedPopulationPerTurn();
-                int coinGrowth = coinGrowthPerTurn();
-                currentFood = math.max(foodGrowth + currentFood, 0);
-                currentUranium = math.max(uraniumGrowth + currentUranium, 0);
-                currentWater = math.max(waterGrowth + currentWater, 0);
-                currentCoin = math.max(coinGrowth + currentCoin, 0);
-                currentPhase = GamePhase.ResourceGathering;
-            }
-            return;  
-        }
-        if (currentPhase == GamePhase.ResourceGathering) {
-            ImmediateStyle.CanvasGroup("/Canvas/ResourceUpdate9d7b");
-            ImmediateStyle.Text("/Canvas/CoinText4142", $"Coin: {currentCoin} +{CalculateRateCoinGivenCitizen(assignedCoin)}");
-            ImmediateStyle.Text("/Canvas/FoodTexte6fc", $"Food: {currentFood} +{CalculateRateFoodGivenCitizen(assignedFood)}");
-            ImmediateStyle.Text("/Canvas/UraniumTextc4b3", $"Uranium: {currentUranium} +{CalculateRateUraniumGivenCitizen(assignedUranium)}");
-            ImmediateStyle.Text("/Canvas/WaterText798e", $"Water: {currentWater} +{CalculateRateWaterGivenCitizen(assignedWater)}");
-            if (Input.GetKeyDown(KeyCode.Space)) {
-                currentPhase = GamePhase.EndTurn;
-                int foodGrowth = CalculateRateFoodGivenCitizen(assignedFood);
-                int uraniumGrowth = CalculateRateUraniumGivenCitizen(assignedUranium);
-                int waterGrowth = CalculateRateWaterGivenCitizen(assignedWater);
-                int coinGrowth = CalculateRateCoinGivenCitizen(assignedCoin);
-                currentFood = math.max(foodGrowth + currentFood, 0);
-                currentUranium = math.max(uraniumGrowth + currentUranium, 0);
-                currentWater = math.max(waterGrowth + currentWater, 0);
-                currentCoin = math.max(coinGrowth + currentCoin, 0); 
-                return;
-            }
-        } else if (currentPhase == GamePhase.EndTurn) {
-            ImmediateStyle.CanvasGroup("/Canvas/EndTurnText8f05");
-            if (popDeathByBarrier() > 0) {
-                ImmediateStyle.Text("/Canvas/BubbleDeathTextfddb", $"Due to lack of uranium, your barrier was underpowered, and {popDeathByBarrier()} people have died");
-            } else {
-                ImmediateStyle.Text("/Canvas/BubbleDeathTextfddb", "Your dome barrier held strong.");
-            }
+    //        }
+    //        if (Input.GetKeyDown(KeyCode.Space)) {
+    //            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    //        }
+    //        return;
+    //    }
+    //    if (currentPhase == GamePhase.StartPhase) {
+    //        ImmediateStyle.CanvasGroup("/Canvas/ResourceUpdate9d7b");
+    //        ImmediateStyle.Text("/Canvas/ResourceUpdate/StartTurnText9bc7", "Resources consumed");
+    //        ImmediateStyle.Text("/Canvas/CoinText4142", $"Coins +{coinGrowthPerTurn()}");
+    //        ImmediateStyle.Text("/Canvas/FoodTexte6fc", $"Food {foodUsedPopulationPerTurn()}");
+    //        ImmediateStyle.Text("/Canvas/UraniumTextc4b3", $"Uranium {uraniumUsedPopulationPerTurn()}");
+    //        ImmediateStyle.Text("/Canvas/WaterText798e", $"Water {waterUsedPopulationPerTurn()}");
+    //        if (Input.GetKeyDown(KeyCode.Space)) {
+    //            int foodGrowth = foodUsedPopulationPerTurn();
+    //            int uraniumGrowth = uraniumUsedPopulationPerTurn();
+    //            int waterGrowth = waterUsedPopulationPerTurn();
+    //            int coinGrowth = coinGrowthPerTurn();
+    //            currentFood = math.max(foodGrowth + currentFood, 0);
+    //            currentUranium = math.max(uraniumGrowth + currentUranium, 0);
+    //            currentWater = math.max(waterGrowth + currentWater, 0);
+    //            currentCoin = math.max(coinGrowth + currentCoin, 0);
+    //            currentPhase = GamePhase.ResourceGathering;
+    //        }
+    //        return;  
+    //    }
+    //    if (currentPhase == GamePhase.ResourceGathering) {
+    //        ImmediateStyle.CanvasGroup("/Canvas/ResourceUpdate9d7b");
+    //        ImmediateStyle.Text("/Canvas/CoinText4142", $"Coin: {currentCoin} +{CalculateRateCoinGivenCitizen(assignedCoin)}");
+    //        ImmediateStyle.Text("/Canvas/FoodTexte6fc", $"Food: {currentFood} +{CalculateRateFoodGivenCitizen(assignedFood)}");
+    //        ImmediateStyle.Text("/Canvas/UraniumTextc4b3", $"Uranium: {currentUranium} +{CalculateRateUraniumGivenCitizen(assignedUranium)}");
+    //        ImmediateStyle.Text("/Canvas/WaterText798e", $"Water: {currentWater} +{CalculateRateWaterGivenCitizen(assignedWater)}");
+    //        if (Input.GetKeyDown(KeyCode.Space)) {
+    //            currentPhase = GamePhase.EndTurn;
+    //            int foodGrowth = CalculateRateFoodGivenCitizen(assignedFood);
+    //            int uraniumGrowth = CalculateRateUraniumGivenCitizen(assignedUranium);
+    //            int waterGrowth = CalculateRateWaterGivenCitizen(assignedWater);
+    //            int coinGrowth = CalculateRateCoinGivenCitizen(assignedCoin);
+    //            currentFood = math.max(foodGrowth + currentFood, 0);
+    //            currentUranium = math.max(uraniumGrowth + currentUranium, 0);
+    //            currentWater = math.max(waterGrowth + currentWater, 0);
+    //            currentCoin = math.max(coinGrowth + currentCoin, 0); 
+    //            return;
+    //        }
+    //    } else if (currentPhase == GamePhase.EndTurn) {
+    //        ImmediateStyle.CanvasGroup("/Canvas/EndTurnText8f05");
+    //        if (popDeathByBarrier() > 0) {
+    //            ImmediateStyle.Text("/Canvas/BubbleDeathTextfddb", $"Due to lack of uranium, your barrier was underpowered, and {popDeathByBarrier()} people have died");
+    //        } else {
+    //            ImmediateStyle.Text("/Canvas/BubbleDeathTextfddb", "Your dome barrier held strong.");
+    //        }
 
-            if (popGrowthByFood() > 0) {
-                ImmediateStyle.Text("/Canvas/PopulationGrowthText21e3", $"Thanks to your surplus food, your population has grown by {popGrowthByFood()!}.");
-            }
-            if (popDeathByLackResource() > 0) {
-                ImmediateStyle.Text("/Canvas/ResourceDeathTexta4fa", $"{popDeathByLackResource()} people have died from lack of {generateLackResourceMessage()}.");
-            }
-            if (waterUsedForUraniumPerTurn() > 0) {
-                ImmediateStyle.Text("/Canvas/EndTurnText/WaterUraniumUsageTextf34a", $"{waterUsedForUraniumPerTurn()} water consumed cooling the uranium powered barrier.");
-            }
+    //        if (popGrowthByFood() > 0) {
+    //            ImmediateStyle.Text("/Canvas/PopulationGrowthText21e3", $"Thanks to your surplus food, your population has grown by {popGrowthByFood()!}.");
+    //        }
+    //        if (popDeathByLackResource() > 0) {
+    //            ImmediateStyle.Text("/Canvas/ResourceDeathTexta4fa", $"{popDeathByLackResource()} people have died from lack of {generateLackResourceMessage()}.");
+    //        }
+    //        if (waterUsedForUraniumPerTurn() > 0) {
+    //            ImmediateStyle.Text("/Canvas/EndTurnText/WaterUraniumUsageTextf34a", $"{waterUsedForUraniumPerTurn()} water consumed cooling the uranium powered barrier.");
+    //        }
 
-            if (Input.GetKeyDown(KeyCode.Space)) {
-                int citizenGrowth = CitizenGrowthPerTurn();
-                int waterUsed = waterUsedForUraniumPerTurn();
-                currentCitizenPopulation = math.max(citizenGrowth + currentCitizenPopulation, 0);
-                currentWater = math.max(currentWater -waterUsed, 0);
-                currentTurn = currentTurn + 1;
-                currentPhase = GamePhase.StartPhase;
-            }
-            return;
-        }
-    }
+    //        if (Input.GetKeyDown(KeyCode.Space)) {
+    //            int citizenGrowth = CitizenGrowthPerTurn();
+    //            int waterUsed = waterUsedForUraniumPerTurn();
+    //            currentCitizenPopulation = math.max(citizenGrowth + currentCitizenPopulation, 0);
+    //            currentWater = math.max(currentWater -waterUsed, 0);
+    //            currentTurn = currentTurn + 1;
+    //            currentPhase = GamePhase.StartPhase;
+    //        }
+    //        return;
+    //    }
+    //}
 }
