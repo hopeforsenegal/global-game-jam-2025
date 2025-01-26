@@ -64,7 +64,7 @@ MonoBehaviour:
         foodRequired: 0
         waterRequired: 0
         uraniumRequired: 0
-        populationRequired: -1000
+        populationRequired: 0
         coinsGained: 0
         foodGained: 0
         waterGained: 0

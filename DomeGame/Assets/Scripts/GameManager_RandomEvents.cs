@@ -78,7 +78,7 @@ public partial class GameManager
         if (effect.waterRequired > currentWater) {
             return false;
         }
-        if (effect.populationRequired >= currentCitizenPopulation) {
+        if (effect.populationRequired > 0 && effect.populationRequired >= currentCitizenPopulation) {
             return false;
         }
         return true;
