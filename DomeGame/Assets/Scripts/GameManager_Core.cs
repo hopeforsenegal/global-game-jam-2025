@@ -1,8 +1,9 @@
 using System;
+using System.Collections.Generic;
 using MoonlitSystem.UI.Immediate;
 using Unity.Mathematics;
 using UnityEngine;
-
+using UnityEngine.EventSystems;
 
 public enum GamePhase
 {
@@ -307,6 +308,24 @@ public partial class GameManager
             if (CalculateRateWaterGivenCitizen(numWaterAssignments) > 0) {
                 ImmediateStyle.Text("/Canvas (Environment)/Core/ResourceGather/WaterTextf830", $"+{CalculateRateWaterGivenCitizen(numWaterAssignments)}");
             }
+            if (EventSystem.current.IsPointerOverGameObject()) {
+                GameObject hoveredUIElement = GetHoveredUIElement();
+                if (hoveredUIElement != null) {
+                    if (hoveredUIElement.name.Contains("Coin") && hoveredUIElement.name.Contains("Icon")) {
+                        ImmediateStyle.Text("/Canvas (Environment)/Core/Resources/Tooltip0028", "Bubble Coin");
+                    }
+                    if (hoveredUIElement.name.Contains("Water") && hoveredUIElement.name.Contains("Icon")) {
+                        ImmediateStyle.Text("/Canvas (Environment)/Core/Resources/Tooltip0028", "Water");
+                    }
+                    if (hoveredUIElement.name.Contains("Food") && hoveredUIElement.name.Contains("Icon")) {
+                        ImmediateStyle.Text("/Canvas (Environment)/Core/Resources/Tooltip0028", "Food");
+                    }
+                    if (hoveredUIElement.name.Contains("Uranium") && hoveredUIElement.name.Contains("Icon")) {
+                        ImmediateStyle.Text("/Canvas (Environment)/Core/Resources/Tooltip0028", "Uranium");
+                    }
+                    Debug.Log("Hovering over UI element: " + hoveredUIElement.name);
+                }
+            }
             if (endTurnClicked) {
                 endTurnClicked = false;
                 currentPhase = GamePhase.EndTurn;
@@ -436,5 +455,14 @@ public partial class GameManager
                 
             }
         }
+    }
+    public static GameObject GetHoveredUIElement()
+    {
+        PointerEventData eventData = new PointerEventData(EventSystem.current);
+        eventData.position = Input.mousePosition;
+        List<RaycastResult> results = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(eventData, results);
+
+        return results.Count > 0 ? results[0].gameObject : null;
     }
 }
