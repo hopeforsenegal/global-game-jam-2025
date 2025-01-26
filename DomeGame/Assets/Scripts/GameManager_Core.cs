@@ -247,10 +247,12 @@ public partial class GameManager
         if (currentPhase == GamePhase.StartPhase) {
             ImmediateStyle.CanvasGroup("/Canvas/ResourceUpdate9d7b");
             ImmediateStyle.Text("/Canvas/ResourceUpdate/StartTurnText9bc7", "Resources consumed");
-            ImmediateStyle.Text("/Canvas/CoinText4142", $"Coins +{coinGrowthPerTurn()}");
             ImmediateStyle.Text("/Canvas/FoodTexte6fc", $"Food {foodUsedPopulationPerTurn()}");
             ImmediateStyle.Text("/Canvas/UraniumTextc4b3", $"Uranium {uraniumUsedPopulationPerTurn()}");
             ImmediateStyle.Text("/Canvas/WaterText798e", $"Water {waterUsedPopulationPerTurn()}");
+            if (coinGrowthPerTurn() > 0) {
+                ImmediateStyle.Text("/Canvas/CoinText4142", $"Coins +{coinGrowthPerTurn()}");
+            }
             if (endTurnClicked) {
                 endTurnClicked = false;
                 int foodGrowth = foodUsedPopulationPerTurn();
