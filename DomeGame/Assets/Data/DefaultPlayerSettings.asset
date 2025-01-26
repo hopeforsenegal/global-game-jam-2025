@@ -16,7 +16,7 @@ MonoBehaviour:
   surplusFoodToGrowOneCitizenPerTurn: 10
   requiredUraniumForBarrier: 100
   currentCitizenPopulation: 100
-  currentFood: 1000
+  currentFood: 1500
   currentUranium: 100
   currentWater: 1000
   currentCoin: 100
@@ -25,9 +25,9 @@ MonoBehaviour:
   rateWaterPerCitizen: 1
   rateWaterPerUranium: 1
   rateCoinPerTurn: 0
-  foodGeneratedPerAssignedCitizen: 300
-  coinGeneratedPerAssignedCitizen: 300
-  waterGeneratedPerAssignedCitizen: 300
-  uraniumGeneratedPerAssignedCitizen: 300
+  foodGeneratedPerAssignedCitizen: 5
+  coinGeneratedPerAssignedCitizen: 5
+  waterGeneratedPerAssignedCitizen: 5
+  uraniumGeneratedPerAssignedCitizen: 5
   rateCitizenDeathPerNoResource: 1
   rateCitizenDeathByBarrier: 1
