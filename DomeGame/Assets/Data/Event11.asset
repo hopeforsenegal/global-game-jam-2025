@@ -1,0 +1,94 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dec4fb1be46d97cbfadb30464fc4897e, type: 3}
+  m_Name: Event11
+  m_EditorClassIdentifier: 
+  dialog:
+  - dialogText: SECRETARY\nMayor, unfortunate news.
+    choices: []
+  - dialogText: SECRETARY\nThe Think Tank has put out propaganda about you, accusing
+      you of being a dictator that hates businesses.
+    choices: []
+  - dialogText: SECRETARY\nThey are also pulling up shameful moments from your old
+      social media.
+    choices: []
+  - dialogText: MAYOR\nWhat?! All of those should be deleted!
+    choices: []
+  - dialogText: SECRETARY\nIt seems they were able to pull archives.
+    choices: []
+  - dialogText: SECRETARY\nHowever, I also have good news.
+    choices: []
+  - dialogText: SECRETARY\nThe citizens living in the East Valley district were happy
+      to hear your decision, and have gained extra morale.
+    choices: []
+  - dialogText: SECRETARY\nThey are offering to work for less pay than usual.
+    choices:
+    - choiceText: Assign to mine (+\u00A0uranium, -\u00A0BubbleCoin)
+      dialogIfSelected: []
+      effect:
+        coinsRequired: 0
+        foodRequired: 0
+        waterRequired: 0
+        uraniumRequired: 0
+        populationRequired: 0
+        coinsGained: 0
+        foodGained: 0
+        waterGained: 0
+        uraniumGained: 0
+        populationGained: 0
+      followUpEvent: {fileID: 0}
+    - choiceText: Assign to farm (+\u00A0food, -\u00A0BubbleCoin)
+      dialogIfSelected: []
+      effect:
+        coinsRequired: 0
+        foodRequired: 0
+        waterRequired: 0
+        uraniumRequired: 0
+        populationRequired: 0
+        coinsGained: 0
+        foodGained: 0
+        waterGained: 0
+        uraniumGained: 0
+        populationGained: 0
+      followUpEvent: {fileID: 0}
+    - choiceText: Assign to well (+\u00A0water, -\u00A0BubbleCoin)
+      dialogIfSelected: []
+      effect:
+        coinsRequired: 0
+        foodRequired: 0
+        waterRequired: 0
+        uraniumRequired: 0
+        populationRequired: 0
+        coinsGained: 0
+        foodGained: 0
+        waterGained: 0
+        uraniumGained: 0
+        populationGained: 0
+      followUpEvent: {fileID: 0}
+    - choiceText: Do not assign
+      dialogIfSelected:
+      - dialogText: "MAYOR\\nWe don\u2019t have the funds to spare."
+        choices: []
+      effect:
+        coinsRequired: 0
+        foodRequired: 0
+        waterRequired: 0
+        uraniumRequired: 0
+        populationRequired: 0
+        coinsGained: 0
+        foodGained: 0
+        waterGained: 0
+        uraniumGained: 0
+        populationGained: 0
+      followUpEvent: {fileID: 0}
+  - dialogText: "SECRETARY\\nUnderstood. I\u2019ll make sure the order is executed."
+    choices: []

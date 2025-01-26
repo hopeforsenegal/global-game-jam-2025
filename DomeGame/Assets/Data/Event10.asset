@@ -1,0 +1,115 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dec4fb1be46d97cbfadb30464fc4897e, type: 3}
+  m_Name: Event10
+  m_EditorClassIdentifier: 
+  dialog:
+  - dialogText: SECRETARY\nMayor, the Think Tank has reached out again, offering
+      another deal.
+    choices: []
+  - dialogText: SECRETARY\nThis time, they are offering any resource of your choice.
+    choices: []
+  - dialogText: SECRETARY\nIn exchange, they want the city to mine BubbleCoin using
+      servers owned by VelaNet.
+    choices:
+    - choiceText: Agree to new policies (+\u00A0BubbleCoin, +\u00A0uranium)
+      dialogIfSelected:
+      - dialogText: "MAYOR\\nLet\u2019s agree to their deal."
+        choices: []
+      - dialogText: SECRETARY\nWhich resource would you like to request?
+        choices:
+        - choiceText: Request BubbleCoin
+          dialogIfSelected: []
+          effect:
+            coinsRequired: 0
+            foodRequired: 0
+            waterRequired: 0
+            uraniumRequired: 0
+            populationRequired: 0
+            coinsGained: 0
+            foodGained: 0
+            waterGained: 0
+            uraniumGained: 0
+            populationGained: 0
+          followUpEvent: {fileID: 0}
+        - choiceText: Request uranium
+          dialogIfSelected: []
+          effect:
+            coinsRequired: 0
+            foodRequired: 0
+            waterRequired: 0
+            uraniumRequired: 0
+            populationRequired: 0
+            coinsGained: 0
+            foodGained: 0
+            waterGained: 0
+            uraniumGained: 0
+            populationGained: 0
+          followUpEvent: {fileID: 0}
+        - choiceText: Request food
+          dialogIfSelected: []
+          effect:
+            coinsRequired: 0
+            foodRequired: 0
+            waterRequired: 0
+            uraniumRequired: 0
+            populationRequired: 0
+            coinsGained: 0
+            foodGained: 0
+            waterGained: 0
+            uraniumGained: 0
+            populationGained: 0
+          followUpEvent: {fileID: 0}
+        - choiceText: Request water
+          dialogIfSelected: []
+          effect:
+            coinsRequired: 0
+            foodRequired: 0
+            waterRequired: 0
+            uraniumRequired: 0
+            populationRequired: 0
+            coinsGained: 0
+            foodGained: 0
+            waterGained: 0
+            uraniumGained: 0
+            populationGained: 0
+          followUpEvent: {fileID: 0}
+      effect:
+        coinsRequired: 0
+        foodRequired: 0
+        waterRequired: 0
+        uraniumRequired: 0
+        populationRequired: 0
+        coinsGained: 0
+        foodGained: 0
+        waterGained: 0
+        uraniumGained: 0
+        populationGained: 0
+      followUpEvent: {fileID: 0}
+    - choiceText: Decline
+      dialogIfSelected:
+      - dialogText: MAYOR\nNo. This is going too far.
+        choices: []
+      effect:
+        coinsRequired: 0
+        foodRequired: 0
+        waterRequired: 0
+        uraniumRequired: 0
+        populationRequired: 0
+        coinsGained: 0
+        foodGained: 0
+        waterGained: 0
+        uraniumGained: 0
+        populationGained: 0
+      followUpEvent: {fileID: 0}
+  - dialogText: "SECRETARY\\nUnderstood. I\u2019ll make sure the group is aware."
+    choices: []

@@ -1,0 +1,85 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dec4fb1be46d97cbfadb30464fc4897e, type: 3}
+  m_Name: Event2
+  m_EditorClassIdentifier: 
+  dialog:
+  - dialogText: SECRETARY\nMr. Mayor. We are hearing positive reports from the citizens
+      of Zhila thanks to our water donations. It seems like there is no longer a
+      chance of conflict.
+    choices: []
+  - dialogText: SECRETARY\nZhila is also reaching out in order to create regular
+      trade routes.
+    choices: []
+  - dialogText: SECRETARY\nWould you like to exchange with them right away? You can
+      exchange BubbleCoin for any other resource.
+    choices:
+    - choiceText: Buy uranium (-\u00A0BubbleCoin)
+      dialogIfSelected: []
+      effect:
+        coinsRequired: 0
+        foodRequired: 0
+        waterRequired: 0
+        uraniumRequired: 0
+        populationRequired: 0
+        coinsGained: 0
+        foodGained: 0
+        waterGained: 0
+        uraniumGained: 0
+        populationGained: 0
+      followUpEvent: {fileID: 0}
+    - choiceText: Buy food (-\u00A0BubbleCoin)
+      dialogIfSelected: []
+      effect:
+        coinsRequired: 0
+        foodRequired: 0
+        waterRequired: 0
+        uraniumRequired: 0
+        populationRequired: 0
+        coinsGained: 0
+        foodGained: 0
+        waterGained: 0
+        uraniumGained: 0
+        populationGained: 0
+      followUpEvent: {fileID: 0}
+    - choiceText: Buy water (-\u00A0BubbleCoin)
+      dialogIfSelected: []
+      effect:
+        coinsRequired: 0
+        foodRequired: 0
+        waterRequired: 0
+        uraniumRequired: 0
+        populationRequired: 0
+        coinsGained: 0
+        foodGained: 0
+        waterGained: 0
+        uraniumGained: 0
+        populationGained: 0
+      followUpEvent: {fileID: 0}
+    - choiceText: Decline trade
+      dialogIfSelected:
+      - dialogText: MAYOR\nNot right now.
+        choices: []
+      effect:
+        coinsRequired: 0
+        foodRequired: 0
+        waterRequired: 0
+        uraniumRequired: 0
+        populationRequired: 0
+        coinsGained: 0
+        foodGained: 0
+        waterGained: 0
+        uraniumGained: 0
+        populationGained: 0
+      followUpEvent: {fileID: 0}
+  - dialogText: "SECRETARY\\nUnderstood. I\u2019ll make sure the order is executed."
+    choices: []

@@ -10,23 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dec4fb1be46d97cbfadb30464fc4897e, type: 3}
-  m_Name: Event9
+  m_Name: Event8
   m_EditorClassIdentifier: 
   dialog:
-  - dialogText: SECRETARY\nMayor, the leader of a prominent Think Tank has reached
-      out.
+  - dialogText: SECRETARY\nMayor, I have bad news.
     choices: []
-  - dialogText: SECRETARY\nThey are offering donations to you and the city...
+  - dialogText: SECRETARY\nThe protesters have grown more violent. Riots are breaking
+      out throughout the city.
     choices: []
-  - dialogText: SECRETARY\nWith the stipulation that their backed policy be pushed
-      through.
+  - dialogText: SECRETARY\nThe police are no longer enough to contain this problem.
     choices: []
-  - dialogText: SECRETARY\nLowering taxes on local businesses, as well as rezoning
-      the East Valley district to allow new construction.
+  - dialogText: SECRETARY\nThe protesters are demanding food, water, and raised wages.
+    choices: []
+  - dialogText: "SECRETARY\\nAlternatively\u2014we can resort to extreme measures,
+      and exile problematic citizens from Sita."
     choices:
-    - choiceText: Agree to new policies (+\u00A0BubbleCoin, +\u00A0uranium)
+    - choiceText: Agree to demands (-\u00A0food, -\u00A0water, -\u00A0BubbleCoin)
       dialogIfSelected:
-      - dialogText: "MAYOR\\nLet\u2019s agree to their deal."
+      - dialogText: MAYOR\nFine. We must agree to their demands.
         choices: []
       effect:
         coinsRequired: 0
@@ -34,23 +35,17 @@ MonoBehaviour:
         waterRequired: 0
         uraniumRequired: 0
         populationRequired: 0
-<<<<<<< Updated upstream
-        coinsGained: 100
-        foodGained: 0
-        waterGained: 0
-        uraniumGained: 100
-        populationGained: 0
-=======
         coinsGained: 0
         foodGained: 0
         waterGained: 0
         uraniumGained: 0
         populationGained: 0
       followUpEvent: {fileID: 0}
->>>>>>> Stashed changes
-    - choiceText: Decline
+    - choiceText: Remove protesters (-\u00A0population)
       dialogIfSelected:
-      - dialogText: "MAYOR\\nI don\u2019t need bribes."
+      - dialogText: "MAYOR\\nSita doesn\u2019t need these parasites."
+        choices: []
+      - dialogText: MAYOR\nKick them from the city.
         choices: []
       effect:
         coinsRequired: 0
@@ -63,9 +58,6 @@ MonoBehaviour:
         waterGained: 0
         uraniumGained: 0
         populationGained: 0
-<<<<<<< Updated upstream
-=======
-      followUpEvent: {fileID: 11400000, guid: 0d9223909406d0c26aba31bb8634dec0, type: 2}
->>>>>>> Stashed changes
-  - dialogText: "SECRETARY\\nUnderstood. I\u2019ll make sure the group is aware."
+      followUpEvent: {fileID: 0}
+  - dialogText: "SECRETARY\\nUnderstood. I\u2019ll make sure the order is executed."
     choices: []

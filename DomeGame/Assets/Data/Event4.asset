@@ -10,35 +10,41 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dec4fb1be46d97cbfadb30464fc4897e, type: 3}
-  m_Name: Event6
+  m_Name: Event4
   m_EditorClassIdentifier: 
   dialog:
-  - dialogText: "SECRETARY\\nMayor, I don\u2019t know if you noticed..."
+  - dialogText: SECRETARY\nMayor, I have urgent news.
     choices: []
-  - dialogText: MAYOR\nThe protesters outside?
+  - dialogText: SECRETARY\nArmed combatants from Zhila have been spotted by our city
+      police. And, on top of it all...
     choices: []
-  - dialogText: SECRETARY\nYes. There is a growing movement that is demanding higher
-      wages.
+  - dialogText: SECRETARY\nThe city of Zhila has sent a list of demands. If we do
+      not comply, they will escalate matters.
     choices: []
-  - dialogText: SECRETARY\nAlternatively, we can utilize the city police to remove
-      the protesters.
+  - dialogText: MAYOR\nWhat are the demands?
+    choices: []
+  - dialogText: SECRETARY\nThey are demanding [X]\u00A0water, and [X]\u00A0food.
+    choices: []
+  - dialogText: SECRETARY\nAlternatively, we could create an emergency militia to
+      repel these forces.
     choices:
     - choiceText: Agree to demands (-\u00A0food, -\u00A0water)
       dialogIfSelected:
-      - dialogText: MAYOR\nAgree to their demands.
+      - dialogText: "MAYOR\\nWe don\u2019t have a choice. We must agree to their
+          demands."
         choices: []
       effect:
         coinsRequired: 0
-        foodRequired: 100
-        waterRequired: 100
+        foodRequired: 0
+        waterRequired: 0
         uraniumRequired: 0
         populationRequired: 0
         coinsGained: 0
-        foodGained: -100
-        waterGained: -100
+        foodGained: 0
+        waterGained: 0
         uraniumGained: 0
         populationGained: 0
-      followUpEvent: {fileID: 11400000, guid: 4d55630f0818bff448db8432463a8b72, type: 2}
+      followUpEvent: {fileID: 0}
     - choiceText: Create militia (-\u00A0BubbleCoin, -\u00A0Population)
       dialogIfSelected:
       - dialogText: "MAYOR\\nI won\u2019t let those scum get what they want."
@@ -46,21 +52,17 @@ MonoBehaviour:
       - dialogText: MAYOR\nSet funds aside and start recruiting for that militia.
         choices: []
       effect:
-        coinsRequired: 100
+        coinsRequired: 0
         foodRequired: 0
         waterRequired: 0
         uraniumRequired: 0
-        populationRequired: 100
-        coinsGained: -100
+        populationRequired: 0
+        coinsGained: 0
         foodGained: 0
         waterGained: 0
         uraniumGained: 0
-<<<<<<< Updated upstream
-        populationGained: -100
-=======
-        populationGained: -50
-      followUpEvent: {fileID: 11400000, guid: 08d028af5eddf076c84629236642d272, type: 2}
->>>>>>> Stashed changes
+        populationGained: 0
+      followUpEvent: {fileID: 0}
     - choiceText: Do nothing
       dialogIfSelected:
       - dialogText: "MAYOR\\nWe don\u2019t have the resources to spare."
