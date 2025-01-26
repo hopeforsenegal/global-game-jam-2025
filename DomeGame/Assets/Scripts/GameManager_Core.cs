@@ -49,12 +49,6 @@ public partial class GameManager
     [SerializeField] int rateCitizenDeathByBarrier;
     [SerializeField] int requiredUraniumForBarrier;
 
-    [Header("Resource Assignment")]
-    [SerializeField] int assignedFood = 0;
-    [SerializeField] int assignedWater = 0;
-    [SerializeField] int assignedUranium = 0;
-    [SerializeField] int assignedCoin = 0;
-
     public int CalculateRateFoodGivenCitizen(int citizen)
     {
         return foodGeneratedPerAssignedCitizen * citizen;
@@ -266,16 +260,16 @@ public partial class GameManager
         }
         if (currentPhase == GamePhase.ResourceGathering) {
             ImmediateStyle.CanvasGroup("/Canvas/ResourceUpdate9d7b");
-            ImmediateStyle.Text("/Canvas/CoinText4142", $"Coin: {currentCoin} +{CalculateRateCoinGivenCitizen(assignedCoin)}");
-            ImmediateStyle.Text("/Canvas/FoodTexte6fc", $"Food: {currentFood} +{CalculateRateFoodGivenCitizen(assignedFood)}");
-            ImmediateStyle.Text("/Canvas/UraniumTextc4b3", $"Uranium: {currentUranium} +{CalculateRateUraniumGivenCitizen(assignedUranium)}");
-            ImmediateStyle.Text("/Canvas/WaterText798e", $"Water: {currentWater} +{CalculateRateWaterGivenCitizen(assignedWater)}");
+            ImmediateStyle.Text("/Canvas/CoinText4142", $"Coin: {currentCoin} +{CalculateRateCoinGivenCitizen(numCoinAssignments)}");
+            ImmediateStyle.Text("/Canvas/FoodTexte6fc", $"Food: {currentFood} +{CalculateRateFoodGivenCitizen(numFoodAssignments)}");
+            ImmediateStyle.Text("/Canvas/UraniumTextc4b3", $"Uranium: {currentUranium} +{CalculateRateUraniumGivenCitizen(numUraniumAssignments)}");
+            ImmediateStyle.Text("/Canvas/WaterText798e", $"Water: {currentWater} +{CalculateRateWaterGivenCitizen(numWaterAssignments)}");
             if (Input.GetKeyDown(KeyCode.Space)) {
                 currentPhase = GamePhase.EndTurn;
-                int foodGrowth = CalculateRateFoodGivenCitizen(assignedFood);
-                int uraniumGrowth = CalculateRateUraniumGivenCitizen(assignedUranium);
-                int waterGrowth = CalculateRateWaterGivenCitizen(assignedWater);
-                int coinGrowth = CalculateRateCoinGivenCitizen(assignedCoin);
+                int foodGrowth = CalculateRateFoodGivenCitizen(numFoodAssignments);
+                int uraniumGrowth = CalculateRateUraniumGivenCitizen(numUraniumAssignments);
+                int waterGrowth = CalculateRateWaterGivenCitizen(numWaterAssignments);
+                int coinGrowth = CalculateRateCoinGivenCitizen(numCoinAssignments);
                 currentFood = math.max(foodGrowth + currentFood, 0);
                 currentUranium = math.max(uraniumGrowth + currentUranium, 0);
                 currentWater = math.max(waterGrowth + currentWater, 0);

@@ -43,8 +43,6 @@ public partial class GameManager
     void StartCore()
     {
         totalPopulation = GetCurrentCitizenPopulation();
-
-        // totalPopulation = 100;
         unusedPopulation = totalPopulation;
         SetUpUsableCitizenObjects();
 
