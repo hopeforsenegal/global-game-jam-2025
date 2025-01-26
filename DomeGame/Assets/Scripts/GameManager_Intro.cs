@@ -44,7 +44,9 @@ public partial class GameManager
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)) {
             m_IntroState.state++;
             if (m_IntroState.state > State.Intro3) {
-                Screen = GameScreens.Core;
+                StartRandomEvents();
+                StartCore();
+                StartRealCore();
             }
         }
     }
