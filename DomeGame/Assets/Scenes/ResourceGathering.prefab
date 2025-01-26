@@ -1021,6 +1021,7 @@ GameObject:
   - component: {fileID: 4935137050574321365}
   - component: {fileID: 4935137050574321371}
   - component: {fileID: 4935137050574321370}
+  - component: {fileID: 1445021539204855320}
   m_Layer: 5
   m_Name: CoinTooltip
   m_TagString: Untagged
@@ -1087,6 +1088,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1445021539204855320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4935137050574321364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 1, g: 1, b: 1, a: 0.5}
+  m_EffectDistance: {x: 4, y: -4}
+  m_UseGraphicAlpha: 1
 --- !u!1 &4935137050618567158
 GameObject:
   m_ObjectHideFlags: 0
@@ -2003,6 +2019,7 @@ GameObject:
   - component: {fileID: 4935137051556580700}
   - component: {fileID: 4935137051556580674}
   - component: {fileID: 4935137051556580701}
+  - component: {fileID: 2559613811677300293}
   m_Layer: 5
   m_Name: FoodTooltip
   m_TagString: Untagged
@@ -2069,6 +2086,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &2559613811677300293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4935137051556580703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 1, g: 1, b: 1, a: 0.5}
+  m_EffectDistance: {x: 4, y: -4}
+  m_UseGraphicAlpha: 1
 --- !u!1 &4935137051565905415
 GameObject:
   m_ObjectHideFlags: 0
@@ -2566,6 +2598,7 @@ GameObject:
   - component: {fileID: 4935137051761373835}
   - component: {fileID: 4935137051761373833}
   - component: {fileID: 4935137051761373832}
+  - component: {fileID: 3450021145391628524}
   m_Layer: 5
   m_Name: UraniumTooltip
   m_TagString: Untagged
@@ -2632,6 +2665,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &3450021145391628524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4935137051761373834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 1, g: 1, b: 1, a: 0.5}
+  m_EffectDistance: {x: 4, y: -4}
+  m_UseGraphicAlpha: 0
 --- !u!1 &4935137051837959115
 GameObject:
   m_ObjectHideFlags: 0
@@ -2763,6 +2811,7 @@ GameObject:
   - component: {fileID: 4935137051860202864}
   - component: {fileID: 4935137051860202870}
   - component: {fileID: 4935137051860202865}
+  - component: {fileID: 3683175550538604956}
   m_Layer: 5
   m_Name: WaterTooltip
   m_TagString: Untagged
@@ -2829,6 +2878,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &3683175550538604956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4935137051860202867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 1, g: 1, b: 1, a: 0.5}
+  m_EffectDistance: {x: 4, y: -4}
+  m_UseGraphicAlpha: 1
 --- !u!1 &4935137051881838584
 GameObject:
   m_ObjectHideFlags: 0
