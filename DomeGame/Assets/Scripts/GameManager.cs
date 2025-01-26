@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public partial class GameManager : MonoBehaviour
 {
@@ -28,7 +29,8 @@ public partial class GameManager : MonoBehaviour
         }
 
         if (Screen != GameScreens.MainMenu && Input.GetKeyDown(KeyCode.Escape)) {
-            StartMainMenu();
+            Start();
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 
 #if UNITY_EDITOR

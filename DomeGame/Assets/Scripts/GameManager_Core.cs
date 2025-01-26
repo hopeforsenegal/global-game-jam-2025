@@ -240,6 +240,7 @@ public partial class GameManager
             ImmediateStyle.CanvasGroup("/Prefab Mode in Context/Core/GameObject4b5d");
             ImmediateStyle.Text("/Canvas/EndText82ef", "Game Over");
             if (Input.GetKeyDown(KeyCode.Escape)) {
+                Start();
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
             return;
@@ -266,7 +267,8 @@ public partial class GameManager
                 ImmediateStyle.Text("/Canvas/EndText82ef", "You win!\nDespite it all, you didn’t bring total annihilation to the city of Sita.");
             }
             if (Input.GetKeyDown(KeyCode.Escape)) {
-                StartMainMenu();
+                Start();
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
             return;
         }
@@ -383,7 +385,8 @@ public partial class GameManager
                     ImmediateStyle.Text("/Canvas/EndText82ef", "GameOver");
                     currentPhase = GamePhase.StartPhase;
                     if (Input.GetKeyDown(KeyCode.Escape)) {
-                        StartMainMenu();
+                        Start();
+                        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
                     }
                     return;
                 }
@@ -455,6 +458,7 @@ public partial class GameManager
                         ImmediateStyle.Text("/Canvas/EndText82ef", "Game Over");
                         currentPhase = GamePhase.StartPhase;
                         if (Input.GetKeyDown(KeyCode.Escape)) {
+                            Start();
                             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
                         }
                         return;
