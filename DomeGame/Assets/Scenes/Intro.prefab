@@ -434,8 +434,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -254.60822, y: -15}
-  m_SizeDelta: {x: 970.7435, y: 200}
+  m_AnchoredPosition: {x: -254.60822, y: -43}
+  m_SizeDelta: {x: 970.7435, y: 180}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5845310304169143984
 CanvasRenderer:
@@ -472,13 +472,13 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 4
     m_MaxSize: 51
-    m_Alignment: 1
+    m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Place citizen tokens on areas of interest to allocate them
+  m_Text: Place citizen tokens on areas of interest to allocate them.
 --- !u!1 &2848864359610902568
 GameObject:
   m_ObjectHideFlags: 0
@@ -946,11 +946,11 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: beddf806692284ed69cc4390b84dc543, type: 3}
-    m_FontSize: 50
+    m_FontSize: 65
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 4
-    m_MaxSize: 51
+    m_MaxSize: 66
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
