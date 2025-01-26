@@ -3,11 +3,12 @@ using UnityEngine;
 
 public partial class GameManager : MonoBehaviour
 {
-    public enum GameScreens { MainMenu, RandomEvents, Core }
+    public enum GameScreens { MainMenu, Intro, Core, RandomEvents, }
     private GameScreens Screen;
 
     protected void Start()
     {
+        StartIntro();
         StartRealCore();
         StartCore();
         StartRandomEvents();
@@ -18,6 +19,7 @@ public partial class GameManager : MonoBehaviour
     {
         switch (Screen) {
             case GameScreens.MainMenu: HandleMainMenu(); break;
+            case GameScreens.Intro: HandleIntro(); break;
             case GameScreens.Core: HandleCore(); HandleRealCore(); break;
             case GameScreens.RandomEvents: HandleRandomEvents(); break;
             default: throw new ArgumentOutOfRangeException(Screen.ToString());
@@ -30,10 +32,5 @@ public partial class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.W)) { Debug.Log("W"); StartCore(); }
         if (Input.GetKeyDown(KeyCode.E)) { Debug.Log("E"); StartRealCore(); }
         if (Input.GetKeyDown(KeyCode.R)) { Debug.Log("R"); StartRandomEvents(); }
-    }
-
-    private void StartMainMenu()
-    {
-        Screen = GameScreens.MainMenu; m_MainMenuState = default;
     }
 }

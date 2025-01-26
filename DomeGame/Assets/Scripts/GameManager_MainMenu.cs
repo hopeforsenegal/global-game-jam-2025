@@ -10,6 +10,11 @@ public partial class GameManager
     }
     MainMenuState m_MainMenuState;
 
+    private void StartMainMenu()
+    {
+        Screen = GameScreens.MainMenu; m_MainMenuState = default;
+    }
+
     private void HandleMainMenu()
     {
         ImmediateStyle.CanvasGroup("/Canvas/MainMenubf45");
@@ -30,7 +35,7 @@ public partial class GameManager
         }
 
         if (m_MainMenuState.isFading == true && Time.time - m_MainMenuState.fadeStartTime > 1) {
-            StartRealCore();
+            StartIntro();
         }
     }
 }
