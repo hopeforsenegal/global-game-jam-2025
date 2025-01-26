@@ -325,6 +325,8 @@ public partial class GameManager
                 ImmediateStyle.Text("/Canvas/ResourceDeathTexta4fa", $"{popDeathByLackResource()} people have died from lack of {generateLackResourceMessage()}.");
             }
             if (waterUsedForUraniumPerTurn() > 0) {
+                ImmediateStyle.CanvasGroup("/Canvas/Core/ResourceGatherb068");
+                ImmediateStyle.Text("/Canvas (Environment)/Core/ResourceGather/WaterTextf830", $"{selectedChoice.effect.waterGained.ToString("+#;-#")}");
                 ImmediateStyle.Text("/Canvas (Environment)/Core/EndTurnText/WaterUraniumUsageTextc113", $"{waterUsedForUraniumPerTurn()} water consumed cooling the uranium powered barrier.");
             }
 
