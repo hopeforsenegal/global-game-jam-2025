@@ -16,6 +16,7 @@ MonoBehaviour:
   surplusFoodToGrowOneCitizenPerTurn: 10
   requiredUraniumForBarrier: 100
   increaseRequiredUraniumForBarrierPerTurn: 50
+  citizenUnit: 100
   currentCitizenPopulation: 200
   currentFood: 500
   currentUranium: 100
@@ -32,3 +33,11 @@ MonoBehaviour:
   uraniumGeneratedPerAssignedCitizen: 3
   rateCitizenDeathPerNoResource: 1
   rateCitizenDeathByBarrier: 1
+  intro1: "Congratulations on your election win, Mr. Mayor! I hope you\u2019re ready
+    to get down to business. Thanks to the last mayor, the city of Sita is in dire
+    straits."
+  intro2: As the mayor, you have great power over your citizens. Place a Citizen
+    token on the resource collection spots in order to put them to work, and gain
+    food, water, uranium, or BubbleCoin..
+  intro3: "Finally, you need a certain amount of resources to maintain your current
+    population. If you don\u2019t\u2014people could die."
