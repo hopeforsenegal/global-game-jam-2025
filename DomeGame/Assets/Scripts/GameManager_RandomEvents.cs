@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using MoonlitSystem.UI.Immediate;
 using TMPro;
 using Unity.Mathematics;
@@ -9,21 +11,35 @@ public partial class GameManager
     [Space]
     [Header("Random Events")]
     public Event[] randomEventsData;
+    private Event[] selectableEvents;
+    private HashSet<Event> alreadyViewedEvents = new HashSet<Event>();
     private Event selectedEvent;
     private TypingEffect typingEffect;
-    private uint dialogIndex = 0;
+    private uint dialogIndex;
     private Choice selectedChoice;
     private uint choiceDialogIndex;
 
     // Start is called before the first frame update
     void StartRandomEvents()
     {
-        Debug.Log("Start");
+        // Debug.Log("Start");
 
-        selectedEvent = randomEventsData[UnityEngine.Random.Range(0, randomEventsData.Length)];
-        typingEffect = new TypingEffect();
-        typingEffect.fullText =
-            processText(selectedEvent.dialog[dialogIndex].dialogText);
+        selectableEvents = randomEventsData
+            .Where(eventData => !alreadyViewedEvents.Contains(eventData))
+            .ToArray<Event>();
+        if (selectableEvents.Length == 0)
+        {
+            Screen = GameScreens.Core;
+        }
+        else
+        {
+            dialogIndex = 0;
+            selectedEvent = selectableEvents[
+                UnityEngine.Random.Range(0, selectableEvents.Length)];
+            typingEffect = new TypingEffect();
+            typingEffect.fullText =
+                processText(selectedEvent.dialog[dialogIndex].dialogText);
+        }
     }
     // Update is called once per frame
     void HandleRandomEvents()
@@ -32,7 +48,7 @@ public partial class GameManager
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Debug.Log("Hit space");
+            // Debug.Log("Hit space");
 
             if (selectedEvent.dialog[dialogIndex].choices.Length == 0)
             {
@@ -61,31 +77,27 @@ public partial class GameManager
 
             ImmediateStyle.Text("/Canvas/Button A/Text A6222", processText(selectedEvent.dialog[dialogIndex].choices[0].choiceText));
             if (ImmediateStyle.Button("/Canvas/Button A3acd").IsMouseDown) {
-                Debug.Log("Button 1");
-
+                // Debug.Log("Button 1");
                 handleSelectedChoice(selectedEvent.dialog[dialogIndex].choices[0]);
             }
 
             ImmediateStyle.Text("/Canvas/Button B/Text Bf90d", processText(selectedEvent.dialog[dialogIndex].choices[1].choiceText));
             if (ImmediateStyle.Button("/Canvas/Button Bd2b9").IsMouseDown) {
-                Debug.Log("Button 2");
-
+                // Debug.Log("Button 2");
                 handleSelectedChoice(selectedEvent.dialog[dialogIndex].choices[1]);
             }
 
             if (selectedEvent.dialog[dialogIndex].choices.Length > 2) {
                 ImmediateStyle.Text("/Canvas/Button C/Text Cc803", processText(selectedEvent.dialog[dialogIndex].choices[2].choiceText));
                 if (ImmediateStyle.Button("/Canvas/Button C2345").IsMouseDown) {
-                    Debug.Log("Button 3");
-
+                    // Debug.Log("Button 3");
                     handleSelectedChoice(selectedEvent.dialog[dialogIndex].choices[2]);
                 }
 
                 if (selectedEvent.dialog[dialogIndex].choices.Length == 4) {
                     ImmediateStyle.Text("/Canvas/Button D/Text D965b", processText(selectedEvent.dialog[dialogIndex].choices[3].choiceText));
                     if (ImmediateStyle.Button("/Canvas/Button D3661").IsMouseDown) {
-                        Debug.Log("Button 4");
-
+                        // Debug.Log("Button 4");
                         handleSelectedChoice(selectedEvent.dialog[dialogIndex].choices[3]);
                     }
                 }
@@ -110,6 +122,7 @@ public partial class GameManager
                 processText(selectedEvent.dialog[dialogIndex].dialogText);
         } else {
             // TODO: Switch back to Core Scene, and pass it the selected Choice
+            alreadyViewedEvents.Add(selectedEvent);
             Screen = GameScreens.Core;
         }
     }
