@@ -363,19 +363,24 @@ public partial class GameManager
                 return;
             }
             if (selectedChoice != null && selectedChoice.effect != null && hasResourcesGained(selectedChoice.effect)) {
+                ImmediateStyle.CanvasGroup("/Canvas/Core/ResourceGatherb068");
                 ImmediateStyle.CanvasGroup("/Canvas (Environment)/Core/EventUpdatec14f");
                 ImmediateStyle.Text("/Canvas (Environment)/Core/EventUpdate/EventTextf28b", $"Because of your decision");
                 if (selectedChoice.effect.foodGained != 0) {
                     ImmediateStyle.Text("/Canvas (Environment)/Core/EventUpdate/EventFoodTextb86f", $"Food {selectedChoice.effect.foodGained.ToString("+#;-#")}");
+                    ImmediateStyle.Text("/Canvas (Environment)/Core/ResourceGather/FoodTextc4c0", $"{selectedChoice.effect.foodGained.ToString("+#;-#")}");
                 }
                 if (selectedChoice.effect.uraniumGained != 0) {
                     ImmediateStyle.Text("/Canvas (Environment)/Core/EventUpdate/EventUraniumTextd574", $"Uranium {selectedChoice.effect.uraniumGained.ToString("+#;-#")}");
+                    ImmediateStyle.Text("/Canvas (Environment)/Core/ResourceGather/UraniumText0872", $"{selectedChoice.effect.uraniumGained.ToString("+#;-#")}");
                 }
                 if (selectedChoice.effect.waterGained != 0) {
                     ImmediateStyle.Text("/Canvas (Environment)/Core/EventUpdate/EventWaterText2832", $"Water {selectedChoice.effect.waterGained.ToString("+#;-#")}");
+                    ImmediateStyle.Text("/Canvas (Environment)/Core/ResourceGather/WaterTextf8300", $"{selectedChoice.effect.waterGained.ToString("+#;-#")}");
                 }
                 if (selectedChoice.effect.coinsGained != 0) {
                     ImmediateStyle.Text("/Canvas (Environment)/Core/EventUpdate/EventCoinText5a8e", $"Coin {selectedChoice.effect.coinsGained.ToString("+#;-#")}");
+                    ImmediateStyle.Text("/Canvas (Environment)/Core/ResourceGather/CoinTextb6b4", $"{selectedChoice.effect.coinsGained.ToString("+#;-#")}");
                 }
                 if (selectedChoice.effect.populationGained != 0) {
                     ImmediateStyle.Text("/Canvas (Environment)/Core/EventUpdate/EventPopText8206", $"Population {selectedChoice.effect.populationGained.ToString("+#;-#")}");
