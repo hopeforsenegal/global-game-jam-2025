@@ -144,14 +144,16 @@ public class Player : MonoBehaviour
     }
 
     string generateLackResourceMessage() {
-        string message = "";
+        if (currentFood < currentCitizenPopulation && currentWater < currentCitizenPopulation) {
+            return "food and water";
+        }
         if (currentFood < currentCitizenPopulation) {
-            message += "Food";
+            return "food";
         }
         if (currentWater < currentCitizenPopulation) {
-            message += " Water";
+            return "water";
         }
-        return message;
+        return "";
     }
 
     // Update is called once per frame
@@ -181,7 +183,7 @@ public class Player : MonoBehaviour
     
         if (currentTurn == maxTurns) {
             if (currentCitizenPopulation > 0) {
-                ImmediateStyle.Text("/Canvas/EndText82ef", "You Win");
+                ImmediateStyle.Text("/Canvas/EndText82ef", $"You Win\n{GetCurrentCitizenPopulation()} Citizens Survived");
 
             } else {
                 ImmediateStyle.Text("/Canvas/EndText82ef", "GameOver");
@@ -233,18 +235,18 @@ public class Player : MonoBehaviour
         } else if (currentPhase == GamePhase.EndTurn) {
             ImmediateStyle.CanvasGroup("/Canvas/EndTurnText8f05");
             if (popDeathByBarrier() > 0) {
-                ImmediateStyle.Text("/Canvas/BubbleDeathTextfddb", $"Barrier underpowered ({popDeathByBarrier()} deaths to radiation)");
+                ImmediateStyle.Text("/Canvas/BubbleDeathTextfddb", $"Due to lack of uranium, your barrier was underpowered, and {popDeathByBarrier()} people have died");
             } else {
-                ImmediateStyle.Text("/Canvas/BubbleDeathTextfddb", "Barrier: Ready No Deaths");
+                ImmediateStyle.Text("/Canvas/BubbleDeathTextfddb", "Your dome barrier held strong.");
             }
 
             if (popGrowthByFood() > 0) {
-                ImmediateStyle.Text("/Canvas/PopulationGrowthText21e3", $"{popGrowthByFood()} citizens born with our surplus food");
+                ImmediateStyle.Text("/Canvas/PopulationGrowthText21e3", $"Thanks to your surplus food, your population has grown by {popGrowthByFood()!}.");
             }
             if (popDeathByLackResource() > 0) {
-                ImmediateStyle.Text("/Canvas/ResourceDeathTexta4fa", $"{popDeathByLackResource()} deaths by lack of {generateLackResourceMessage()}");
+                ImmediateStyle.Text("/Canvas/ResourceDeathTexta4fa", $"{popDeathByLackResource()} people have died from lack of {generateLackResourceMessage()}.");
             }
-            
+
             if (Input.GetKeyDown(KeyCode.Space)) {
                 int citizenGrowth = CitizenGrowthPerTurn();
                 currentCitizenPopulation = math.max(citizenGrowth + currentCitizenPopulation, 0);
