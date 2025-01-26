@@ -207,6 +207,8 @@ public partial class GameManager
         if (currentPhase != GamePhase.ResourceGathering) {
             float t = Mathf.PingPong(Time.time, 1f);
             m_EndButton.position = Vector3.Lerp(m_EndButtonPosition, new Vector3(m_EndButtonPosition.x - 100, m_EndButtonPosition.y), t);
+        } else {
+            m_EndButton.position = m_EndButtonPosition;
         }
     }
 
