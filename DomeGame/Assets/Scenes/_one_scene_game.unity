@@ -177,6 +177,7 @@ MonoBehaviour:
   foodTooltipText: {fileID: 672752867}
   uraniumTooltipText: {fileID: 1986559112}
   waterTooltipText: {fileID: 108854776673344203}
+  endTurnButton: {fileID: 763548835}
 --- !u!4 &302184848
 Transform:
   m_ObjectHideFlags: 0
@@ -309,6 +310,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &763548835 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 763548835, guid: 2bb6ed590b16941758d527fcf40d358c, type: 3}
+  m_PrefabInstance: {fileID: 108854776673344202}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &957378885
 GameObject:
   m_ObjectHideFlags: 0
@@ -582,6 +588,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1169990646}
     m_Modifications:
+    - target: {fileID: 763548837, guid: 2bb6ed590b16941758d527fcf40d358c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 302184847}
     - target: {fileID: 379117305778893512, guid: 2bb6ed590b16941758d527fcf40d358c, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

@@ -1,6 +1,7 @@
 using MoonlitSystem.UI.Immediate;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public partial class GameManager
 {
@@ -32,6 +33,8 @@ public partial class GameManager
     public TMP_Text foodTooltipText;
     public TMP_Text uraniumTooltipText;
     public TMP_Text waterTooltipText;
+
+    public GameObject endTurnButton;
 
     string defaultCoinTooltipString = "BubbleCoin can be used during random events.\n\nPlace a citizen here to mine BubbleCoin.";
     string defaultFoodTooltipString = "Food is necessary for your population to survive. Every 10 surplus of food you have creates an extra person.\n\nPlace a citizen here to collect food.";
@@ -160,6 +163,7 @@ public partial class GameManager
                 isMovingFromWater = false;
 
                 UpdateTooltips();
+                UpdateEndTurnButtonVisibility();
             }
         }
     }
@@ -210,6 +214,11 @@ public partial class GameManager
         }
     }
 
+    void UpdateEndTurnButtonVisibility()
+    {
+        endTurnButton.SetActive(unusedPopulation < 100); 
+    }
+
     void UpdateTooltips()
     {
         numUnassignedCitizensText.text = (unusedPopulation / citizenUnit).ToString();
@@ -241,5 +250,14 @@ public partial class GameManager
             int waterRate = playerScript.CalculateRateWaterGivenCitizen(numWaterAssignments);
             waterTooltipText.text = numWaterAssignments + " people allocated to collecting water\n\nWater rate = " + waterRate;
         }
+    }
+
+    public void EndTurn()
+    {
+        Debug.Log("Ended turn with the following allocations:");
+        Debug.Log(" Coin allocation: " + numCoinAssignments +
+        "; Food allocation: " + numFoodAssignments +
+        "; Uranium allocation: " + numUraniumAssignments +
+        "; Water allocation: " + numWaterAssignments);
     }
 }
