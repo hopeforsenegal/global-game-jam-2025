@@ -260,6 +260,7 @@ public partial class GameManager
         }
         if (currentPhase == GamePhase.StartPhase) {
             ImmediateStyle.CanvasGroup("/Canvas/ResourceUpdate9d7b");
+            ImmediateStyle.Text("/Prefab Mode in Context/ResourceGathering/EndTurnButton/EndTurnButtonText7b4c", "Next");
             ImmediateStyle.Text("/Canvas/ResourceUpdate/StartTurnText9bc7", "Resources consumed");
             ImmediateStyle.Text("/Canvas/FoodTexte6fc", $"Food {foodUsedPopulationPerTurn()}");
             ImmediateStyle.Text("/Canvas/UraniumTextc4b3", $"Uranium {uraniumUsedPopulationPerTurn()}");
@@ -291,6 +292,8 @@ public partial class GameManager
         }
         if (currentPhase == GamePhase.ResourceGathering) {
             ImmediateStyle.CanvasGroup("/Canvas/Core/ResourceGatherb068");
+            ImmediateStyle.Text("/Prefab Mode in Context/ResourceGathering/EndTurnButton/EndTurnButtonText7b4c", "Confirm");
+
             if (CalculateRateCoinGivenCitizen(numCoinAssignments) > 0) {
                 ImmediateStyle.Text("/Canvas (Environment)/Core/ResourceGather/CoinTextb6b4", $"+{CalculateRateCoinGivenCitizen(numCoinAssignments)}");
             }
@@ -319,6 +322,7 @@ public partial class GameManager
         }
         else if (currentPhase == GamePhase.EndTurn) {
             ImmediateStyle.CanvasGroup("/Canvas/EndTurnText8f05");
+            ImmediateStyle.Text("/Prefab Mode in Context/ResourceGathering/EndTurnButton/EndTurnButtonText7b4c", "Next");
             if (popDeathByBarrier() > 0) {
                 ImmediateStyle.Text("/Canvas/BubbleDeathTextfddb", $"Due to lack of uranium, your barrier was underpowered, and {popDeathByBarrier()} people have died");
             } else {
@@ -368,6 +372,7 @@ public partial class GameManager
                 return;
             }
         } else if (currentPhase == GamePhase.EventResult) {
+            ImmediateStyle.Text("/Prefab Mode in Context/ResourceGathering/EndTurnButton/EndTurnButtonText7b4c", "Next");
             if (selectedChoice == null) {
                 currentPhase = GamePhase.StartPhase;
                 return;

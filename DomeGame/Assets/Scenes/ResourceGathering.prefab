@@ -3961,6 +3961,8 @@ GameObject:
   - component: {fileID: 6908770831698689879}
   - component: {fileID: 1757280060978714197}
   - component: {fileID: 8478284444244288365}
+  - component: {fileID: 298248778303824571}
+  - component: {fileID: 6052962237810004814}
   m_Layer: 5
   m_Name: EndTurnButtonText
   m_TagString: Untagged
@@ -4085,6 +4087,32 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &298248778303824571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6889329196685855906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43cf5a02399944627ae47b966d9b6d98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6052962237810004814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6889329196685855906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2f7ee2bb37a3405290423c307d9c40e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ElementData:
+    ID: /Prefab Mode in Context/ResourceGathering/EndTurnButton/EndTurnButtonText7b4c
 --- !u!1 &7735230469107644534
 GameObject:
   m_ObjectHideFlags: 0
