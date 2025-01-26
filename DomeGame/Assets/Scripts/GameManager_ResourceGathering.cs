@@ -84,7 +84,13 @@ public partial class GameManager
             "/Canvas/Bottom Bar/Unassigned/Citizen6ba83",
             "/Canvas/Bottom Bar/Unassigned/Citizen7405f",
             "/Canvas/Bottom Bar/Unassigned/Citizen8efa3",
-            "/Canvas/Bottom Bar/Unassigned/Citizen9ce93"
+            "/Canvas/Bottom Bar/Unassigned/Citizen9ce93",
+            "/Canvas/ResourceGathering/Bottom Bar/Unassigned/Citizen108e16",
+            "/Canvas/ResourceGathering/Bottom Bar/Unassigned/Citizen11f2e7",
+            "/Canvas/ResourceGathering/Bottom Bar/Unassigned/Citizen1243a0",
+            "/Canvas/ResourceGathering/Bottom Bar/Unassigned/Citizen139826",
+            "/Canvas/ResourceGathering/Bottom Bar/Unassigned/Citizen148f4f",
+            "/Canvas/ResourceGathering/Bottom Bar/Unassigned/Citizen153f10"
         };
 
         int numCitizenObjectsNeeded = totalPopulation / citizenUnit;

@@ -127,6 +127,16 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4935137052153494476, guid: 2bb6ed590b16941758d527fcf40d358c, type: 3}
   m_PrefabInstance: {fileID: 108854776673344202}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &252057448 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5366056874487363371, guid: 2bb6ed590b16941758d527fcf40d358c, type: 3}
+  m_PrefabInstance: {fileID: 108854776673344202}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &256186265 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3717294644630628103, guid: 2bb6ed590b16941758d527fcf40d358c, type: 3}
+  m_PrefabInstance: {fileID: 108854776673344202}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &289061578 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 379117305778893512, guid: 2bb6ed590b16941758d527fcf40d358c, type: 3}
@@ -196,6 +206,12 @@ MonoBehaviour:
   - {fileID: 1069047221}
   - {fileID: 1523240541}
   - {fileID: 1470952385}
+  - {fileID: 256186265}
+  - {fileID: 1157768717}
+  - {fileID: 2116017071}
+  - {fileID: 252057448}
+  - {fileID: 598553600}
+  - {fileID: 549682357}
   numUnassignedCitizensText: {fileID: 392411643}
   coinTooltipText: {fileID: 632109245}
   foodTooltipText: {fileID: 672752867}
@@ -228,6 +244,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &549682357 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 502055166781354685, guid: 2bb6ed590b16941758d527fcf40d358c, type: 3}
+  m_PrefabInstance: {fileID: 108854776673344202}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &598553600 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4861496475560688876, guid: 2bb6ed590b16941758d527fcf40d358c, type: 3}
+  m_PrefabInstance: {fileID: 108854776673344202}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &604840678
 GameObject:
   m_ObjectHideFlags: 0
@@ -514,6 +540,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4935137051234233198, guid: 2bb6ed590b16941758d527fcf40d358c, type: 3}
   m_PrefabInstance: {fileID: 108854776673344202}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1157768717 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 281660938783074968, guid: 2bb6ed590b16941758d527fcf40d358c, type: 3}
+  m_PrefabInstance: {fileID: 108854776673344202}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1169990642
 GameObject:
   m_ObjectHideFlags: 0
@@ -709,6 +740,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4935137051392292111, guid: 2bb6ed590b16941758d527fcf40d358c, type: 3}
   m_PrefabInstance: {fileID: 108854776673344202}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2116017071 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9050370998024517719, guid: 2bb6ed590b16941758d527fcf40d358c, type: 3}
+  m_PrefabInstance: {fileID: 108854776673344202}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &108854776673344202
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -811,6 +847,30 @@ PrefabInstance:
     - target: {fileID: 972051067237320579, guid: 2bb6ed590b16941758d527fcf40d358c, type: 3}
       propertyPath: m_Name
       value: ResourceGathering
+      objectReference: {fileID: 0}
+    - target: {fileID: 1536733959305070582, guid: 2bb6ed590b16941758d527fcf40d358c, type: 3}
+      propertyPath: ElementData.ID
+      value: /Canvas/ResourceGathering/Bottom Bar/Unassigned/Citizen148f4f
+      objectReference: {fileID: 0}
+    - target: {fileID: 2964973924225582104, guid: 2bb6ed590b16941758d527fcf40d358c, type: 3}
+      propertyPath: ElementData.ID
+      value: /Canvas/ResourceGathering/Bottom Bar/Unassigned/Citizen108e16
+      objectReference: {fileID: 0}
+    - target: {fileID: 4478648251659128927, guid: 2bb6ed590b16941758d527fcf40d358c, type: 3}
+      propertyPath: ElementData.ID
+      value: /Canvas/ResourceGathering/Bottom Bar/Unassigned/Citizen1243a0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5747945984402621413, guid: 2bb6ed590b16941758d527fcf40d358c, type: 3}
+      propertyPath: ElementData.ID
+      value: /Canvas/ResourceGathering/Bottom Bar/Unassigned/Citizen153f10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6497486828209577632, guid: 2bb6ed590b16941758d527fcf40d358c, type: 3}
+      propertyPath: ElementData.ID
+      value: /Canvas/ResourceGathering/Bottom Bar/Unassigned/Citizen139826
+      objectReference: {fileID: 0}
+    - target: {fileID: 9036635158209937939, guid: 2bb6ed590b16941758d527fcf40d358c, type: 3}
+      propertyPath: ElementData.ID
+      value: /Canvas/ResourceGathering/Bottom Bar/Unassigned/Citizen11f2e7
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7923681689909297103, guid: 2bb6ed590b16941758d527fcf40d358c, type: 3}
