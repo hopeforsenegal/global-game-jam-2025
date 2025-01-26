@@ -213,6 +213,7 @@ public class Player : MonoBehaviour
             return;  
         }
         if (currentPhase == GamePhase.ResourceGathering) {
+            ImmediateStyle.CanvasGroup("/Canvas/ResourceUpdate9d7b");
             ImmediateStyle.Text("/Canvas/CoinText4142", $"Coin: {currentCoin} +{CalculateRateCoinGivenCitizen(assignedCoin)}");
             ImmediateStyle.Text("/Canvas/FoodTexte6fc", $"Food: {currentFood} +{CalculateRateFoodGivenCitizen(assignedFood)}");
             ImmediateStyle.Text("/Canvas/UraniumTextc4b3", $"Uranium: {currentUranium} +{CalculateRateUraniumGivenCitizen(assignedUranium)}");
@@ -230,6 +231,7 @@ public class Player : MonoBehaviour
                 return;
             }
         } else if (currentPhase == GamePhase.EndTurn) {
+            ImmediateStyle.CanvasGroup("/Canvas/EndTurnText8f05");
             if (popDeathByBarrier() > 0) {
                 ImmediateStyle.Text("/Canvas/BubbleDeathTextfddb", $"Barrier underpowered ({popDeathByBarrier()} deaths to radiation)");
             } else {
@@ -238,19 +240,11 @@ public class Player : MonoBehaviour
 
             if (popGrowthByFood() > 0) {
                 ImmediateStyle.Text("/Canvas/PopulationGrowthText21e3", $"{popGrowthByFood()} citizens born with our surplus food");
-            } else {
-                ImmediateStyle.Text("/Canvas/PopulationGrowthText21e3", "No Surplus Food to Grow Population");
             }
-
             if (popDeathByLackResource() > 0) {
                 ImmediateStyle.Text("/Canvas/ResourceDeathTexta4fa", $"{popDeathByLackResource()} deaths by lack of {generateLackResourceMessage()}");
-            } else {
-                ImmediateStyle.Text("/Canvas/ResourceDeathTexta4fa", "No Deaths from lack of resources");
             }
-            ImmediateStyle.Text("/Canvas/CoinText4142", $"Coin: {currentCoin}");
-            ImmediateStyle.Text("/Canvas/FoodTexte6fc", $"Food: {currentFood}");
-            ImmediateStyle.Text("/Canvas/UraniumTextc4b3", $"Uranium: {currentUranium}");
-            ImmediateStyle.Text("/Canvas/WaterText798e", $"Water: {currentWater}");
+            
             if (Input.GetKeyDown(KeyCode.Space)) {
                 int citizenGrowth = CitizenGrowthPerTurn();
                 currentCitizenPopulation = math.max(citizenGrowth + currentCitizenPopulation, 0);
