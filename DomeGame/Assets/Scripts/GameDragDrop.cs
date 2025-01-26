@@ -4,93 +4,171 @@ using TMPro;
 
 public class GameDragDrop : MonoBehaviour
 {
+    Player playerScript;
+
     int totalPopulation;
     int unusedPopulation;
+
+    // One citizen dragged equals this much of the population.
+    int citizenUnit = 100;
 
     int numCoinAssignments = 0;
     int numFoodAssignments = 0;
     int numUraniumAssignments = 0;
     int numWaterAssignments = 0;
+
+    public TMP_Text numUnassignedCitizensText;
     
     public TMP_Text coinTooltipText;
-    string defaultCoinTooltipString = "BubbleCoin can be used during random events.\n\nPlace people here to mine BubbleCoin.";
-
     public TMP_Text foodTooltipText;
+    public TMP_Text uraniumTooltipText;
+    public TMP_Text waterTooltipText;
+
+    string defaultCoinTooltipString = "BubbleCoin can be used during random events.\n\nPlace a citizen here to mine BubbleCoin.";
+    string defaultFoodTooltipString = "Food is necessary for your population to survive. Every 10 surplus of food you have creates an extra person.\n\nPlace a citizen here to collect food.";
+    string defaultUraniumTooltipString = "Uranium is used to power your bubble. You need 1 uranium per person in your population.\n\nPlace a citizen here to collect Uranium.";
+    string defaultWaterTooltipString = "Water is necessary for your population to survive.\n\nPlace a citizen here to collect water.";
 
     void Start()
     {
-        // TODO: Update to grab from Player script
-        totalPopulation = 500;
+        playerScript = FindObjectOfType<Player>();
+
+        totalPopulation = playerScript.GetCurrentCitizenPopulation();
+        // totalPopulation = 100;
         unusedPopulation = totalPopulation;
+
+        coinTooltipText.text = defaultCoinTooltipString;
+        foodTooltipText.text = defaultFoodTooltipString;
+        uraniumTooltipText.text = defaultUraniumTooltipString;
+        waterTooltipText.text = defaultWaterTooltipString;
+
+        numUnassignedCitizensText.text = (unusedPopulation / citizenUnit).ToString();
     }
 
     protected void Update()
     {
-        var hasDropped = ImmediateStyle.DragDrop("/Canvas/Bottom Bar/Population7855", out var component).IsMouseUp;
+        string[] citizenGUIDs = new[] {
+            "/Canvas/Bottom Bar/Unassigned/Citizen1a3e",
+            "/Canvas/Bottom Bar/Unassigned/Citizen29af0",
+            "/Canvas/Bottom Bar/Unassigned/Citizen352d5"
+        };
+        foreach (var s in citizenGUIDs) {
+            var hasDropped = ImmediateStyle.DragDrop(s, out var component).IsMouseUp;
 
-        if (component.IsDragging) {
-            ImmediateStyle.FollowCursor(component.transform);
-        }
-        if (hasDropped) {
-            var unassignedSlot = Reference.Find<RectTransform>(this, "/Canvas/Bottom Bar/Unassignedcc19");
+            // if (component.IsDragging)
+            // {
+            //     ImmediateStyle.FollowCursor(component.transform);
+            // }
 
-            var coinResourceSlot = Reference.Find<RectTransform>(this, "/Canvas/City/CoinResource3e73");
-            var foodResourceSlot = Reference.Find<RectTransform>(this, "/Canvas/City/FoodResourcea194");
-            var uraniumResourceSlot = Reference.Find<RectTransform>(this, "/Canvas/City/UraniumResource8ffd");
-            var waterResourceSlot = Reference.Find<RectTransform>(this, "/Canvas/City/WaterResourceeb63");
+            if (hasDropped) {
+                var unassignedSlot = Reference.Find<RectTransform>(this, "/Canvas/Bottom Bar/Unassignedcc19");
 
-            if (RectTransformUtility.RectangleContainsScreenPoint(unassignedSlot, component.transform.position)) {
-                component.PinnedPosition = unassignedSlot.position;
-                // TODO: Logic to assign to unassign that population unit
-                Debug.Log("Unassigning 100 people");
+                var coinResourceSlot = Reference.Find<RectTransform>(this, "/Canvas/City/CoinResource3e73");
+                var foodResourceSlot = Reference.Find<RectTransform>(this, "/Canvas/City/FoodResourcea194");
+                var uraniumResourceSlot = Reference.Find<RectTransform>(this, "/Canvas/City/UraniumResource8ffd");
+                var waterResourceSlot = Reference.Find<RectTransform>(this, "/Canvas/City/WaterResourceeb63");
 
-                // Fix this to be correct logic depending on what allocation moved
-                coinTooltipText.text = defaultCoinTooltipString;
-                numCoinAssignments = 0;
-                unusedPopulation = totalPopulation;
+                if (RectTransformUtility.RectangleContainsScreenPoint(unassignedSlot, component.transform.position)) {
+                    component.PinnedPosition = unassignedSlot.position;
+                    Debug.Log("Unassigning 1 citizen");
+                    UpdateUnassignedCitizens(-citizenUnit);
+
+                    // TODO: Fix this to be correct logic depending on what allocation moved
+                    // (We need the start point to know where the initial allocation was)
+                    coinTooltipText.text = defaultCoinTooltipString;
+                    numCoinAssignments -= citizenUnit;
+
+                    foodTooltipText.text = defaultFoodTooltipString;
+                    numFoodAssignments = 0;
+                    // numFoodAssignments -= citizenUnit;
+
+                    uraniumTooltipText.text = defaultUraniumTooltipString;
+                    numUraniumAssignments = 0;
+                    // numUraniumAssignments -= citizenUnit;
+
+                    waterTooltipText.text = defaultWaterTooltipString;
+                    numWaterAssignments = 0;
+                    // numWaterAssignments -= citizenUnit;
+                }
+
+                // Coin resource logic
+                if (RectTransformUtility.RectangleContainsScreenPoint(coinResourceSlot, component.transform.position)) {
+                    component.PinnedPosition = coinResourceSlot.position;
+                    UpdateCoinAllocation();
+                }
+
+                // Food resource logic
+                if (RectTransformUtility.RectangleContainsScreenPoint(foodResourceSlot, component.transform.position)) {
+                    component.PinnedPosition = foodResourceSlot.position;
+                    UpdateFoodAllocation();
+                }
+
+                // Uranium resource logic
+                if (RectTransformUtility.RectangleContainsScreenPoint(uraniumResourceSlot, component.transform.position)) {
+                    component.PinnedPosition = uraniumResourceSlot.position;
+                    UpdateUraniumAllocation();
+                }
+
+                // Water resource logic
+                if (RectTransformUtility.RectangleContainsScreenPoint(waterResourceSlot, component.transform.position)) {
+                    component.PinnedPosition = waterResourceSlot.position;
+                    UpdateWaterAllocation();
+                }
+
+                component.transform.position = component.PinnedPosition;
             }
-
-            // Coin resource logic
-            if (RectTransformUtility.RectangleContainsScreenPoint(coinResourceSlot, component.transform.position)) {
-                component.PinnedPosition = coinResourceSlot.position;
-                UpdateCoinAllocation();
-            }
-
-            // Food resource logic
-            if (RectTransformUtility.RectangleContainsScreenPoint(foodResourceSlot, component.transform.position)) {
-                component.PinnedPosition = foodResourceSlot.position;
-                // TODO: Logic to assign to food resource (update tool tip info, etc)
-                Debug.Log("Assigning 100 people to farm food");
-                numFoodAssignments += 100;
-            }
-
-            // Uranium resource logic
-            if (RectTransformUtility.RectangleContainsScreenPoint(uraniumResourceSlot, component.transform.position)) {
-                component.PinnedPosition = uraniumResourceSlot.position;
-                // TODO: Logic to assign to uranium resource (update tool tip info, etc)
-                Debug.Log("Assigning 100 people to mine uranium");
-                numUraniumAssignments += 100;
-            }
-
-            // Water resource logic
-            if (RectTransformUtility.RectangleContainsScreenPoint(waterResourceSlot, component.transform.position)) {
-                component.PinnedPosition = waterResourceSlot.position;
-                // TODO: Logic to assign to water resource (update tool tip info, etc)
-                Debug.Log("Assigning 100 people to gather water");
-                numWaterAssignments += 100;
-            }
-
-            component.transform.position = component.PinnedPosition;
         }
     }
 
     void UpdateCoinAllocation()
     {
-        Debug.Log("Assigning 100 people to mine bubble coin");
-        numCoinAssignments += 100;
-        unusedPopulation -= 100;
+        Debug.Log("Assigning 1 citizen to mine bubble coin");
+        numCoinAssignments += citizenUnit;
+        UpdateUnassignedCitizens(citizenUnit);
+
+        int coinRate = playerScript.CalculateRateCoinGivenCitizen(numCoinAssignments);
+
+        coinTooltipText.text = numCoinAssignments + " people allocated to mining BubbleCoin\n\nCoin rate = " + coinRate;
+    }
+
+    void UpdateFoodAllocation()
+    {
+        Debug.Log("Assigning 1 citizen to farm food");
+        numFoodAssignments += citizenUnit;
+        UpdateUnassignedCitizens(citizenUnit);
+
+        int foodRate = playerScript.CalculateRateFoodGivenCitizen(numFoodAssignments);
+
+        foodTooltipText.text = numFoodAssignments + " people allocated to farming\n\nFood rate = " + foodRate;
+    }
+
+    void UpdateUraniumAllocation()
+    {
+        Debug.Log("Assigning 1 citizen to collect uranium");
+        numUraniumAssignments += citizenUnit;
+        UpdateUnassignedCitizens(citizenUnit);
+
+        int uraniumRate = playerScript.CalculateRateUraniumGivenCitizen(numUraniumAssignments);
+
+        uraniumTooltipText.text = numUraniumAssignments + " people allocated to collecting uranium\n\nUranium rate = " + uraniumRate;
+    }
+
+    void UpdateWaterAllocation()
+    {
+        Debug.Log("Assigning 1 citizen to collect water");
+        numWaterAssignments += citizenUnit;
+        UpdateUnassignedCitizens(citizenUnit);
+
+        int waterRate = playerScript.CalculateRateWaterGivenCitizen(numWaterAssignments);
+
+        waterTooltipText.text = numWaterAssignments + " people allocated to collecting water\n\nWater rate = " + waterRate;
+    }
+
+    void UpdateUnassignedCitizens(int numAssigned)
+    {
+        unusedPopulation -= numAssigned;
         Debug.Log("Still have " + unusedPopulation + " people left to allocate");
 
-        coinTooltipText.text = numCoinAssignments + " people allocated to mining BubbleCoin";
+        numUnassignedCitizensText.text = (unusedPopulation / citizenUnit).ToString();
     }
 }
