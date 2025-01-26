@@ -1,6 +1,7 @@
 using MoonlitSystem.UI.Immediate;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public partial class GameManager
@@ -99,7 +100,7 @@ public partial class GameManager
             ImmediateStyle.CanvasGroup("/Prefab Mode in Context/Core/GameObject4b5d");
             ImmediateStyle.Text("/Canvas/EndText82ef", "Game Over");
             if (Input.GetKeyDown(KeyCode.Escape)) {
-                StartMainMenu();
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
             return;
         }

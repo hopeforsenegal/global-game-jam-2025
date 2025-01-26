@@ -4,6 +4,7 @@ using MoonlitSystem.UI.Immediate;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public enum GamePhase
 {
@@ -239,7 +240,7 @@ public partial class GameManager
             ImmediateStyle.CanvasGroup("/Prefab Mode in Context/Core/GameObject4b5d");
             ImmediateStyle.Text("/Canvas/EndText82ef", "Game Over");
             if (Input.GetKeyDown(KeyCode.Escape)) {
-                StartMainMenu();
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
             return;
         }
@@ -332,7 +333,6 @@ public partial class GameManager
                     if (hoveredUIElement.name.Contains("Uranium") && hoveredUIElement.name.Contains("Icon")) {
                         ImmediateStyle.Text("/Canvas (Environment)/Core/Resources/Tooltip0028", "Uranium");
                     }
-                    Debug.Log("Hovering over UI element: " + hoveredUIElement.name);
                 }
             }
             if (endTurnClicked) {
@@ -455,7 +455,7 @@ public partial class GameManager
                         ImmediateStyle.Text("/Canvas/EndText82ef", "Game Over");
                         currentPhase = GamePhase.StartPhase;
                         if (Input.GetKeyDown(KeyCode.Escape)) {
-                            StartMainMenu();
+                            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
                         }
                         return;
                     }
