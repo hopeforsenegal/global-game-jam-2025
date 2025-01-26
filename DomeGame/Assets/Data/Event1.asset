@@ -31,25 +31,15 @@ MonoBehaviour:
       effect:
         coinsRequired: 0
         foodRequired: 0
-<<<<<<< Updated upstream
         waterRequired: 100
-=======
-        waterRequired: 0
->>>>>>> Stashed changes
         uraniumRequired: 0
         populationRequired: 0
         coinsGained: 0
         foodGained: 0
-<<<<<<< Updated upstream
         waterGained: -100
         uraniumGained: 0
         populationGained: 0
-=======
-        waterGained: 0
-        uraniumGained: 0
-        populationGained: 0
       followUpEvent: {fileID: 11400000, guid: 3c6585bbf44025809982e4bbb64bc62b, type: 2}
->>>>>>> Stashed changes
     - choiceText: Increase police wages (-\u00A0BubbleCoin)
       dialogIfSelected:
       - dialogText: "MAYOR\\nIncrease the city\u2019s security."
@@ -57,28 +47,17 @@ MonoBehaviour:
       - dialogText: "MAYOR\\nI don\u2019t want a single rat to escape."
         choices: []
       effect:
-<<<<<<< Updated upstream
         coinsRequired: 100
-=======
-        coinsRequired: 0
->>>>>>> Stashed changes
         foodRequired: 0
         waterRequired: 0
         uraniumRequired: 0
         populationRequired: 0
-<<<<<<< Updated upstream
         coinsGained: -100
-=======
-        coinsGained: 0
->>>>>>> Stashed changes
         foodGained: 0
         waterGained: 0
         uraniumGained: 0
         populationGained: 0
-<<<<<<< Updated upstream
-=======
       followUpEvent: {fileID: 11400000, guid: 9c7dbf2a0654337fb9303ef503308471, type: 2}
->>>>>>> Stashed changes
     - choiceText: Do nothing
       dialogIfSelected:
       - dialogText: "MAYOR\\nWe don\u2019t have the resources to spare."
@@ -94,9 +73,6 @@ MonoBehaviour:
         waterGained: 0
         uraniumGained: 0
         populationGained: 0
-<<<<<<< Updated upstream
-=======
       followUpEvent: {fileID: 11400000, guid: 1808613a690167c33b11fdaf5077c21d, type: 2}
->>>>>>> Stashed changes
   - dialogText: "SECRETARY\\nUnderstood. I\u2019ll make sure the order is executed."
     choices: []

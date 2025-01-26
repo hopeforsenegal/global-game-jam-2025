@@ -34,20 +34,12 @@ MonoBehaviour:
         waterRequired: 0
         uraniumRequired: 0
         populationRequired: 0
-<<<<<<< Updated upstream
         coinsGained: 100
         foodGained: 0
         waterGained: 0
         uraniumGained: 100
         populationGained: 0
-=======
-        coinsGained: 0
-        foodGained: 0
-        waterGained: 0
-        uraniumGained: 0
-        populationGained: 0
       followUpEvent: {fileID: 0}
->>>>>>> Stashed changes
     - choiceText: Decline
       dialogIfSelected:
       - dialogText: "MAYOR\\nI don\u2019t need bribes."
@@ -63,9 +55,6 @@ MonoBehaviour:
         waterGained: 0
         uraniumGained: 0
         populationGained: 0
-<<<<<<< Updated upstream
-=======
       followUpEvent: {fileID: 11400000, guid: 0d9223909406d0c26aba31bb8634dec0, type: 2}
->>>>>>> Stashed changes
   - dialogText: "SECRETARY\\nUnderstood. I\u2019ll make sure the group is aware."
     choices: []
