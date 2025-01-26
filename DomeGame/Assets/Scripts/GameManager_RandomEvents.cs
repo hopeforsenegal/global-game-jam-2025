@@ -2,8 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using MoonlitSystem.UI.Immediate;
-using TMPro;
-using Unity.Mathematics;
 using UnityEngine;
 
 public partial class GameManager
@@ -24,7 +22,7 @@ public partial class GameManager
     // Start is called before the first frame update
     void StartRandomEvents()
     {
-        // Debug.Log("Start");
+        Screen = GameScreens.RandomEvents;
         if (currentTurn == 0){
             alreadyViewedEvents.Clear();
         }

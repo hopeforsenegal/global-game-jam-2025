@@ -3,15 +3,16 @@ using UnityEngine;
 
 public partial class GameManager : MonoBehaviour
 {
-    void Start()
+    public enum GameScreens { MainMenu, RandomEvents, Core }
+    private GameScreens Screen;
+
+    protected void Start()
     {
         StartRealCore();
         StartCore();
         StartRandomEvents();
+        StartMainMenu();
     }
-
-    public enum GameScreens { MainMenu, RandomEvents, Core }
-    private GameScreens Screen;
 
     protected void Update()
     {
@@ -22,9 +23,17 @@ public partial class GameManager : MonoBehaviour
             default: throw new ArgumentOutOfRangeException(Screen.ToString());
         }
 
-        if (Input.GetKeyDown(KeyCode.Q)) { Debug.Log("Q"); Screen = GameScreens.MainMenu; m_MainMenuState = default; }
-        if (Input.GetKeyDown(KeyCode.W)) { Debug.Log("W"); Screen = GameScreens.Core; StartCore(); }
-        if (Input.GetKeyDown(KeyCode.E)) { Debug.Log("E"); Screen = GameScreens.Core; StartRealCore(); }
-        if (Input.GetKeyDown(KeyCode.R)) { Debug.Log("R"); Screen = GameScreens.RandomEvents; StartRandomEvents(); }
+        if (Screen != GameScreens.MainMenu && Input.GetKeyDown(KeyCode.Escape)) {
+            StartMainMenu();
+        }
+
+        if (Input.GetKeyDown(KeyCode.W)) { Debug.Log("W"); StartCore(); }
+        if (Input.GetKeyDown(KeyCode.E)) { Debug.Log("E"); StartRealCore(); }
+        if (Input.GetKeyDown(KeyCode.R)) { Debug.Log("R"); StartRandomEvents(); }
+    }
+
+    private void StartMainMenu()
+    {
+        Screen = GameScreens.MainMenu; m_MainMenuState = default;
     }
 }

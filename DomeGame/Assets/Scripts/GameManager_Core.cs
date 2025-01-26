@@ -174,6 +174,7 @@ public partial class GameManager
 
     void StartRealCore()
     {
+        Screen = GameScreens.Core;
         initializeGame();
     }
 

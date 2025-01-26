@@ -42,6 +42,7 @@ public partial class GameManager
 
     void StartCore()
     {
+        Screen = GameScreens.Core;
         totalPopulation = GetCurrentCitizenPopulation();
         unusedPopulation = totalPopulation;
         SetUpUsableCitizenObjects();
