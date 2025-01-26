@@ -30,14 +30,14 @@ MonoBehaviour:
       - dialogText: MAYOR\nFine. We must agree to their demands.
         choices: []
       effect:
-        coinsRequired: 0
-        foodRequired: 0
-        waterRequired: 0
+        coinsRequired: 100
+        foodRequired: 100
+        waterRequired: 100
         uraniumRequired: 0
         populationRequired: 0
-        coinsGained: 0
-        foodGained: 0
-        waterGained: 0
+        coinsGained: -100
+        foodGained: -100
+        waterGained: -100
         uraniumGained: 0
         populationGained: 0
       followUpEvent: {fileID: 0}
@@ -57,7 +57,7 @@ MonoBehaviour:
         foodGained: 0
         waterGained: 0
         uraniumGained: 0
-        populationGained: 0
+        populationGained: -50
       followUpEvent: {fileID: 0}
   - dialogText: "SECRETARY\\nUnderstood. I\u2019ll make sure the order is executed."
     choices: []

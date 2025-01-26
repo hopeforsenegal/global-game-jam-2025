@@ -26,27 +26,27 @@ MonoBehaviour:
     - choiceText: Buy uranium (-\u00A0BubbleCoin)
       dialogIfSelected: []
       effect:
-        coinsRequired: 0
+        coinsRequired: 100
         foodRequired: 0
         waterRequired: 0
         uraniumRequired: 0
         populationRequired: 0
-        coinsGained: 0
+        coinsGained: -100
         foodGained: 0
         waterGained: 0
-        uraniumGained: 0
+        uraniumGained: 200
         populationGained: 0
       followUpEvent: {fileID: 0}
     - choiceText: Buy food (-\u00A0BubbleCoin)
       dialogIfSelected: []
       effect:
-        coinsRequired: 0
+        coinsRequired: 100
         foodRequired: 0
         waterRequired: 0
         uraniumRequired: 0
         populationRequired: 0
-        coinsGained: 0
-        foodGained: 0
+        coinsGained: -100
+        foodGained: 200
         waterGained: 0
         uraniumGained: 0
         populationGained: 0
@@ -54,14 +54,14 @@ MonoBehaviour:
     - choiceText: Buy water (-\u00A0BubbleCoin)
       dialogIfSelected: []
       effect:
-        coinsRequired: 0
+        coinsRequired: 100
         foodRequired: 0
         waterRequired: 0
         uraniumRequired: 0
         populationRequired: 0
-        coinsGained: 0
+        coinsGained: -100
         foodGained: 0
-        waterGained: 0
+        waterGained: 200
         uraniumGained: 0
         populationGained: 0
       followUpEvent: {fileID: 0}

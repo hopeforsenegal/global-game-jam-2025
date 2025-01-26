@@ -89,10 +89,10 @@ MonoBehaviour:
         waterRequired: 0
         uraniumRequired: 0
         populationRequired: 0
-        coinsGained: 0
+        coinsGained: 100
         foodGained: 0
         waterGained: 0
-        uraniumGained: 0
+        uraniumGained: 100
         populationGained: 0
       followUpEvent: {fileID: 0}
     - choiceText: Decline

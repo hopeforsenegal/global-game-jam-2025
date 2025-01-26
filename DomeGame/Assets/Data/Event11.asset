@@ -35,27 +35,27 @@ MonoBehaviour:
     - choiceText: Assign to mine (+\u00A0uranium, -\u00A0BubbleCoin)
       dialogIfSelected: []
       effect:
-        coinsRequired: 0
+        coinsRequired: 200
         foodRequired: 0
         waterRequired: 0
         uraniumRequired: 0
         populationRequired: 0
-        coinsGained: 0
+        coinsGained: -200
         foodGained: 0
         waterGained: 0
-        uraniumGained: 0
+        uraniumGained: 300
         populationGained: 0
       followUpEvent: {fileID: 0}
     - choiceText: Assign to farm (+\u00A0food, -\u00A0BubbleCoin)
       dialogIfSelected: []
       effect:
-        coinsRequired: 0
+        coinsRequired: 200
         foodRequired: 0
         waterRequired: 0
         uraniumRequired: 0
         populationRequired: 0
-        coinsGained: 0
-        foodGained: 0
+        coinsGained: -200
+        foodGained: 500
         waterGained: 0
         uraniumGained: 0
         populationGained: 0
@@ -63,14 +63,14 @@ MonoBehaviour:
     - choiceText: Assign to well (+\u00A0water, -\u00A0BubbleCoin)
       dialogIfSelected: []
       effect:
-        coinsRequired: 0
+        coinsRequired: 200
         foodRequired: 0
         waterRequired: 0
         uraniumRequired: 0
         populationRequired: 0
-        coinsGained: 0
+        coinsGained: -200
         foodGained: 0
-        waterGained: 0
+        waterGained: 500
         uraniumGained: 0
         populationGained: 0
       followUpEvent: {fileID: 0}

@@ -35,13 +35,13 @@ MonoBehaviour:
         choices: []
       effect:
         coinsRequired: 0
-        foodRequired: 0
-        waterRequired: 0
+        foodRequired: 100
+        waterRequired: 100
         uraniumRequired: 0
         populationRequired: 0
         coinsGained: 0
-        foodGained: 0
-        waterGained: 0
+        foodGained: -100
+        waterGained: -100
         uraniumGained: 0
         populationGained: 0
       followUpEvent: {fileID: 0}
@@ -52,16 +52,16 @@ MonoBehaviour:
       - dialogText: MAYOR\nSet funds aside and start recruiting for that militia.
         choices: []
       effect:
-        coinsRequired: 0
+        coinsRequired: 100
         foodRequired: 0
         waterRequired: 0
         uraniumRequired: 0
-        populationRequired: 0
-        coinsGained: 0
+        populationRequired: 100
+        coinsGained: -100
         foodGained: 0
         waterGained: 0
         uraniumGained: 0
-        populationGained: 0
+        populationGained: -100
       followUpEvent: {fileID: 0}
     - choiceText: Do nothing
       dialogIfSelected:

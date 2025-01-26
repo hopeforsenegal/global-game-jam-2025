@@ -28,12 +28,12 @@ MonoBehaviour:
           lives."
         choices: []
       effect:
-        coinsRequired: 200
+        coinsRequired: 100
         foodRequired: 0
         waterRequired: 0
         uraniumRequired: 0
         populationRequired: 0
-        coinsGained: -200
+        coinsGained: -100
         foodGained: 0
         waterGained: 0
         uraniumGained: 0
@@ -47,7 +47,7 @@ MonoBehaviour:
         coinsRequired: 0
         foodRequired: 0
         waterRequired: 0
-        uraniumRequired: 100
+        uraniumRequired: 0
         populationRequired: 0
         coinsGained: 0
         foodGained: 0

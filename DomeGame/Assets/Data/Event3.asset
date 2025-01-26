@@ -33,7 +33,7 @@ MonoBehaviour:
         coinsGained: 0
         foodGained: 0
         waterGained: 0
-        uraniumGained: 0
+        uraniumGained: 300
         populationGained: 0
       followUpEvent: {fileID: 0}
     - choiceText: Assign to farm (+\u00A0food)
@@ -45,7 +45,7 @@ MonoBehaviour:
         uraniumRequired: 0
         populationRequired: 0
         coinsGained: 0
-        foodGained: 0
+        foodGained: 300
         waterGained: 0
         uraniumGained: 0
         populationGained: 0
@@ -60,7 +60,7 @@ MonoBehaviour:
         populationRequired: 0
         coinsGained: 0
         foodGained: 0
-        waterGained: 0
+        waterGained: 300
         uraniumGained: 0
         populationGained: 0
       followUpEvent: {fileID: 0}
@@ -72,7 +72,7 @@ MonoBehaviour:
         waterRequired: 0
         uraniumRequired: 0
         populationRequired: 0
-        coinsGained: 0
+        coinsGained: 300
         foodGained: 0
         waterGained: 0
         uraniumGained: 0
