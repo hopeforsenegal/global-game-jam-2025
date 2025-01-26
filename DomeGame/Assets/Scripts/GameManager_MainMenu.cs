@@ -23,6 +23,7 @@ public partial class GameManager
         if (m_MainMenuState.isFading) ImmediateStyle.CanvasGroup("/Canvas/MainMenua071", (cg) => { cg.alpha = Mathf.Lerp(1, 0, Time.time - m_MainMenuState.fadeStartTime); });
 
         if (ImmediateStyle.Button("/Canvas/Image/Button (Legacy)c95e").IsMouseDown) {
+            gameObject.GetComponent<AudioSource>().PlayOneShot(clickSound);
             m_MainMenuState.fadeStartTime = Time.time - 0.3f;
             m_MainMenuState.isFading = true;
         }

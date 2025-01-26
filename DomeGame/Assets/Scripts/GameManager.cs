@@ -6,6 +6,8 @@ public partial class GameManager : MonoBehaviour
     public enum GameScreens { MainMenu, Intro, Core, RandomEvents, }
     private GameScreens Screen;
 
+    [SerializeField] AudioClip clickSound;
+
     protected void Start()
     {
         StartIntro();

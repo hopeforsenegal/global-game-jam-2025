@@ -185,6 +185,7 @@ public partial class GameManager
         }
 
         if (ImmediateStyle.Button("/Prefab Mode in Context/ResourceGathering/EndTurnButton7b3d").IsMouseDown) {
+            gameObject.GetComponent<AudioSource>().PlayOneShot(clickSound);
             Debug.Log("Ended turn with the following allocations:");
             Debug.Log(" Coin allocation: " + numCoinAssignments +
             "; Food allocation: " + numFoodAssignments +

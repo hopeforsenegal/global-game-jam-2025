@@ -132,6 +132,7 @@ public partial class GameManager
 
     private void handleSelectedChoice(Choice selectedChoice)
     {
+        gameObject.GetComponent<AudioSource>().PlayOneShot(clickSound);
         this.selectedChoice = selectedChoice;
         choiceDialogIndex = 0;
         typingEffect = new TypingEffect();

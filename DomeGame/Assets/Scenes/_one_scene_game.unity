@@ -172,6 +172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6f7da7a9779d4b3b995e9a78f53b8d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clickSound: {fileID: 8300000, guid: 999919eb116cc864ba49aac131ca0bac, type: 3}
   gameSettings: {fileID: 11400000, guid: 8bde4050659264603ae85af4f250b9cd, type: 2}
   currentTurn: 0
   maxTurns: 5
