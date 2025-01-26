@@ -222,7 +222,7 @@ public partial class GameManager
     {
         ImmediateStyle.CanvasGroup("/Canvas/Core4cc0");
 
-        ImmediateStyle.Text("/Canvas/PopulationText084a", $"Population {currentCitizenPopulation}");
+        ImmediateStyle.Text("/Canvas/PopulationText084a", $"Population: {currentCitizenPopulation}");
         ImmediateStyle.Text("/Canvas/Uranium Required508f", $"{requiredUraniumForBarrier} Uranium to power the barrier");
         ImmediateStyle.Text("/Canvas/TurnText366e", $"Turn: {currentTurn}/{maxTurns}");
 
