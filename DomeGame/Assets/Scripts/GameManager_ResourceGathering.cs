@@ -35,10 +35,10 @@ public partial class GameManager
     [SerializeField] AudioClip pickupSound2;
     [SerializeField] AudioClip droppedSound;
 
-    string defaultCoinTooltipString = "BubbleCoin can be used during random events.\n\nPlace a citizen here to mine BubbleCoin.";
-    string defaultFoodTooltipString = "Food is necessary for your population to survive. Every 10 surplus of food you have creates an extra person.\n\nPlace a citizen here to collect food.";
-    string defaultUraniumTooltipString = "Uranium is used to power your bubble. You need 1 uranium per person in your population.\n\nPlace a citizen here to collect uranium.";
-    string defaultWaterTooltipString = "Water is necessary for your population to survive.\n\nPlace a citizen here to collect water.";
+    string defaultCoinTooltipString = "BubbleCoin can be used during random events.\n\nPlace a token here to mine BubbleCoin.";
+    string defaultFoodTooltipString = "Food is necessary for your population to survive. Every 10 surplus of food increases your population by 1.\n\nPlace a token here to collect food.";
+    string defaultUraniumTooltipString = "Uranium is used to power your bubble. You need 1 uranium per person in your population.\n\nPlace a token here to collect uranium.";
+    string defaultWaterTooltipString = "Water is necessary for your population to survive.\n\nPlace a token here to collect water.";
 
     void StartCore()
     {
