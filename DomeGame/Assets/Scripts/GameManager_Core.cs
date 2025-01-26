@@ -399,7 +399,7 @@ public partial class GameManager
                 }
                 if (selectedChoice.effect.waterGained != 0) {
                     ImmediateStyle.Text("/Canvas (Environment)/Core/EventUpdate/EventWaterText2832", $"Water {selectedChoice.effect.waterGained.ToString("+#;-#")}");
-                    ImmediateStyle.Text("/Canvas (Environment)/Core/ResourceGather/WaterTextf8300", $"{selectedChoice.effect.waterGained.ToString("+#;-#")}");
+                    ImmediateStyle.Text("/Canvas (Environment)/Core/ResourceGather/WaterTextf830", $"{selectedChoice.effect.waterGained.ToString("+#;-#")}");
                 }
                 if (selectedChoice.effect.coinsGained != 0) {
                     ImmediateStyle.Text("/Canvas (Environment)/Core/EventUpdate/EventCoinText5a8e", $"Coin {selectedChoice.effect.coinsGained.ToString("+#;-#")}");
