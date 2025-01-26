@@ -99,90 +99,92 @@ public partial class GameManager
             "/Canvas/ResourceGathering/Bottom Bar/Unassigned/Citizen153f10"
         };
 
-        int numCitizenObjectsNeeded = totalPopulation / gameSettings.citizenUnit;
-        for (int i = 0; i < numCitizenObjectsNeeded; i++) {
-            string guid = allCitizenGUIDs[i];
+        if (currentPhase != GamePhase.EndTurn) {
+            int numCitizenObjectsNeeded = totalPopulation / gameSettings.citizenUnit;
+            for (int i = 0; i < numCitizenObjectsNeeded; i++) {
+                string guid = allCitizenGUIDs[i];
 
-            var dragDropObject = ImmediateStyle.DragDrop(guid, out var component);
+                var dragDropObject = ImmediateStyle.DragDrop(guid, out var component);
 
-            var unassignedSlot = Reference.Find<RectTransform>(this, "/Canvas/Bottom Bar/Unassignedcc19");
-            var coinResourceSlot = Reference.Find<RectTransform>(this, "/Canvas/City/CoinResource3e73");
-            var foodResourceSlot = Reference.Find<RectTransform>(this, "/Canvas/City/FoodResourcea194");
-            var uraniumResourceSlot = Reference.Find<RectTransform>(this, "/Canvas/City/UraniumResource8ffd");
-            var waterResourceSlot = Reference.Find<RectTransform>(this, "/Canvas/City/WaterResourceeb63");
+                var unassignedSlot = Reference.Find<RectTransform>(this, "/Canvas/Bottom Bar/Unassignedcc19");
+                var coinResourceSlot = Reference.Find<RectTransform>(this, "/Canvas/City/CoinResource3e73");
+                var foodResourceSlot = Reference.Find<RectTransform>(this, "/Canvas/City/FoodResourcea194");
+                var uraniumResourceSlot = Reference.Find<RectTransform>(this, "/Canvas/City/UraniumResource8ffd");
+                var waterResourceSlot = Reference.Find<RectTransform>(this, "/Canvas/City/WaterResourceeb63");
 
-            var startedDrag = component.IsMouseDown;
-            var hasDropped = dragDropObject.IsMouseUp;
+                var startedDrag = component.IsMouseDown;
+                var hasDropped = dragDropObject.IsMouseUp;
 
-            if (startedDrag) {
-                var pickupSound = Random.Range(0, 2) == 0 ? pickupSound1 : pickupSound2;
-                gameObject.GetComponent<AudioSource>().PlayOneShot(pickupSound);
+                if (startedDrag) {
+                    var pickupSound = Random.Range(0, 2) == 0 ? pickupSound1 : pickupSound2;
+                    gameObject.GetComponent<AudioSource>().PlayOneShot(pickupSound);
 
-                isMovingFromUnallocated = false;
-                isMovingFromCoin = false;
-                isMovingFromFood = false;
-                isMovingFromUranium = false;
-                isMovingFromWater = false;
+                    isMovingFromUnallocated = false;
+                    isMovingFromCoin = false;
+                    isMovingFromFood = false;
+                    isMovingFromUranium = false;
+                    isMovingFromWater = false;
 
-                if (RectTransformUtility.RectangleContainsScreenPoint(unassignedSlot, component.transform.position)) {
-                    isMovingFromUnallocated = true;
-                } else if (RectTransformUtility.RectangleContainsScreenPoint(coinResourceSlot, component.transform.position)) {
-                    isMovingFromCoin = true;
-                } else if (RectTransformUtility.RectangleContainsScreenPoint(foodResourceSlot, component.transform.position)) {
-                    isMovingFromFood = true;
-                } else if (RectTransformUtility.RectangleContainsScreenPoint(uraniumResourceSlot, component.transform.position)) {
-                    isMovingFromUranium = true;
-                } else if (RectTransformUtility.RectangleContainsScreenPoint(waterResourceSlot, component.transform.position)) {
-                    isMovingFromWater = true;
-                }
-            }
-
-            if (hasDropped) {
-                if (RectTransformUtility.RectangleContainsScreenPoint(unassignedSlot, component.transform.position)) {
-                    component.PinnedPosition = unassignedSlot.position;
-                    UpdateUnallocatedCitizenAllocation();
-                    UpdatePreviousResourceAllocation();
+                    if (RectTransformUtility.RectangleContainsScreenPoint(unassignedSlot, component.transform.position)) {
+                        isMovingFromUnallocated = true;
+                    } else if (RectTransformUtility.RectangleContainsScreenPoint(coinResourceSlot, component.transform.position)) {
+                        isMovingFromCoin = true;
+                    } else if (RectTransformUtility.RectangleContainsScreenPoint(foodResourceSlot, component.transform.position)) {
+                        isMovingFromFood = true;
+                    } else if (RectTransformUtility.RectangleContainsScreenPoint(uraniumResourceSlot, component.transform.position)) {
+                        isMovingFromUranium = true;
+                    } else if (RectTransformUtility.RectangleContainsScreenPoint(waterResourceSlot, component.transform.position)) {
+                        isMovingFromWater = true;
+                    }
                 }
 
-                // Coin resource logic
-                if (RectTransformUtility.RectangleContainsScreenPoint(coinResourceSlot, component.transform.position)) {
-                    component.PinnedPosition = coinResourceSlot.position;
-                    UpdateCoinAllocation();
-                    UpdatePreviousResourceAllocation();
+                if (hasDropped) {
+                    if (RectTransformUtility.RectangleContainsScreenPoint(unassignedSlot, component.transform.position)) {
+                        component.PinnedPosition = unassignedSlot.position;
+                        UpdateUnallocatedCitizenAllocation();
+                        UpdatePreviousResourceAllocation();
+                    }
+
+                    // Coin resource logic
+                    if (RectTransformUtility.RectangleContainsScreenPoint(coinResourceSlot, component.transform.position)) {
+                        component.PinnedPosition = coinResourceSlot.position;
+                        UpdateCoinAllocation();
+                        UpdatePreviousResourceAllocation();
+                    }
+
+                    // Food resource logic
+                    if (RectTransformUtility.RectangleContainsScreenPoint(foodResourceSlot, component.transform.position)) {
+                        component.PinnedPosition = foodResourceSlot.position;
+                        UpdateFoodAllocation();
+                        UpdatePreviousResourceAllocation();
+                    }
+
+                    // Uranium resource logic
+                    if (RectTransformUtility.RectangleContainsScreenPoint(uraniumResourceSlot, component.transform.position)) {
+                        component.PinnedPosition = uraniumResourceSlot.position;
+                        UpdateUraniumAllocation();
+                        UpdatePreviousResourceAllocation();
+                    }
+
+                    // Water resource logic
+                    if (RectTransformUtility.RectangleContainsScreenPoint(waterResourceSlot, component.transform.position)) {
+                        component.PinnedPosition = waterResourceSlot.position;
+                        UpdateWaterAllocation();
+                        UpdatePreviousResourceAllocation();
+                    }
+
+                    component.transform.position = component.PinnedPosition;
+                    gameObject.GetComponent<AudioSource>().PlayOneShot(droppedSound);
+
+                    // Reset all start drag bools
+                    isMovingFromUnallocated = false;
+                    isMovingFromCoin = false;
+                    isMovingFromFood = false;
+                    isMovingFromUranium = false;
+                    isMovingFromWater = false;
+
+                    UpdateTooltips();
                 }
-
-                // Food resource logic
-                if (RectTransformUtility.RectangleContainsScreenPoint(foodResourceSlot, component.transform.position)) {
-                    component.PinnedPosition = foodResourceSlot.position;
-                    UpdateFoodAllocation();
-                    UpdatePreviousResourceAllocation();
-                }
-
-                // Uranium resource logic
-                if (RectTransformUtility.RectangleContainsScreenPoint(uraniumResourceSlot, component.transform.position)) {
-                    component.PinnedPosition = uraniumResourceSlot.position;
-                    UpdateUraniumAllocation();
-                    UpdatePreviousResourceAllocation();
-                }
-
-                // Water resource logic
-                if (RectTransformUtility.RectangleContainsScreenPoint(waterResourceSlot, component.transform.position)) {
-                    component.PinnedPosition = waterResourceSlot.position;
-                    UpdateWaterAllocation();
-                    UpdatePreviousResourceAllocation();
-                }
-
-                component.transform.position = component.PinnedPosition;
-                gameObject.GetComponent<AudioSource>().PlayOneShot(droppedSound);
-
-                // Reset all start drag bools
-                isMovingFromUnallocated = false;
-                isMovingFromCoin = false;
-                isMovingFromFood = false;
-                isMovingFromUranium = false;
-                isMovingFromWater = false;
-
-                UpdateTooltips();
             }
         }
 
