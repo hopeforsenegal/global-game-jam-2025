@@ -14,42 +14,44 @@ public enum GamePhase
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] private DefaultPlayerSettings gameSettings;
 
+    [Header("Turn Management")]
     [SerializeField] int currentTurn = 0;
     [SerializeField] int maxTurns = 5;
-
     [SerializeField] GamePhase currentPhase = GamePhase.ResourceGathering;
 
+    [Header("Current Resources")]
+    [SerializeField] int currentCitizenPopulation;
+    [SerializeField] int currentFood;
+    [SerializeField] int currentUranium;
+    [SerializeField] int currentWater;
+    [SerializeField] int currentCoin;
 
-    [SerializeField] int currentCitizenPopulation = 100;
-    [SerializeField] int currentFood = 1000;
-    [SerializeField] int currentUranium = 100;
-    [SerializeField] int currentWater = 0;
-    [SerializeField] int currentCoin = 0;
+    [Header("Resource Consumption Rates")]
+    [SerializeField] int rateFoodPerCitizen;
+    [SerializeField] int rateUraniumPerCitizen;
+    [SerializeField] int rateWaterPerCitizen;
+    [SerializeField] int rateWaterPerUranium;
+    [SerializeField] int rateCoinPerTurn;
 
-    [SerializeField] int rateFoodPerCitizen = 1;
-    [SerializeField] int rateUraniumPerCitizen = 1;
-    [SerializeField] int rateWaterPerCitizen = 1;
-    [SerializeField] int rateWaterPerUranium = 1;
-    [SerializeField] int rateCoinPerTurn = 0;
+    [Header("Resource Generation Rates")]
+    [SerializeField] int foodGeneratedPerAssignedCitizen;
+    [SerializeField] int coinGeneratedPerAssignedCitizen;
+    [SerializeField] int waterGeneratedPerAssignedCitizen;
+    [SerializeField] int uraniumGeneratedPerAssignedCitizen;
 
-    [SerializeField] int foodGeneratedPerAssignedCitizen = 300;
-    [SerializeField] int coinGeneratedPerAssignedCitizen = 300;
-    [SerializeField] int waterGeneratedPerAssignedCitizen = 300;
+    [Header("Population Management")]
+    [SerializeField] int surplusFoodToGrowOneCitizenPerTurn;
+    [SerializeField] int rateCitizenDeathPerNoResource;
+    [SerializeField] int rateCitizenDeathByBarrier;
+    [SerializeField] int requiredUraniumForBarrier;
 
-    [SerializeField] int uraniumGeneratedPerAssignedCitizen = 300;
-
+    [Header("Resource Assignment")]
     [SerializeField] int assignedFood = 0;
     [SerializeField] int assignedWater = 0;
     [SerializeField] int assignedUranium = 0;
     [SerializeField] int assignedCoin = 0;
-
-
-    [SerializeField] int surplusFoodToGrowOneCitizenPerTurn = 10;
-
-    [SerializeField] int rateCitizenDeathPerNoResource = 1;
-    [SerializeField] int rateCitizenDeathByBarrier = 1;
-    [SerializeField] int requiredUraniumForBarrier = 100;
 
     public int CalculateRateFoodGivenCitizen(int citizen) {
         return foodGeneratedPerAssignedCitizen * citizen;
@@ -154,6 +156,32 @@ public class Player : MonoBehaviour
             return "water";
         }
         return "";
+    }
+
+    void Start() {
+        initializeGame();
+    }
+
+    void initializeGame() {
+        currentCitizenPopulation = gameSettings.CurrentCitizenPopulation;
+        currentFood = gameSettings.CurrentFood;
+        currentUranium = gameSettings.CurrentUranium;
+        currentWater = gameSettings.CurrentWater;
+        currentCoin = gameSettings.CurrentCoin;
+        rateFoodPerCitizen = gameSettings.RateFoodPerCitizen;
+        rateUraniumPerCitizen = gameSettings.RateUraniumPerCitizen;
+        rateWaterPerCitizen = gameSettings.RateWaterPerCitizen;
+        rateWaterPerUranium = gameSettings.RateWaterPerUranium;
+        rateCoinPerTurn = gameSettings.RateCoinPerTurn;
+        foodGeneratedPerAssignedCitizen = gameSettings.FoodGeneratedPerAssignedCitizen;
+        coinGeneratedPerAssignedCitizen = gameSettings.CoinGeneratedPerAssignedCitizen;
+        waterGeneratedPerAssignedCitizen = gameSettings.WaterGeneratedPerAssignedCitizen;
+        uraniumGeneratedPerAssignedCitizen = gameSettings.UraniumGeneratedPerAssignedCitizen;
+        surplusFoodToGrowOneCitizenPerTurn = gameSettings.SurplusFoodToGrowOneCitizenPerTurn;
+        rateCitizenDeathPerNoResource = gameSettings.RateCitizenDeathPerNoResource;
+        rateCitizenDeathByBarrier = gameSettings.RateCitizenDeathByBarrier;
+        requiredUraniumForBarrier = gameSettings.RequiredUraniumForBarrier;
+        maxTurns = gameSettings.MaxTurns;
     }
 
     // Update is called once per frame

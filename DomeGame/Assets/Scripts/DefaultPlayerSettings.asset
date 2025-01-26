@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81ba95747ed05424fba531a6753fdddc, type: 3}
+  m_Name: DefaultPlayerSettings
+  m_EditorClassIdentifier: 
+  maxTurns: 5
+  surplusFoodToGrowOneCitizenPerTurn: 10
+  requiredUraniumForBarrier: 100
+  currentCitizenPopulation: 100
+  currentFood: 1000
+  currentUranium: 100
+  currentWater: 0
+  currentCoin: 0
+  rateFoodPerCitizen: 1
+  rateUraniumPerCitizen: 1
+  rateWaterPerCitizen: 1
+  rateWaterPerUranium: 1
+  rateCoinPerTurn: 0
+  foodGeneratedPerAssignedCitizen: 300
+  coinGeneratedPerAssignedCitizen: 300
+  waterGeneratedPerAssignedCitizen: 300
+  uraniumGeneratedPerAssignedCitizen: 300
+  rateCitizenDeathPerNoResource: 1
+  rateCitizenDeathByBarrier: 1
