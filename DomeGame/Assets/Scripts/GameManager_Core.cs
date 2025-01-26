@@ -244,6 +244,8 @@ public partial class GameManager
 
 
         if (currentTurn == maxTurns) {
+            ImmediateStyle.CanvasGroup("/Prefab Mode in Context/Core/GameObject4b5d");
+
             if (currentCitizenPopulation > 0) {
                 ImmediateStyle.Text("/Canvas/EndText82ef", $"You Win\n{GetCurrentCitizenPopulation()} Citizens Survived");
 
