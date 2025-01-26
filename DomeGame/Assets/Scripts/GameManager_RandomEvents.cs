@@ -115,23 +115,24 @@ public partial class GameManager
         if (selectedChoice == null && selectedEvent.dialog[dialogIndex].choices.Length > 1) {
             // TODO: After implementing more than 1 Event Sprite
             // ImmediateStyle.Image("/Canvas/Event Sprite5b8c", selectedEvent.sprite);
+
+            var colorA = Color.white;
+            if (!isChoiceRequirementsMet(selectedEvent.dialog[dialogIndex].choices[0].effect)) colorA = Color.red;
+            ImmediateStyle.SetColor(colorA);
+
             ImmediateStyle.Text("/Canvas/Button A/Text A6222", processText(selectedEvent.dialog[dialogIndex].choices[0].choiceText));
-            
-            ImmediateStyle.SetColor(Color.white);
-            if (!isChoiceRequirementsMet(selectedEvent.dialog[dialogIndex].choices[0].effect)){
-                ImmediateStyle.SetColor(Color.gray);
-            }
             if (ImmediateStyle.Button("/Canvas/Button A3acd").IsMouseDown && isChoiceRequirementsMet(selectedEvent.dialog[dialogIndex].choices[0].effect)) {
                 // Debug.Log("Button 1");
                 handleSelectedChoice(selectedEvent.dialog[dialogIndex].choices[0]);
             }
             ImmediateStyle.ClearColor();
 
+
+            var colorB = Color.white;
+            if (!isChoiceRequirementsMet(selectedEvent.dialog[dialogIndex].choices[1].effect)) colorB = Color.red;
+            ImmediateStyle.SetColor(colorB);
+
             ImmediateStyle.Text("/Canvas/Button B/Text Bf90d", processText(selectedEvent.dialog[dialogIndex].choices[1].choiceText));
-            ImmediateStyle.SetColor(Color.white);
-            if (!isChoiceRequirementsMet(selectedEvent.dialog[dialogIndex].choices[1].effect)){
-                ImmediateStyle.SetColor(Color.gray);
-            }
             if (ImmediateStyle.Button("/Canvas/Button Bd2b9").IsMouseDown && isChoiceRequirementsMet(selectedEvent.dialog[dialogIndex].choices[1].effect)) {
                 // Debug.Log("Button 2");
                 handleSelectedChoice(selectedEvent.dialog[dialogIndex].choices[1]);
@@ -139,11 +140,11 @@ public partial class GameManager
             ImmediateStyle.ClearColor();
 
             if (selectedEvent.dialog[dialogIndex].choices.Length > 2) {
+                var colorC = Color.white;
+                if (!isChoiceRequirementsMet(selectedEvent.dialog[dialogIndex].choices[2].effect)) colorC = Color.red;
+                ImmediateStyle.SetColor(colorC);
+
                 ImmediateStyle.Text("/Canvas/Button C/Text Cc803", processText(selectedEvent.dialog[dialogIndex].choices[2].choiceText));
-                ImmediateStyle.SetColor(Color.white);
-                if (!isChoiceRequirementsMet(selectedEvent.dialog[dialogIndex].choices[2].effect)){
-                    ImmediateStyle.SetColor(Color.gray);
-                }
                 if (ImmediateStyle.Button("/Canvas/Button C2345").IsMouseDown && isChoiceRequirementsMet(selectedEvent.dialog[dialogIndex].choices[2].effect)) {
                     // Debug.Log("Button 3");
                     handleSelectedChoice(selectedEvent.dialog[dialogIndex].choices[2]);
@@ -151,11 +152,11 @@ public partial class GameManager
                 ImmediateStyle.ClearColor();
 
                 if (selectedEvent.dialog[dialogIndex].choices.Length == 4) {
+                    var colorD = Color.white;
+                    if (!isChoiceRequirementsMet(selectedEvent.dialog[dialogIndex].choices[3].effect)) colorD = Color.red;
+                    ImmediateStyle.SetColor(colorD);
+
                     ImmediateStyle.Text("/Canvas/Button D/Text D965b", processText(selectedEvent.dialog[dialogIndex].choices[3].choiceText));
-                    ImmediateStyle.SetColor(Color.white);
-                    if (!isChoiceRequirementsMet(selectedEvent.dialog[dialogIndex].choices[3].effect)){
-                        ImmediateStyle.SetColor(Color.gray);
-                    }
                     if (ImmediateStyle.Button("/Canvas/Button D3661").IsMouseDown && isChoiceRequirementsMet(selectedEvent.dialog[dialogIndex].choices[3].effect)) {
                         // Debug.Log("Button 4");
                         handleSelectedChoice(selectedEvent.dialog[dialogIndex].choices[3]);
