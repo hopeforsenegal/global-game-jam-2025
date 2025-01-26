@@ -183,10 +183,6 @@ MonoBehaviour:
   rateCitizenDeathPerNoResource: 1
   rateCitizenDeathByBarrier: 1
   requiredUraniumForBarrier: 100
-  assignedFood: 0
-  assignedWater: 0
-  assignedUranium: 0
-  assignedCoin: 0
   randomEventsData:
   - {fileID: 11400000, guid: 08440dbf699809463bd4b840e1ebb329, type: 2}
   citizenObjects:
@@ -204,7 +200,7 @@ MonoBehaviour:
   foodTooltipText: {fileID: 672752867}
   uraniumTooltipText: {fileID: 1986559112}
   waterTooltipText: {fileID: 108854776673344203}
-  endTurnButton: {fileID: 0}
+  endTurnButton: {fileID: 1912239490}
 --- !u!4 &302184848
 Transform:
   m_ObjectHideFlags: 0
@@ -691,6 +687,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4935137050697355744, guid: 2bb6ed590b16941758d527fcf40d358c, type: 3}
   m_PrefabInstance: {fileID: 108854776673344202}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1912239490 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 763548835, guid: 2bb6ed590b16941758d527fcf40d358c, type: 3}
+  m_PrefabInstance: {fileID: 108854776673344202}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1986559112 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4935137051881838590, guid: 2bb6ed590b16941758d527fcf40d358c, type: 3}
@@ -714,6 +715,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1169990646}
     m_Modifications:
+    - target: {fileID: 763548837, guid: 2bb6ed590b16941758d527fcf40d358c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 302184847}
+    - target: {fileID: 763548837, guid: 2bb6ed590b16941758d527fcf40d358c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: EndTurn
+      objectReference: {fileID: 0}
     - target: {fileID: 379117305778893512, guid: 2bb6ed590b16941758d527fcf40d358c, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
