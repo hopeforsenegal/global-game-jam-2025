@@ -235,7 +235,8 @@ public partial class GameManager
 
 
         if (currentCitizenPopulation <= 0) {
-            ImmediateStyle.Text("/Canvas/EndText82ef", "GameOver");
+            ImmediateStyle.CanvasGroup("/Prefab Mode in Context/Core/GameObject4b5d");
+            ImmediateStyle.Text("/Canvas/EndText82ef", "Game Over");
             if (Input.GetKeyDown(KeyCode.Escape)) {
                 StartMainMenu();
             }
@@ -250,7 +251,7 @@ public partial class GameManager
                 ImmediateStyle.Text("/Canvas/EndText82ef", $"You Win\n{GetCurrentCitizenPopulation()} Citizens Survived");
 
             } else {
-                ImmediateStyle.Text("/Canvas/EndText82ef", "GameOver");
+                ImmediateStyle.Text("/Canvas/EndText82ef", "Game Over");
 
             }
             if (Input.GetKeyDown(KeyCode.Escape)) {
@@ -350,6 +351,7 @@ public partial class GameManager
                 currentTurn = currentTurn + 1;
                 requiredUraniumForBarrier += increaseRequiredUraniumForBarrierPerTurn;
                 if (currentCitizenPopulation <= 0) {
+                    ImmediateStyle.CanvasGroup("/Prefab Mode in Context/Core/GameObject4b5d");
                     ImmediateStyle.Text("/Canvas/EndText82ef", "GameOver");
                     currentPhase = GamePhase.StartPhase;
                     if (Input.GetKeyDown(KeyCode.Escape)) {
@@ -421,7 +423,8 @@ public partial class GameManager
                     StartCore();
 
                     if (currentCitizenPopulation <= 0) {
-                        ImmediateStyle.Text("/Canvas/EndText82ef", "GameOver");
+                        ImmediateStyle.CanvasGroup("/Prefab Mode in Context/Core/GameObject4b5d");
+                        ImmediateStyle.Text("/Canvas/EndText82ef", "Game Over");
                         currentPhase = GamePhase.StartPhase;
                         if (Input.GetKeyDown(KeyCode.Escape)) {
                             StartMainMenu();

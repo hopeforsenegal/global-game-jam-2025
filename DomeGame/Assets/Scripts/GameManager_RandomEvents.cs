@@ -87,6 +87,14 @@ public partial class GameManager
     // Update is called once per frame
     void HandleRandomEvents()
     {
+        if (currentCitizenPopulation <= 0) {
+            ImmediateStyle.CanvasGroup("/Prefab Mode in Context/Core/GameObject4b5d");
+            ImmediateStyle.Text("/Canvas/EndText82ef", "Game Over");
+            if (Input.GetKeyDown(KeyCode.Escape)) {
+                StartMainMenu();
+            }
+            return;
+        }
         ImmediateStyle.CanvasGroup("/Prefab Mode in Context/RandomEvents97e6");
 
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))

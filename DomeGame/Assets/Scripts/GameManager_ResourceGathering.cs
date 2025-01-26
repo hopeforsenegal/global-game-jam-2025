@@ -95,6 +95,14 @@ public partial class GameManager
 
     void HandleCore()
     {
+        if (currentCitizenPopulation <= 0) {
+            ImmediateStyle.CanvasGroup("/Prefab Mode in Context/Core/GameObject4b5d");
+            ImmediateStyle.Text("/Canvas/EndText82ef", "Game Over");
+            if (Input.GetKeyDown(KeyCode.Escape)) {
+                StartMainMenu();
+            }
+            return;
+        }
         ImmediateStyle.CanvasGroup("/Canvas/ResourceGathering7d9d");
 
         string[] allCitizenGUIDs = new[] {
