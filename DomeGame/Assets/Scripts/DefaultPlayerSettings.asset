@@ -18,8 +18,8 @@ MonoBehaviour:
   currentCitizenPopulation: 100
   currentFood: 1000
   currentUranium: 100
-  currentWater: 0
-  currentCoin: 0
+  currentWater: 1000
+  currentCoin: 100
   rateFoodPerCitizen: 1
   rateUraniumPerCitizen: 1
   rateWaterPerCitizen: 1

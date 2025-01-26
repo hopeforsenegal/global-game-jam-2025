@@ -106,15 +106,11 @@ public class Player : MonoBehaviour
     }
 
     int waterUsedPopulationPerTurn(){
-        return rateWaterPerCitizen*currentCitizenPopulation;
+        return -rateWaterPerCitizen*currentCitizenPopulation;
     }
 
     int waterUsedForUraniumPerTurn(){
-        return rateWaterPerUranium*currentUranium;
-    }
-
-    int waterGrowthPerTurn(){
-        return -waterUsedPopulationPerTurn() - waterUsedForUraniumPerTurn();
+        return rateWaterPerUranium*math.min(currentUranium, requiredUraniumForBarrier);
     }
     int coinGrowthPerTurn(){
         return rateCoinPerTurn;
@@ -188,8 +184,8 @@ public class Player : MonoBehaviour
     void Update()
     
     {
-        ImmediateStyle.Text("/Canvas/PopulationText084a", $"Population: {currentCitizenPopulation}");
-        ImmediateStyle.Text("/Canvas/Uranium Required508f", $"Uranium Required for Barrier: {requiredUraniumForBarrier}");
+        ImmediateStyle.Text("/Canvas/PopulationText084a", $"Population {currentCitizenPopulation}");
+        ImmediateStyle.Text("/Canvas/Uranium Required508f", $"{requiredUraniumForBarrier} Uranium to power the barrier");
         ImmediateStyle.Text("/Canvas/PhaseTextc7bd", currentPhase.ToString());
         ImmediateStyle.Text("/Canvas/TurnText366e", $"Turn: {currentTurn}/{maxTurns}");
 
@@ -232,7 +228,7 @@ public class Player : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space)) {
                 int foodGrowth = foodUsedPopulationPerTurn();
                 int uraniumGrowth = uraniumUsedPopulationPerTurn();
-                int waterGrowth = waterGrowthPerTurn();
+                int waterGrowth = waterUsedPopulationPerTurn();
                 int coinGrowth = coinGrowthPerTurn();
                 currentFood = math.max(foodGrowth + currentFood, 0);
                 currentUranium = math.max(uraniumGrowth + currentUranium, 0);
@@ -274,10 +270,15 @@ public class Player : MonoBehaviour
             if (popDeathByLackResource() > 0) {
                 ImmediateStyle.Text("/Canvas/ResourceDeathTexta4fa", $"{popDeathByLackResource()} people have died from lack of {generateLackResourceMessage()}.");
             }
+            if (waterUsedForUraniumPerTurn() > 0) {
+                ImmediateStyle.Text("/Canvas/EndTurnText/WaterUraniumUsageTextf34a", $"{waterUsedForUraniumPerTurn()} water consumed cooling the uranium powered barrier.");
+            }
 
             if (Input.GetKeyDown(KeyCode.Space)) {
                 int citizenGrowth = CitizenGrowthPerTurn();
+                int waterUsed = waterUsedForUraniumPerTurn();
                 currentCitizenPopulation = math.max(citizenGrowth + currentCitizenPopulation, 0);
+                currentWater = math.max(currentWater -waterUsed, 0);
                 currentTurn = currentTurn + 1;
                 currentPhase = GamePhase.StartPhase;
             }
