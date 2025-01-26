@@ -48,6 +48,7 @@ public partial class GameManager
     [SerializeField] int rateCitizenDeathPerNoResource;
     [SerializeField] int rateCitizenDeathByBarrier;
     [SerializeField] int requiredUraniumForBarrier;
+    bool endTurnClicked = false;
 
     public int CalculateRateFoodGivenCitizen(int citizen)
     {
@@ -218,8 +219,8 @@ public partial class GameManager
 
         if (currentCitizenPopulation <= 0) {
             ImmediateStyle.Text("/Canvas/EndText82ef", "GameOver");
-            if (Input.GetKeyDown(KeyCode.Space)) {
-                //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            if (Input.GetKeyDown(KeyCode.Escape)) {
+                initializeGame();
             }
             return;
         }
@@ -233,8 +234,8 @@ public partial class GameManager
                 ImmediateStyle.Text("/Canvas/EndText82ef", "GameOver");
 
             }
-            if (Input.GetKeyDown(KeyCode.Space)) {
-                //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            if (Input.GetKeyDown(KeyCode.Escape)) {
+                initializeGame();
             }
             return;
         }
@@ -245,7 +246,8 @@ public partial class GameManager
             ImmediateStyle.Text("/Canvas/FoodTexte6fc", $"Food {foodUsedPopulationPerTurn()}");
             ImmediateStyle.Text("/Canvas/UraniumTextc4b3", $"Uranium {uraniumUsedPopulationPerTurn()}");
             ImmediateStyle.Text("/Canvas/WaterText798e", $"Water {waterUsedPopulationPerTurn()}");
-            if (Input.GetKeyDown(KeyCode.Space)) {
+            if (endTurnClicked) {
+                endTurnClicked = false;
                 int foodGrowth = foodUsedPopulationPerTurn();
                 int uraniumGrowth = uraniumUsedPopulationPerTurn();
                 int waterGrowth = waterUsedPopulationPerTurn();
@@ -264,7 +266,8 @@ public partial class GameManager
             ImmediateStyle.Text("/Canvas/FoodTexte6fc", $"Food: {currentFood} +{CalculateRateFoodGivenCitizen(numFoodAssignments)}");
             ImmediateStyle.Text("/Canvas/UraniumTextc4b3", $"Uranium: {currentUranium} +{CalculateRateUraniumGivenCitizen(numUraniumAssignments)}");
             ImmediateStyle.Text("/Canvas/WaterText798e", $"Water: {currentWater} +{CalculateRateWaterGivenCitizen(numWaterAssignments)}");
-            if (Input.GetKeyDown(KeyCode.Space)) {
+            if (endTurnClicked) {
+                endTurnClicked = false;
                 currentPhase = GamePhase.EndTurn;
                 int foodGrowth = CalculateRateFoodGivenCitizen(numFoodAssignments);
                 int uraniumGrowth = CalculateRateUraniumGivenCitizen(numUraniumAssignments);
@@ -292,22 +295,26 @@ public partial class GameManager
                 ImmediateStyle.Text("/Canvas/ResourceDeathTexta4fa", $"{popDeathByLackResource()} people have died from lack of {generateLackResourceMessage()}.");
             }
             if (waterUsedForUraniumPerTurn() > 0) {
-                ImmediateStyle.Text("/Canvas/Core/EndTurnText/WaterUraniumUsageText598e", $"{waterUsedForUraniumPerTurn()} water consumed cooling the uranium powered barrier.");
+                ImmediateStyle.Text("/Canvas (Environment)/Core/EndTurnText/WaterUraniumUsageTextc113", $"{waterUsedForUraniumPerTurn()} water consumed cooling the uranium powered barrier.");
             }
 
-            if (Input.GetKeyDown(KeyCode.Space)) {
+            if (endTurnClicked) {
+                endTurnClicked = false;
                 int citizenGrowth = CitizenGrowthPerTurn();
                 int waterUsed = waterUsedForUraniumPerTurn();
                 currentCitizenPopulation = math.max(citizenGrowth + currentCitizenPopulation, 0);
                 currentWater = math.max(currentWater -waterUsed, 0);
                 currentTurn = currentTurn + 1;
-                currentPhase = GamePhase.Event;
+                currentPhase = GamePhase.StartPhase;
+                
+                // update number of citizens available for assignment;
+                StartCore();
             }
             return;
         }
         else if (currentPhase == GamePhase.Event) {
             Screen = GameScreens.RandomEvents;
-            if (Input.GetKeyDown(KeyCode.KeypadEnter)) {
+            if (selectedChoice != null) {
                 Screen = GameScreens.Core;
                 currentPhase = GamePhase.StartPhase;
                 return;
