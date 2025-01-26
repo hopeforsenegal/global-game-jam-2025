@@ -259,10 +259,12 @@ public partial class GameManager
 
     public void EndTurn()
     {
+        
         Debug.Log("Ended turn with the following allocations:");
         Debug.Log(" Coin allocation: " + numCoinAssignments +
         "; Food allocation: " + numFoodAssignments +
         "; Uranium allocation: " + numUraniumAssignments +
         "; Water allocation: " + numWaterAssignments);
+        endTurnClicked = true;
     }
 }
