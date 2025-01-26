@@ -7,6 +7,7 @@ using UnityEngine;
 public enum GamePhase
 {
     Event,
+    EventResult,
     StartPhase,
     ResourceGathering,
     EndTurn,
@@ -265,45 +266,16 @@ public partial class GameManager
                 ImmediateStyle.Text("/Canvas/CoinText4142", $"Coins +{coinGrowthPerTurn()}");
             }
 
-            if (selectedChoice != null && selectedChoice.effect != null && hasResourcesGained(selectedChoice.effect)) {
-                ImmediateStyle.CanvasGroup("/Canvas (Environment)/Core/EventUpdatec14f");
-                ImmediateStyle.Text("/Canvas (Environment)/Core/EventUpdate/EventTextf28b", $"Because of your decision");
-                if (selectedChoice.effect.foodGained != 0) {
-                    ImmediateStyle.Text("/Canvas (Environment)/Core/EventUpdate/EventFoodTextb86f", $"Food {selectedChoice.effect.foodGained.ToString("+#;-#")}");
-                }
-                if (selectedChoice.effect.uraniumGained != 0) {
-                    ImmediateStyle.Text("/Canvas (Environment)/Core/EventUpdate/EventUraniumTextd574", $"Uranium {selectedChoice.effect.uraniumGained.ToString("+#;-#")}");
-                }
-                if (selectedChoice.effect.waterGained != 0) {
-                    ImmediateStyle.Text("/Canvas (Environment)/Core/EventUpdate/EventWaterText2832", $"Water {selectedChoice.effect.waterGained.ToString("+#;-#")}");
-                }
-                if (selectedChoice.effect.coinsGained != 0) {
-                    ImmediateStyle.Text("/Canvas (Environment)/Core/EventUpdate/EventCoinText5a8e", $"Coin {selectedChoice.effect.coinsGained.ToString("+#;-#")}");
-                }
-                if (selectedChoice.effect.populationGained != 0) {
-                    ImmediateStyle.Text("/Canvas (Environment)/Core/EventUpdate/EventPopText8206", $"Population {selectedChoice.effect.populationGained.ToString("+#;-#")}");
-                }
-            } 
-
             if (endTurnClicked) {
                 endTurnClicked = false;
                 int foodGrowth = foodUsedPopulationPerTurn();
                 int uraniumGrowth = uraniumUsedPopulationPerTurn();
                 int waterGrowth = waterUsedPopulationPerTurn();
                 int coinGrowth = coinGrowthPerTurn();
-                int populationGrowth = 0;
-                if (selectedChoice != null && selectedChoice.effect != null && hasResourcesGained(selectedChoice.effect)){
-                    foodGrowth += selectedChoice.effect.foodGained;
-                    uraniumGrowth += selectedChoice.effect.uraniumGained;
-                    waterGrowth += selectedChoice.effect.waterGained;
-                    coinGrowth += selectedChoice.effect.coinsGained;
-                    populationGrowth += selectedChoice.effect.populationGained;
-                }
                 currentFood = math.max(foodGrowth + currentFood, 0);
                 currentUranium = math.max(uraniumGrowth + currentUranium, 0);
                 currentWater = math.max(waterGrowth + currentWater, 0);
                 currentCoin = math.max(coinGrowth + currentCoin, 0);
-                currentCitizenPopulation = math.max(currentCitizenPopulation + populationGrowth, 0);
                 currentPhase = GamePhase.ResourceGathering;
                 // update number of citizens available for assignment;
                 StartCore();
@@ -371,10 +343,57 @@ public partial class GameManager
         }
         else if (currentPhase == GamePhase.Event) {
             Screen = GameScreens.RandomEvents;
-            if (selectedChoice != null) {
+            if (eventFinished) {
+                endTurnClicked = false;
                 Screen = GameScreens.Core;
+                currentPhase = GamePhase.EventResult;
+                return;
+            }
+        } else if (currentPhase == GamePhase.EventResult) {
+            if (selectedChoice == null) {
                 currentPhase = GamePhase.StartPhase;
                 return;
+            }
+            if (selectedChoice.effect == null) {
+                currentPhase = GamePhase.StartPhase;
+                return;
+            }
+            if (!hasResourcesGained(selectedChoice.effect)) {
+                currentPhase = GamePhase.StartPhase;
+                return;
+            }
+            if (selectedChoice != null && selectedChoice.effect != null && hasResourcesGained(selectedChoice.effect)) {
+                ImmediateStyle.CanvasGroup("/Canvas (Environment)/Core/EventUpdatec14f");
+                ImmediateStyle.Text("/Canvas (Environment)/Core/EventUpdate/EventTextf28b", $"Because of your decision");
+                if (selectedChoice.effect.foodGained != 0) {
+                    ImmediateStyle.Text("/Canvas (Environment)/Core/EventUpdate/EventFoodTextb86f", $"Food {selectedChoice.effect.foodGained.ToString("+#;-#")}");
+                }
+                if (selectedChoice.effect.uraniumGained != 0) {
+                    ImmediateStyle.Text("/Canvas (Environment)/Core/EventUpdate/EventUraniumTextd574", $"Uranium {selectedChoice.effect.uraniumGained.ToString("+#;-#")}");
+                }
+                if (selectedChoice.effect.waterGained != 0) {
+                    ImmediateStyle.Text("/Canvas (Environment)/Core/EventUpdate/EventWaterText2832", $"Water {selectedChoice.effect.waterGained.ToString("+#;-#")}");
+                }
+                if (selectedChoice.effect.coinsGained != 0) {
+                    ImmediateStyle.Text("/Canvas (Environment)/Core/EventUpdate/EventCoinText5a8e", $"Coin {selectedChoice.effect.coinsGained.ToString("+#;-#")}");
+                }
+                if (selectedChoice.effect.populationGained != 0) {
+                    ImmediateStyle.Text("/Canvas (Environment)/Core/EventUpdate/EventPopText8206", $"Population {selectedChoice.effect.populationGained.ToString("+#;-#")}");
+                }
+                
+                if (endTurnClicked) {
+                    endTurnClicked = false;
+                    currentPhase = GamePhase.StartPhase;
+                    currentFood = math.max(selectedChoice.effect.foodGained + currentFood, 0);
+                    currentUranium = math.max(selectedChoice.effect.uraniumGained + currentUranium, 0);
+                    currentWater = math.max(selectedChoice.effect.waterGained + currentWater, 0);
+                    currentCoin = math.max(selectedChoice.effect.coinsGained + currentCoin, 0);
+                    currentCitizenPopulation = math.max(selectedChoice.effect.populationGained + currentCitizenPopulation,0);
+                    // update number of citizens available for assignment;
+                    StartCore();
+                }
+            return;  
+                
             }
         }
     }
