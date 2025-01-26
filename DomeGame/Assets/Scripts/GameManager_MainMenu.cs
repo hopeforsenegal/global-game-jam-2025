@@ -12,7 +12,8 @@ public partial class GameManager
 
     private void StartMainMenu()
     {
-        Screen = GameScreens.MainMenu; m_MainMenuState = default;
+        Screen = GameScreens.MainMenu;
+        m_MainMenuState = default;
     }
 
     private void HandleMainMenu()
