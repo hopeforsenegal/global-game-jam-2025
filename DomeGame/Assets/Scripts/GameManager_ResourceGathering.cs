@@ -35,10 +35,10 @@ public partial class GameManager
     [SerializeField] AudioClip pickupSound2;
     [SerializeField] AudioClip droppedSound;
 
-    string defaultCoinTooltipString = "BubbleCoin can be used during random events.\n\nPlace a token here to mine BubbleCoin.";
-    string defaultFoodTooltipString = "Food is necessary for your population to survive. Every 10 surplus of food increases your population by 1.\n\nPlace a token here to collect food.";
-    string defaultUraniumTooltipString = "Uranium is used to power your bubble. You need 1 uranium per person in your population.\n\nPlace a token here to collect uranium.";
-    string defaultWaterTooltipString = "Water is necessary for your population to survive.\n\nPlace a token here to collect water.";
+    string defaultCoinTooltipString;
+    string defaultFoodTooltipString;
+    string defaultUraniumTooltipString;
+    string defaultWaterTooltipString;
 
     void StartCore()
     {
@@ -56,6 +56,15 @@ public partial class GameManager
         isMovingFromFood = false;
         isMovingFromUranium = false;
         isMovingFromWater = false;
+
+        defaultCoinTooltipString = "BubbleCoin can be used during random events.\n\nPlace a token here to mine BubbleCoin.";
+        defaultWaterTooltipString = "Water is necessary for your population to survive.\n\nPlace a token here to collect water.";
+
+        int foodPerPerson = gameSettings.SurplusFoodToGrowOneCitizenPerTurn;
+        defaultFoodTooltipString = "Food is necessary for your population to survive. Every " + foodPerPerson + " surplus of food increases your population by 1.\n\nPlace a token here to collect food.";
+
+        int rateOfUranium = gameSettings.RateUraniumPerCitizen;
+        defaultUraniumTooltipString = "Uranium is used to power your bubble. You need " + rateOfUranium + " uranium per person in your population.\n\nPlace a token here to collect uranium.";
 
         coinTooltipText.text = defaultCoinTooltipString;
         foodTooltipText.text = defaultFoodTooltipString;
