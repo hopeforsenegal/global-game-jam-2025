@@ -31,8 +31,10 @@ public partial class GameManager : MonoBehaviour
             StartMainMenu();
         }
 
+#if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.W)) { Debug.Log("W"); StartCore(); }
         if (Input.GetKeyDown(KeyCode.E)) { Debug.Log("E"); StartRealCore(); }
         if (Input.GetKeyDown(KeyCode.R)) { Debug.Log("R"); StartRandomEvents(); }
+#endif
     }
 }

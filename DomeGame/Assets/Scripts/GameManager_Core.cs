@@ -1,6 +1,5 @@
 using System;
 using MoonlitSystem.UI.Immediate;
-using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -175,13 +174,8 @@ public partial class GameManager
     void StartRealCore()
     {
         Screen = GameScreens.Core;
-        initializeGame();
-    }
-
-    void initializeGame()
-    {
-        currentTurn = 0;
         currentPhase = GamePhase.ResourceGathering;
+        currentTurn = 0;
         endTurnClicked = false;
         currentCitizenPopulation = gameSettings.CurrentCitizenPopulation;
         currentFood = gameSettings.CurrentFood;
@@ -205,9 +199,7 @@ public partial class GameManager
         increaseRequiredUraniumForBarrierPerTurn = gameSettings.IncreaseRequiredUraniumForBarrierPerTurn;
     }
 
-    // Update is called once per frame
     void HandleRealCore()
-
     {
         ImmediateStyle.CanvasGroup("/Canvas/Core4cc0");
 
@@ -225,7 +217,7 @@ public partial class GameManager
         if (currentCitizenPopulation <= 0) {
             ImmediateStyle.Text("/Canvas/EndText82ef", "GameOver");
             if (Input.GetKeyDown(KeyCode.Escape)) {
-                initializeGame();
+                StartMainMenu();
             }
             return;
         }
@@ -240,7 +232,7 @@ public partial class GameManager
 
             }
             if (Input.GetKeyDown(KeyCode.Escape)) {
-                initializeGame();
+                StartMainMenu();
             }
             return;
         }

@@ -12,4 +12,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dec4fb1be46d97cbfadb30464fc4897e, type: 3}
   m_Name: Event13
   m_EditorClassIdentifier: 
-  dialog: []
+  dialog:
+  - dialogText: SECRETARY\nMayor, great news!
+    choices: []
+  - dialogText: SECRETARY\nThe weather has been in our favor. Our turbines and solar
+      panels have collected more than enough energy.
+    choices: []
+  - dialogText: SECRETARY\nWe have an excess. How would you like to use this boon?
+    choices:
+    - choiceText: Use excess power to mine BubbleCoin (+\u00A0BubbleCoin)
+      dialogIfSelected:
+      - dialogText: MAYOR\nUse all power on the servers. Now is a good time to increase
+          our budget.
+        choices: []
+    - choiceText: Store power for later (+\u00A0uranium)
+      dialogIfSelected:
+      - dialogText: "MAYOR\\nWe\u2019ll save that power for later, when we need it."
+        choices: []
+  - dialogText: "SECRETARY\\nUnderstood. I\u2019ll make sure the order is executed."
+    choices: []

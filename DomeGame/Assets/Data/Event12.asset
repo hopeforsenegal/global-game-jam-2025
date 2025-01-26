@@ -12,4 +12,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dec4fb1be46d97cbfadb30464fc4897e, type: 3}
   m_Name: Event12
   m_EditorClassIdentifier: 
-  dialog: []
+  dialog:
+  - dialogText: SECRETARY\nMayor, I have an urgent report.
+    choices: []
+  - dialogText: SECRETARY\nDue to extreme weather, we are looking at a power shortage.
+    choices: []
+  - dialogText: SECRETARY\nWe can divert all power to the dome, but this will take
+      resources from other areas.
+    choices: []
+  - dialogText: SECRETARY\nWe can also increase power output.
+    choices:
+    - choiceText: Divert power to dome (-\u00A0BubbleCoin)
+      dialogIfSelected:
+      - dialogText: "MAYOR\\nDivert power to the dome. We can\u2019t risk our citizen\u2019s
+          lives."
+        choices: []
+    - choiceText: Increase power output (-\u00A0uranium)
+      dialogIfSelected:
+      - dialogText: MAYOR\nUse up our uranium stores to make up the difference.
+        choices: []
+    - choiceText: Do nothing (-\u00A0population)
+      dialogIfSelected:
+      - dialogText: "MAYOR\\nWe\u2019ll be fine. No need to change anything.."
+        choices: []
+  - dialogText: "SECRETARY\\nUnderstood. I\u2019ll make sure the order is executed."
+    choices: []
