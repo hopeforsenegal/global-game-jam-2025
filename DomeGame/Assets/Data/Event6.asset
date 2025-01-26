@@ -27,15 +27,48 @@ MonoBehaviour:
       dialogIfSelected:
       - dialogText: MAYOR\nAgree to their demands.
         choices: []
+      effect:
+        coinsRequired: 0
+        foodRequired: 100
+        waterRequired: 100
+        uraniumRequired: 0
+        populationRequired: 0
+        coinsGained: 0
+        foodGained: -100
+        waterGained: -100
+        uraniumGained: 0
+        populationGained: 0
     - choiceText: Create militia (-\u00A0BubbleCoin, -\u00A0Population)
       dialogIfSelected:
       - dialogText: "MAYOR\\nI won\u2019t let those scum get what they want."
         choices: []
       - dialogText: MAYOR\nSet funds aside and start recruiting for that militia.
         choices: []
+      effect:
+        coinsRequired: 100
+        foodRequired: 0
+        waterRequired: 0
+        uraniumRequired: 0
+        populationRequired: -50
+        coinsGained: -100
+        foodGained: 0
+        waterGained: 0
+        uraniumGained: 0
+        populationGained: -50
     - choiceText: Do nothing
       dialogIfSelected:
       - dialogText: "MAYOR\\nWe don\u2019t have the resources to spare."
         choices: []
+      effect:
+        coinsRequired: 0
+        foodRequired: 0
+        waterRequired: 0
+        uraniumRequired: 0
+        populationRequired: 0
+        coinsGained: 0
+        foodGained: 0
+        waterGained: 0
+        uraniumGained: 0
+        populationGained: 0
   - dialogText: "SECRETARY\\nUnderstood. I\u2019ll make sure the order is executed."
     choices: []

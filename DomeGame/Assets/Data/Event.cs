@@ -15,7 +15,25 @@ public class Choice
     public DialogPart[] dialogIfSelected;
     // TODO: Extra credit
     // public Choice[] subChoices;
+    public EventEffects effect;
 }
+
+[Serializable]
+public class EventEffects {
+    public int coinsRequired;
+    public int foodRequired;
+    public int waterRequired;
+    public int uraniumRequired;
+    public int populationRequired;
+
+    public int coinsGained;
+    public int foodGained;
+    public int waterGained;
+    public int uraniumGained;
+    public int populationGained;
+}
+
+
 
 [CreateAssetMenu(fileName = "Event", menuName = "Event", order = 1)]
 public class Event : ScriptableObject

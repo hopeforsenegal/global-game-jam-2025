@@ -25,6 +25,11 @@ public partial class GameManager
         Screen = GameScreens.RandomEvents;
         if (currentTurn == 0){
             alreadyViewedEvents.Clear();
+            selectedEvent = null;
+            selectedChoice = null;
+            choiceDialogIndex = 0;
+            dialogIndex = 0;
+            eventFinished = false;
         }
         selectableEvents = randomEventsData
             .Where(eventData => !alreadyViewedEvents.Contains(eventData))
@@ -36,8 +41,10 @@ public partial class GameManager
         }
         else
         {
-            eventFinished = false;
             dialogIndex = 0;
+            selectedChoice = null;
+            choiceDialogIndex = 0;
+            eventFinished = false;
             selectedEvent = selectableEvents[
                 UnityEngine.Random.Range(0, selectableEvents.Length)];
             typingEffect = new TypingEffect();
@@ -45,6 +52,29 @@ public partial class GameManager
                 processText(selectedEvent.dialog[dialogIndex].dialogText);
         }
     }
+
+    bool isChoiceRequirementsMet(EventEffects effect) {
+        if (effect == null) {
+            return false;
+        }
+        if (effect.coinsRequired > currentCoin) {
+            return false;
+        }
+        if (effect.foodRequired > currentFood) {
+            return false;
+        }
+        if (effect.uraniumRequired > currentUranium) {
+            return false;
+        }
+        if (effect.waterRequired > currentWater) {
+            return false;
+        }
+        if (effect.populationRequired >= currentCitizenPopulation) {
+            return false;
+        }
+        return true;
+    }
+
     // Update is called once per frame
     void HandleRandomEvents()
     {
@@ -72,36 +102,55 @@ public partial class GameManager
 
         TypingEffect.HandleTypingEffect(ref typingEffect, 0.01f);
         ImmediateStyle.Text("/Canvas/Event Description Background/Event Descriptiond52a", typingEffect.currentText);
-
         if (selectedChoice == null && selectedEvent.dialog[dialogIndex].choices.Length > 1) {
             // TODO: After implementing more than 1 Event Sprite
             // ImmediateStyle.Image("/Canvas/Event Sprite5b8c", selectedEvent.sprite);
-
             ImmediateStyle.Text("/Canvas/Button A/Text A6222", processText(selectedEvent.dialog[dialogIndex].choices[0].choiceText));
-            if (ImmediateStyle.Button("/Canvas/Button A3acd").IsMouseDown) {
+            
+            ImmediateStyle.SetColor(Color.white);
+            if (!isChoiceRequirementsMet(selectedEvent.dialog[dialogIndex].choices[0].effect)){
+                ImmediateStyle.SetColor(Color.gray);
+            }
+            if (ImmediateStyle.Button("/Canvas/Button A3acd").IsMouseDown && isChoiceRequirementsMet(selectedEvent.dialog[dialogIndex].choices[0].effect)) {
                 // Debug.Log("Button 1");
                 handleSelectedChoice(selectedEvent.dialog[dialogIndex].choices[0]);
             }
+            ImmediateStyle.ClearColor();
 
             ImmediateStyle.Text("/Canvas/Button B/Text Bf90d", processText(selectedEvent.dialog[dialogIndex].choices[1].choiceText));
-            if (ImmediateStyle.Button("/Canvas/Button Bd2b9").IsMouseDown) {
+            ImmediateStyle.SetColor(Color.white);
+            if (!isChoiceRequirementsMet(selectedEvent.dialog[dialogIndex].choices[1].effect)){
+                ImmediateStyle.SetColor(Color.gray);
+            }
+            if (ImmediateStyle.Button("/Canvas/Button Bd2b9").IsMouseDown && isChoiceRequirementsMet(selectedEvent.dialog[dialogIndex].choices[1].effect)) {
                 // Debug.Log("Button 2");
                 handleSelectedChoice(selectedEvent.dialog[dialogIndex].choices[1]);
             }
+            ImmediateStyle.ClearColor();
 
             if (selectedEvent.dialog[dialogIndex].choices.Length > 2) {
                 ImmediateStyle.Text("/Canvas/Button C/Text Cc803", processText(selectedEvent.dialog[dialogIndex].choices[2].choiceText));
-                if (ImmediateStyle.Button("/Canvas/Button C2345").IsMouseDown) {
+                ImmediateStyle.SetColor(Color.white);
+                if (!isChoiceRequirementsMet(selectedEvent.dialog[dialogIndex].choices[2].effect)){
+                    ImmediateStyle.SetColor(Color.gray);
+                }
+                if (ImmediateStyle.Button("/Canvas/Button C2345").IsMouseDown && isChoiceRequirementsMet(selectedEvent.dialog[dialogIndex].choices[2].effect)) {
                     // Debug.Log("Button 3");
                     handleSelectedChoice(selectedEvent.dialog[dialogIndex].choices[2]);
                 }
+                ImmediateStyle.ClearColor();
 
                 if (selectedEvent.dialog[dialogIndex].choices.Length == 4) {
                     ImmediateStyle.Text("/Canvas/Button D/Text D965b", processText(selectedEvent.dialog[dialogIndex].choices[3].choiceText));
-                    if (ImmediateStyle.Button("/Canvas/Button D3661").IsMouseDown) {
+                    ImmediateStyle.SetColor(Color.white);
+                    if (!isChoiceRequirementsMet(selectedEvent.dialog[dialogIndex].choices[3].effect)){
+                        ImmediateStyle.SetColor(Color.gray);
+                    }
+                    if (ImmediateStyle.Button("/Canvas/Button D3661").IsMouseDown && isChoiceRequirementsMet(selectedEvent.dialog[dialogIndex].choices[3].effect)) {
                         // Debug.Log("Button 4");
                         handleSelectedChoice(selectedEvent.dialog[dialogIndex].choices[3]);
                     }
+                    ImmediateStyle.ClearColor();
                 }
             }
         }
