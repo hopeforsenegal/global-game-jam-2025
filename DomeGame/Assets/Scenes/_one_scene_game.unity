@@ -842,10 +842,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: MainMenu
       objectReference: {fileID: 0}
-    - target: {fileID: 2480336875474138982, guid: 331d256aab8ec4ac9b71053e4183fd16, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2480336875474138985, guid: 331d256aab8ec4ac9b71053e4183fd16, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1027,12 +1023,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: RandomEvents
       objectReference: {fileID: 0}
-    - target: {fileID: 8786122621759113994, guid: bfdd7093f1d6a4683aa7e466f33597be, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 3676200494190383150, guid: bfdd7093f1d6a4683aa7e466f33597be, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bfdd7093f1d6a4683aa7e466f33597be, type: 3}
 --- !u!224 &8106182948659285098 stripped
 RectTransform:
