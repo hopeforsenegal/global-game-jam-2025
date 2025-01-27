@@ -105,11 +105,14 @@ public partial class GameManager
             { 
                 choiceDialogIndex++;
 
-                if (choiceDialogIndex < selectedChoice.dialogIfSelected.Length) {
+                if (choiceDialogIndex < selectedChoice.dialogIfSelected.Length)
+                {
                     typingEffect = new TypingEffect();
                     typingEffect.fullText =
                         processText(selectedChoice.dialogIfSelected[choiceDialogIndex].dialogText);
-                } else {
+                }
+                else
+                {
                     handleRenderNextDialog();
                 }
             }
@@ -118,52 +121,62 @@ public partial class GameManager
         // Make text speed super fast!
         TypingEffect.HandleTypingEffect(ref typingEffect, Single.Epsilon);
         ImmediateStyle.Text("/Canvas/Event Description Background/Event Descriptiond52a", typingEffect.currentText);
-        if (selectedChoice == null && selectedEvent.dialog[dialogIndex].choices.Length > 1) {
+
+        if (selectedChoice == null && selectedEvent.dialog[dialogIndex].choices.Length > 1)
+        {
             // TODO: After implementing more than 1 Event Sprite
             // ImmediateStyle.Image("/Canvas/Event Sprite5b8c", selectedEvent.sprite);
 
-            var colorA = Color.white;
+            Color colorA = Color.white;
             if (!isChoiceRequirementsMet(selectedEvent.dialog[dialogIndex].choices[0].effect)) colorA = Color.red;
             ImmediateStyle.SetColor(colorA);
 
             ImmediateStyle.Text("/Canvas/Button A/Text A6222", processText(selectedEvent.dialog[dialogIndex].choices[0].choiceText));
-            if (ImmediateStyle.Button("/Canvas/Button A3acd").IsMouseDown && isChoiceRequirementsMet(selectedEvent.dialog[dialogIndex].choices[0].effect)) {
+            if (ImmediateStyle.Button("/Canvas/Button A3acd").IsMouseDown && isChoiceRequirementsMet(selectedEvent.dialog[dialogIndex].choices[0].effect))
+            {
                 // Debug.Log("Button 1");
                 handleSelectedChoice(selectedEvent.dialog[dialogIndex].choices[0]);
             }
             ImmediateStyle.ClearColor();
 
 
-            var colorB = Color.white;
+            Color colorB = Color.white;
             if (!isChoiceRequirementsMet(selectedEvent.dialog[dialogIndex].choices[1].effect)) colorB = Color.red;
             ImmediateStyle.SetColor(colorB);
 
             ImmediateStyle.Text("/Canvas/Button B/Text Bf90d", processText(selectedEvent.dialog[dialogIndex].choices[1].choiceText));
-            if (ImmediateStyle.Button("/Canvas/Button Bd2b9").IsMouseDown && isChoiceRequirementsMet(selectedEvent.dialog[dialogIndex].choices[1].effect)) {
+            if (ImmediateStyle.Button("/Canvas/Button Bd2b9").IsMouseDown && isChoiceRequirementsMet(selectedEvent.dialog[dialogIndex].choices[1].effect))
+            {
                 // Debug.Log("Button 2");
                 handleSelectedChoice(selectedEvent.dialog[dialogIndex].choices[1]);
             }
             ImmediateStyle.ClearColor();
 
-            if (selectedEvent.dialog[dialogIndex].choices.Length > 2) {
-                var colorC = Color.white;
+
+            if (selectedEvent.dialog[dialogIndex].choices.Length > 2)
+            {
+                Color colorC = Color.white;
                 if (!isChoiceRequirementsMet(selectedEvent.dialog[dialogIndex].choices[2].effect)) colorC = Color.red;
                 ImmediateStyle.SetColor(colorC);
 
                 ImmediateStyle.Text("/Canvas/Button C/Text Cc803", processText(selectedEvent.dialog[dialogIndex].choices[2].choiceText));
-                if (ImmediateStyle.Button("/Canvas/Button C2345").IsMouseDown && isChoiceRequirementsMet(selectedEvent.dialog[dialogIndex].choices[2].effect)) {
+                if (ImmediateStyle.Button("/Canvas/Button C2345").IsMouseDown && isChoiceRequirementsMet(selectedEvent.dialog[dialogIndex].choices[2].effect))
+                {
                     // Debug.Log("Button 3");
                     handleSelectedChoice(selectedEvent.dialog[dialogIndex].choices[2]);
                 }
                 ImmediateStyle.ClearColor();
 
-                if (selectedEvent.dialog[dialogIndex].choices.Length == 4) {
-                    var colorD = Color.white;
+
+                if (selectedEvent.dialog[dialogIndex].choices.Length == 4)
+                {
+                    Color colorD = Color.white;
                     if (!isChoiceRequirementsMet(selectedEvent.dialog[dialogIndex].choices[3].effect)) colorD = Color.red;
                     ImmediateStyle.SetColor(colorD);
 
                     ImmediateStyle.Text("/Canvas/Button D/Text D965b", processText(selectedEvent.dialog[dialogIndex].choices[3].choiceText));
-                    if (ImmediateStyle.Button("/Canvas/Button D3661").IsMouseDown && isChoiceRequirementsMet(selectedEvent.dialog[dialogIndex].choices[3].effect)) {
+                    if (ImmediateStyle.Button("/Canvas/Button D3661").IsMouseDown && isChoiceRequirementsMet(selectedEvent.dialog[dialogIndex].choices[3].effect))
+                    {
                         // Debug.Log("Button 4");
                         handleSelectedChoice(selectedEvent.dialog[dialogIndex].choices[3]);
                     }
@@ -183,11 +196,14 @@ public partial class GameManager
     private void handleRenderNextDialog()
     {
         dialogIndex++;
-        if (dialogIndex < selectedEvent.dialog.Length) {
+        if (dialogIndex < selectedEvent.dialog.Length)
+        {
             typingEffect = new TypingEffect();
             typingEffect.fullText =
                 processText(selectedEvent.dialog[dialogIndex].dialogText);
-        } else {
+        }
+        else
+        {
             // TODO: Switch back to Core Scene, and pass it the selected Choice
             alreadyViewedEvents.Add(selectedEvent);
             Screen = GameScreens.Core;
@@ -203,9 +219,7 @@ public partial class GameManager
         choiceDialogIndex = 0;
 
         if (selectedChoice.followUpEvent != null)
-        {
             followUpEvents.Add(selectedChoice.followUpEvent);
-        }
 
         typingEffect = new TypingEffect();
         typingEffect.fullText =
