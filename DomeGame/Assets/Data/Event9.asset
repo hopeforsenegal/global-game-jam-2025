@@ -39,7 +39,7 @@ MonoBehaviour:
         waterGained: 0
         uraniumGained: 100
         populationGained: 0
-      followUpEvent: {fileID: 0}
+      followUpEvent: {fileID: 11400000, guid: 2b8b63935d1b82283968b43403262f6b, type: 2}
     - choiceText: Decline
       dialogIfSelected:
       - dialogText: "MAYOR\\nI don\u2019t need bribes."

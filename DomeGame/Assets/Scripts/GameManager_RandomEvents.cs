@@ -86,7 +86,7 @@ public partial class GameManager
     void HandleRandomEvents()
     {
         if (currentCitizenPopulation <= 0) {
-            ImmediateStyle.CanvasGroup("/Prefab Mode in Context/Core/GameObject4b5d");
+            ImmediateStyle.CanvasGroup("/Prefab Mode in Context/Core/EndGamef3a3");
             ImmediateStyle.Text("/Canvas/EndText82ef", "Game Over");
             if (Input.GetKeyDown(KeyCode.Escape)) {
                 Start();

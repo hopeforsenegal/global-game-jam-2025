@@ -237,7 +237,7 @@ public partial class GameManager
 
 
         if (currentCitizenPopulation <= 0) {
-            ImmediateStyle.CanvasGroup("/Prefab Mode in Context/Core/GameObject4b5d");
+            ImmediateStyle.CanvasGroup("/Prefab Mode in Context/Core/EndGamef3a3");
             ImmediateStyle.Text("/Canvas/EndText82ef", "Game Over");
             if (Input.GetKeyDown(KeyCode.Escape)) {
                 Start();
@@ -253,7 +253,7 @@ public partial class GameManager
             String okScoreStory = "Your citizens are somewhat satisfied with your handling of the city, although things often feel dicey. Still—some citizens praise you, calling you better than your predecessor.";
             String badScoreStory = "Despite it all, you didn’t bring total annihilation to the city of Sita. However, many citizens are thinking of transferring cities due to your bad management.";
 
-            ImmediateStyle.CanvasGroup("/Prefab Mode in Context/Core/GameObject4b5d");
+            ImmediateStyle.CanvasGroup("/Prefab Mode in Context/Core/EndGamef3a3");
 
             if (currentCitizenPopulation > 700)
             {
@@ -386,7 +386,7 @@ public partial class GameManager
                 currentTurn = currentTurn + 1;
                 requiredUraniumForBarrier += increaseRequiredUraniumForBarrierPerTurn;
                 if (currentCitizenPopulation <= 0) {
-                    ImmediateStyle.CanvasGroup("/Prefab Mode in Context/Core/GameObject4b5d");
+                    ImmediateStyle.CanvasGroup("/Prefab Mode in Context/Core/EndGamef3a3");
                     ImmediateStyle.Text("/Canvas/EndText82ef", "GameOver");
                     currentPhase = GamePhase.StartPhase;
                     if (Input.GetKeyDown(KeyCode.Escape)) {
@@ -459,7 +459,7 @@ public partial class GameManager
                     StartCore();
 
                     if (currentCitizenPopulation <= 0) {
-                        ImmediateStyle.CanvasGroup("/Prefab Mode in Context/Core/GameObject4b5d");
+                        ImmediateStyle.CanvasGroup("/Prefab Mode in Context/Core/EndGamef3a3");
                         ImmediateStyle.Text("/Canvas/EndText82ef", "Game Over");
                         currentPhase = GamePhase.StartPhase;
                         if (Input.GetKeyDown(KeyCode.Escape)) {

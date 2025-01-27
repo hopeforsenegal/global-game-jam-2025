@@ -568,6 +568,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Core
       objectReference: {fileID: 0}
+    - target: {fileID: 5349248191468240152, guid: 705275cb5a8994f0db34ca849e1c6144, type: 3}
+      propertyPath: ElementData.ID
+      value: /Prefab Mode in Context/Core/EndGamef3a3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7978422484972937485, guid: 705275cb5a8994f0db34ca849e1c6144, type: 3}
+      propertyPath: m_Name
+      value: EndGame
+      objectReference: {fileID: 0}
     - target: {fileID: 8086106145488128769, guid: 705275cb5a8994f0db34ca849e1c6144, type: 3}
       propertyPath: m_SizeDelta.x
       value: 1200
