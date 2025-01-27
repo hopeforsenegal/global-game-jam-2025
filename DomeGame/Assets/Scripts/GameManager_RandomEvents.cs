@@ -21,23 +21,24 @@ public partial class GameManager
 
     private bool eventFinished;
 
-    // Extra credit: follow-up events
     private List<Event> followUpEvents = new List<Event>();
-    private bool isFollowUpEventsEnabled = false;
 
-    // Start is called before the first frame update
+    // Call to initialize at every start of this event
     void StartRandomEvents()
     {
         Screen = GameScreens.RandomEvents;
         if (currentTurn == 0){
-            alreadyViewedEvents.Clear();
+            // I don't think this is needed, except possibly for testing
+            // alreadyViewedEvents.Clear();
             selectedEvent = null;
             selectedChoice = null;
             choiceDialogIndex = 0;
             dialogIndex = 0;
             eventFinished = false;
         }
-        selectableEvents = randomEventsData
+        selectableEvents = randomEventsData.ToList<Event>();
+        selectableEvents.AddRange(followUpEvents);
+        selectableEvents = selectableEvents
             .Where(eventData => !alreadyViewedEvents.Contains(eventData))
             .ToList<Event>();
         if (selectableEvents.Count == 0)
@@ -81,7 +82,7 @@ public partial class GameManager
         return true;
     }
 
-    // Update is called once per frame
+    // Update game loop for this event
     void HandleRandomEvents()
     {
         if (currentCitizenPopulation <= 0) {
