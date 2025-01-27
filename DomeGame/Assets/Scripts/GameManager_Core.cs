@@ -248,23 +248,28 @@ public partial class GameManager
 
 
         if (currentTurn == maxTurns) {
+            String perfectScoreStory = "You have managed the city beautifully, as if you could see the future. The city is overflowing with abundance, and no citizen is in need. Even your detractors praise you in every article. Citizens from all over are queuing up to transfer to Sita, and other city-states across the land are clambering to make an alliance.";
+            String greatScoreStory = "Your handling of the city has grown it into a prosperous place to live. Citizens from other cities are considering transferring to Sita. Even those that resent you must begrudgingly admit that you have done well.";
+            String okScoreStory = "Your citizens are somewhat satisfied with your handling of the city, although things often feel dicey. Still—some citizens praise you, calling you better than your predecessor.";
+            String badScoreStory = "Despite it all, you didn’t bring total annihilation to the city of Sita. However, many citizens are thinking of transferring cities due to your bad management.";
+
             ImmediateStyle.CanvasGroup("/Prefab Mode in Context/Core/GameObject4b5d");
 
             if (currentCitizenPopulation > 700)
             {
-                ImmediateStyle.Text("/Canvas/EndText82ef", "You win!\nYou have created a paradise, and are loved by all.");
+                ImmediateStyle.Text("/Canvas/EndText82ef", $"You Win\n\n{perfectScoreStory}\n\n{GetCurrentCitizenPopulation()} Citizens Survived");
             }
             else if (currentCitizenPopulation > 400)
             {
-                ImmediateStyle.Text("/Canvas/EndText82ef", "You win!\nSita has grown it into a prosperous place to live.");
+                ImmediateStyle.Text("/Canvas/EndText82ef", $"You Win\n\n{greatScoreStory}\n\n{GetCurrentCitizenPopulation()} Citizens Survived");
             }
             else if (currentCitizenPopulation > 100)
             {
-                ImmediateStyle.Text("/Canvas/EndText82ef", "You win!\nYou survived, but you’re not winning re-election.");
+                ImmediateStyle.Text("/Canvas/EndText82ef", $"You Win\n\n{okScoreStory}\n\n{GetCurrentCitizenPopulation()} Citizens Survived");
             }
             else
             {
-                ImmediateStyle.Text("/Canvas/EndText82ef", "You win!\nDespite it all, you didn’t bring total annihilation to the city of Sita.");
+                ImmediateStyle.Text("/Canvas/EndText82ef", $"You Win\n\n{badScoreStory}\n\n{GetCurrentCitizenPopulation()} Citizens Survived");
             }
             if (Input.GetKeyDown(KeyCode.Escape)) {
                 Start();
